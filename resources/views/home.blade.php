@@ -1,18 +1,17 @@
 @extends('layouts.app')
+@section('bodyclass', 'is-home')
 @section('content')
-<section class="intro">
-  <h1>Cari bandara di Indonesia</h1>
-  <p class="lead">Ketik nama bandara, kota, atau kode IATA untuk melihat informasi dan jadwal penerbangannya.</p>
-  <form class="searchrow" action="{{ route('search') }}" method="get">
-    <input type="search" name="q" placeholder="mis. Kualanamu, Medan, KNO" aria-label="Kata kunci pencarian" required autofocus>
-    <button type="submit">Cari</button>
-  </form>
+<section class="home">
+  <div class="logo-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+  <h1 class="logo"><span class="b1">BANDARA</span> <span class="b2">ASEAN</span></h1>
+  <p class="tagline">Cari bandara di Asia Tenggara</p>
+  @include('partials.searchbox', ['autofocus' => true])
   <div class="chips">
     <span>Coba:</span>
     <a class="chip" href="{{ route('search', ['q' => 'Kualanamu']) }}">Kualanamu</a>
     <a class="chip" href="{{ route('search', ['q' => 'Soekarno-Hatta']) }}">Soekarno-Hatta</a>
-    <a class="chip" href="{{ route('search', ['q' => 'Denpasar']) }}">Denpasar</a>
-    <a class="chip" href="{{ route('search', ['q' => 'Makassar']) }}">Makassar</a>
+    <a class="chip" href="{{ route('search', ['q' => 'Changi']) }}">Changi</a>
+    <a class="chip" href="{{ route('search', ['q' => 'Suvarnabhumi']) }}">Suvarnabhumi</a>
   </div>
 </section>
 @endsection

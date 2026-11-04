@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Rute Penerbangan — AeroSearch')
+@section('title', 'Rute Penerbangan — BANDARA ASEAN')
 
 @section('head')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -14,21 +14,21 @@
     <div class="state">{{ $error }}</div>
   @else
     <form class="routeform" method="get" action="{{ route('route.index') }}">
-      <div>
+      <div class="field">
         <label for="dari">Dari</label>
         <select id="dari" name="dari" required>
           <option value="">Pilih bandara</option>
           @foreach($bandara as $b)
-            <option value="{{ $b['iata'] }}" {{ $dari === $b['iata'] ? 'selected' : '' }}>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
+            <option value="{{ $b['iata'] }}" @selected($dari === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
           @endforeach
         </select>
       </div>
-      <div>
+      <div class="field">
         <label for="ke">Ke</label>
         <select id="ke" name="ke" required>
           <option value="">Pilih bandara</option>
           @foreach($bandara as $b)
-            <option value="{{ $b['iata'] }}" {{ $ke === $b['iata'] ? 'selected' : '' }}>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
+            <option value="{{ $b['iata'] }}" @selected($ke === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
           @endforeach
         </select>
       </div>
@@ -48,14 +48,23 @@
     <div class="fact"><div class="k">Jarak garis lurus</div><div class="v">{{ number_format($jarak, 0, ',', '.') }} km</div></div>
   </div>
 
-  <div id="peta-rute"></div>
+  <div
+    id="peta-rute"
+    data-asal="{{ json_encode([$asal['lat'], $asal['lon']]) }}"
+    data-tujuan="{{ json_encode([$tujuan['lat'], $tujuan['lon']]) }}"
+    data-nama-asal="{{ $asal['iata'] }} - {{ $asal['nama'] }}"
+    data-nama-tujuan="{{ $tujuan['iata'] }} - {{ $tujuan['nama'] }}"
+  ></div>
 
   @push('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script>
   (function () {
-    var asal = [{{ $asal['lat'] }}, {{ $asal['lon'] }}];
-    var tujuan = [{{ $tujuan['lat'] }}, {{ $tujuan['lon'] }}];
+    var petaEl = document.getElementById('peta-rute');
+    var asal = JSON.parse(petaEl.dataset.asal || '[0,0]');
+    var tujuan = JSON.parse(petaEl.dataset.tujuan || '[0,0]');
+    var namaAsal = petaEl.dataset.namaAsal || 'Asal';
+    var namaTujuan = petaEl.dataset.namaTujuan || 'Tujuan';
 
     var peta = L.map('peta-rute');
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -63,8 +72,8 @@
       maxZoom: 18,
     }).addTo(peta);
 
-    L.marker(asal).addTo(peta).bindPopup('{{ $asal['iata'] }} - {{ addslashes($asal['nama']) }}');
-    L.marker(tujuan).addTo(peta).bindPopup('{{ $tujuan['iata'] }} - {{ addslashes($tujuan['nama']) }}');
+    L.marker(asal).addTo(peta).bindPopup(namaAsal);
+    L.marker(tujuan).addTo(peta).bindPopup(namaTujuan);
 
     L.polyline([asal, tujuan], { color: '#1f5fd6', weight: 3, dashArray: '2 8' }).addTo(peta);
 

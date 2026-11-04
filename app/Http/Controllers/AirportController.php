@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\AirportImageService;
-use App\Services\FlightService;
 use App\Services\SparqlService;
 use Illuminate\Http\Request;
 
 class AirportController extends Controller
 {
-    public function __construct(
-        private SparqlService $sparql,
-        private FlightService $flights,
-        private AirportImageService $images,
-    ) {
+    public function __construct(private SparqlService $sparql, private AirportImageService $images)
+    {
     }
 
     public function home()
@@ -23,7 +19,7 @@ class AirportController extends Controller
 
     public function search(Request $request)
     {
-        $q = trim($request->query('q', ''));
+        $q = trim((string) $request->query('q', ''));
         $results = [];
         $error = null;
 
@@ -35,22 +31,8 @@ class AirportController extends Controller
             }
         }
 
-        return view('results', compact('q', 'results', 'error'));
-    }
+        $fotos = $results ? $this->images->photos(array_column($results, 'nama')) : [];
 
-    public function show(string $iata)
-    {
-        try {
-            $airport = $this->sparql->find($iata);
-        } catch (\Throwable $e) {
-            abort(503, 'Fuseki belum berjalan.');
-        }
-        abort_if(!$airport, 404, 'Bandara tidak ditemukan.');
-
-        $airlines = $this->sparql->airlines($iata);
-        $flights = $this->flights->departures(strtoupper($iata));
-        $foto = $this->images->thumbnail($airport['nama']);
-
-        return view('detail', compact('airport', 'airlines', 'flights', 'foto'));
+        return view('results', compact('q', 'results', 'error', 'fotos'));
     }
 }

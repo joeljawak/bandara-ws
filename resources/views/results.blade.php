@@ -1,12 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Hasil: ' . $q . ' — AeroSearch')
+@section('title', $q . ' - BANDARA ASEAN')
 @section('content')
-<div class="searchbar">
-  <form class="searchrow" action="{{ route('search') }}" method="get">
-    <input type="search" name="q" value="{{ $q }}" aria-label="Kata kunci pencarian" required>
-    <button type="submit">Cari</button>
-  </form>
-</div>
+<div class="top-search">@include('partials.searchbox')</div>
 
 @if($error)
   <div class="state">{{ $error }}</div>
@@ -15,16 +10,13 @@
 @elseif(count($results) === 0)
   <div class="state">Tidak ada bandara untuk &quot;{{ $q }}&quot;. Coba nama kota atau kode IATA.</div>
 @else
-  <p class="count">{{ count($results) }} bandara ditemukan</p>
+  <p class="count" style="margin:22px 0 0">{{ count($results) }} bandara ditemukan untuk &quot;{{ $q }}&quot;</p>
   <div class="list">
     @foreach($results as $r)
-      <a class="board-row" href="{{ route('airport.show', $r['iata']) }}">
-        <span class="code">{{ $r['iata'] }}</span>
-        <span>
-          <div class="row-name">{{ $r['nama'] }}</div>
-          <div class="row-sub">{{ $r['kota'] }}{{ isset($r['icao']) ? ', ' . $r['icao'] : '' }}</div>
-        </span>
-      </a>
+      @include('partials.row', [
+          'r' => $r,
+          'sub' => collect([$r['kota'] ?? 'Lokasi tidak tersedia', $r['negara'] ?? null])->filter()->implode(', '),
+      ])
     @endforeach
   </div>
 @endif
