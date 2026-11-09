@@ -1,0 +1,73 @@
+@prefix ex: <http://example.org/bandara#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo1: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+ex:country_ID a ex:Country ;
+    rdfs:label "Indonesia" ;
+    ex:memberOfASEAN "true" .
+
+ex:region_JK a ex:Region ;
+    rdfs:label "DKI Jakarta" ;
+    ex:adminLevel 1 ;
+    ex:locatedInCountry ex:country_ID .
+
+ex:region_Sumut a ex:Region ;
+    rdfs:label "Sumatera Utara" ;
+    ex:adminLevel 1 ;
+    ex:locatedInCountry ex:country_ID ;
+    ex:partOfRegion ex:region_JK .
+
+ex:airport_CGK a ex:Airport ;
+    rdfs:label "Soekarno-Hatta International Airport" ;
+    ex:hasIATACode "CGK" ;
+    ex:hasICAOCode "WIII" ;
+    ex:airportCategory "International" ;
+    ex:airportStatus "Active" ;
+    ex:locatedInCountry ex:country_ID ;
+    ex:locatedInRegion ex:region_JK ;
+    ex:inASEAN "true" ;
+    geo1:lat "-6.1256" ;
+    geo1:long "106.6558" ;
+    ex:elevation "10" ;
+    ex:longestRunwayLength "3600" ;
+    ex:longestRunwayWidth "60" ;
+    ex:runwayCount 2 ;
+    ex:surfaceMaterial "Asphalt" ;
+    ex:operator "PT Angkasa Pura II" ;
+    ex:annualPassengers "54000000" ;
+    ex:numberOfDestinations 120 ;
+    ex:numberOfDestinationsASEAN 30 ;
+    ex:numberOfDestinationsOutsideASEAN 90 ;
+    ex:localName "Bandar Udara Soekarno-Hatta" ;
+    ex:website <https://www.soekarnohatta-airport.co.id/> .
+
+ex:airport_KNO a ex:Airport ;
+    rdfs:label "Kualanamu International Airport" ;
+    ex:hasIATACode "KNO" ;
+    ex:hasICAOCode "WIMM" ;
+    ex:airportCategory "International" ;
+    ex:airportStatus "Active" ;
+    ex:locatedInCountry ex:country_ID ;
+    ex:locatedInRegion ex:region_Sumut ;
+    ex:inASEAN "true" ;
+    geo1:lat "3.6422" ;
+    geo1:long "98.8853" ;
+    ex:nearestAirport ex:airport_CGK ;
+    ex:distanceToNearestAirportKm "1400.5" ;
+    ex:annualPassengers "8000000" .
+
+ex:airline_GA a ex:Airline ;
+    rdfs:label "Garuda Indonesia" ;
+    ex:airlineCode "GA" ;
+    ex:hubAt ex:airport_CGK ;
+    ex:operatesAt ex:airport_CGK, ex:airport_KNO ;
+    ex:website <https://www.garuda-indonesia.com/> .
+
+ex:route_GA_CGK_KNO a ex:Route ;
+    ex:origin ex:airport_CGK ;
+    ex:destination ex:airport_KNO ;
+    ex:operatedBy ex:airline_GA .
+
+ex:route_broken a ex:Route ;
+    ex:origin ex:airport_CGK ;
+    ex:destination ex:airport_KNO .
