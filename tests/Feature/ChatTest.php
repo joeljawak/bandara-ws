@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Services\ChatService;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class ChatTest extends TestCase
@@ -25,7 +26,7 @@ class ChatTest extends TestCase
             ]]]),
         ]);
 
-        $this->getJson('/chat?q=' . urlencode('Berapa jumlah bandara di Indonesia?'))
+        $this->getJson('/chat?q='.urlencode('Berapa jumlah bandara di Indonesia?'))
             ->assertOk()
             ->assertJsonPath('text', 'Ada 136 bandara di Indonesia menurut data yang tersimpan.');
     }
@@ -34,7 +35,7 @@ class ChatTest extends TestCase
     {
         Http::fake([config('sparql.endpoint') => Http::response('error', 500)]);
 
-        $this->getJson('/chat?q=' . urlencode('Berapa jumlah bandara di Indonesia?'))
+        $this->getJson('/chat?q='.urlencode('Berapa jumlah bandara di Indonesia?'))
             ->assertOk()
             ->assertJsonPath('text', 'Data bandara belum bisa diambil. Pastikan Fuseki sudah berjalan.');
     }
@@ -49,6 +50,7 @@ class ChatTest extends TestCase
     /**
      * @dataProvider pertanyaan
      */
+    #[DataProvider('pertanyaan')]
     public function test_maksud_pertanyaan_dikenali(string $pesan, string $intent): void
     {
         $this->assertSame($intent, ChatService::parse($pesan)['intent']);

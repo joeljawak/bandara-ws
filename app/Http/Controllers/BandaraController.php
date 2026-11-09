@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Route;
 use App\Services\AirportImageService;
 use App\Services\DbpediaService;
 use App\Services\FlightService;
 use App\Services\FusekiService;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class BandaraController extends Controller
 {
@@ -21,10 +24,10 @@ class BandaraController extends Controller
         $filter = '';
         if ($q !== '') {
             $k = FusekiService::esc(mb_strtolower($q));
-            $filter .= 'FILTER(CONTAINS(LCASE(STR(?nama)), "' . $k . '") || LCASE(STR(?iata)) = "' . $k . '" || CONTAINS(LCASE(STR(?kota)), "' . $k . '") || CONTAINS(LCASE(STR(?negara)), "' . $k . '"))';
+            $filter .= 'FILTER(CONTAINS(LCASE(STR(?nama)), "'.$k.'") || LCASE(STR(?iata)) = "'.$k.'" || CONTAINS(LCASE(STR(?kota)), "'.$k.'") || CONTAINS(LCASE(STR(?negara)), "'.$k.'"))';
         }
         if ($negara !== '') {
-            $filter .= ' FILTER(LCASE(STR(?negara)) = LCASE("' . FusekiService::esc($negara) . '"))';
+            $filter .= ' FILTER(LCASE(STR(?negara)) = LCASE("'.FusekiService::esc($negara).'"))';
         }
 
         try {
@@ -41,7 +44,7 @@ class BandaraController extends Controller
                     OPTIONAL { ?a ex:latitude ?lat }
                     OPTIONAL { ?a ex:longitude ?lon }
                     OPTIONAL { ?a ex:kategori ?status }
-                    ' . $filter . '
+                    '.$filter.'
                 } ORDER BY ?nama LIMIT 50'
             );
         } catch (\Throwable $e) {
@@ -61,7 +64,7 @@ class BandaraController extends Controller
         $info = $fuseki->query(
             'SELECT ?nama ?icao ?negara ?status ?kategori ?operator ?lat ?long
                     ?wilayah ?provinsi ?penumpang ?runway ?sameAs ?website ?tahun WHERE {
-                ?a a ex:Bandara ; ex:kodeIATA "' . FusekiService::esc($iata) . '" ;
+                ?a a ex:Bandara ; ex:kodeIATA "'.FusekiService::esc($iata).'" ;
                    ex:namaBandara ?nama ; ex:negara ?negara .
                 OPTIONAL { ?a ex:kodeICAO ?icao }
                 OPTIONAL { ?a ex:kategori ?kategori }
@@ -74,8 +77,22 @@ class BandaraController extends Controller
 
         abort_if(empty($info), 404);
 
-        // Dataset bandara_asean.ttl yang diberikan belum memuat relasi rute penerbangan.
-        $rute = [];
+        // Rute diambil dari tabel relasional hasil impor bandara.ttl.
+        $rute = collect();
+
+        if (Schema::hasTable('routes')) {
+            $rute = Route::query()
+                ->with(['destinationAirport', 'airline'])
+                ->whereHas('originAirport', fn (Builder $query) => $query->where('iata_code', $iata))
+                ->get()
+                ->map(fn (Route $route): array => [
+                    'dst_iata' => $route->destinationAirport?->iata_code,
+                    'dst_nama' => $route->destinationAirport?->label,
+                    'maskapai' => $route->airline?->label,
+                ])
+                ->filter(fn (array $row): bool => $row['dst_iata'] !== null)
+                ->groupBy('dst_iata');
+        }
 
         $b = $info[0];
         $foto = $images->photo($b['nama'], $iata);
@@ -83,7 +100,7 @@ class BandaraController extends Controller
         return view('bandara.show', [
             'b' => $b,
             'iata' => $iata,
-            'rute' => collect($rute)->groupBy('dst_iata'),
+            'rute' => $rute,
             'foto' => $foto,
             'jadwal' => $flights->departures($iata),
             'dbpedia' => $dbpedia->describe($this->alamatDbpedia($b, $foto)),
@@ -99,7 +116,7 @@ class BandaraController extends Controller
         }
 
         if (preg_match('#^https://en\.wikipedia\.org/wiki/(.+)$#', $foto['page'] ?? '', $m)) {
-            return 'http://dbpedia.org/resource/' . rawurldecode($m[1]);
+            return 'http://dbpedia.org/resource/'.rawurldecode($m[1]);
         }
 
         return null;
