@@ -47,6 +47,10 @@ class SparqlService
             OPTIONAL {
                 ?a <http://example.org/asean-airport#locatedInRegion> ?region .
                 ?region <http://www.w3.org/2000/01/rdf-schema#label> ?kota .
+                OPTIONAL {
+                    ?region <http://example.org/asean-airport#partOfRegion> ?induk .
+                    ?induk <http://www.w3.org/2000/01/rdf-schema#label> ?provinsi .
+                }
             }
             OPTIONAL {
                 ?a <http://example.org/asean-airport#locatedInCountry> ?country .
@@ -58,9 +62,15 @@ class SparqlService
             FILTER(
                 CONTAINS(REPLACE(LCASE(STR(?nama)), "[ -]", ""), "'.$q.'") ||
                 LCASE(STR(?iata)) = "'.$q.'" ||
-                (BOUND(?icao) && LCASE(STR(?icao)) = "'.$q.'")
+                (BOUND(?icao) && LCASE(STR(?icao)) = "'.$q.'") ||
+                (BOUND(?kota) && CONTAINS(REPLACE(LCASE(STR(?kota)), "[ -]", ""), "'.$q.'")) ||
+                (BOUND(?provinsi) && CONTAINS(REPLACE(LCASE(STR(?provinsi)), "[ -]", ""), "'.$q.'")) ||
+                (BOUND(?negara) && CONTAINS(REPLACE(LCASE(STR(?negara)), "[ -]", ""), "'.$q.'"))
             )
-        } ORDER BY ?nama LIMIT 50');
+        } ORDER BY
+            ASC(IF(LCASE(STR(?iata)) = "'.$q.'", 0, IF(STRSTARTS(REPLACE(LCASE(STR(?nama)), "[ -]", ""), "'.$q.'"), 1, 2)))
+            ?nama
+        LIMIT 50');
     }
 
     // daftar bandara yang punya koordinat, dipakai untuk dropdown halaman rute

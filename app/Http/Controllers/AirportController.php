@@ -31,7 +31,7 @@ class AirportController extends Controller
             }
         }
 
-        $fotos = $results ? $this->images->photos(array_column($results, 'nama')) : [];
+        $fotos = $results ? $this->images->photos(array_map(fn ($r) => ['nama' => $r['nama'], 'iata' => $r['iata']], $results)) : [];
 
         return view('results', compact('q', 'results', 'error', 'fotos'));
     }

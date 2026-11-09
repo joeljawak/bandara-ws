@@ -1,0 +1,618 @@
+iata,nama,jumlah_kosong,data_yang_kosong
+KJA,Yemelyanovo Airport,8,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MED,Prince Mohammad Bin Abdulaziz Airport,8,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LED,Pulkovo Airport,8,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ABV,Nnamdi Azikiwe International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ATL,Hartsfield Jackson Atlanta International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ADD,Addis Ababa Bole International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ADL,Adelaide International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AKL,Auckland International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ALA,Almaty Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AMD,Sardar Vallabhbhai Patel International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AMM,Queen Alia International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AMS,Amsterdam Airport Schiphol,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ARN,Stockholm-Arlanda Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AUH,Abu Dhabi International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BAH,Bahrain International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BCN,Barcelona International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CAN,Guangzhou Baiyun International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HGH,Hangzhou Xiaoshan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HKG,Hong Kong International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ICN,Incheon International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NRT,Narita International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PER,Perth International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PVG,Shanghai Pudong International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SZX,Shenzhen Bao'an International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TPE,Taiwan Taoyuan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BLR,Kempegowda International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BNE,Brisbane International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BOM,Chhatrapati Shivaji International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BRU,Brussels Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CAI,Cairo International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CCU,Netaji Subhash Chandra Bose International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CDG,Charles de Gaulle International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CGO,Zhengzhou Xinzheng International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CGP,Shah Amanat International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CKG,Chongqing Jiangbei International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CMB,Bandaranaike International Colombo Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CPH,Copenhagen Kastrup Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CSX,Changsha Huanghua International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CTS,New Chitose Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CTU,Chengdu Shuangliu International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DAC,Hazrat Shahjalal International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DEL,Indira Gandhi International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DME,Domodedovo International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DOH,Hamad International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DXB,Dubai International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FCO,Leonardo da Vinci–Fiumicino Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FOC,Fuzhou Changle International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FRA,Frankfurt am Main Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FUK,Fukuoka Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+GAU,Lokpriya Gopinath Bordoloi International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HEL,Helsinki Vantaa Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HND,Tokyo Haneda International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HYD,Rajiv Gandhi International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+IKA,Imam Khomeini International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+IKT,Irkutsk Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ISB,New Islamabad International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+IST,Istanbul Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+IXB,Bagdogra Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+JNB,OR Tambo International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KBP,Boryspil International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KHH,Kaohsiung International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KHI,Jinnah International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KIX,Kansai International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KMG,Kunming Changshui International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KTM,Tribhuvan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KWI,Kuwait International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LHE,Alama Iqbal International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LHR,London Heathrow Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MAA,Chennai International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MAD,Adolfo Suárez Madrid–Barajas Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MCT,Muscat International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MEL,Melbourne International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MFM,Macau International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MLE,Malé International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MUC,Munich Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MXP,Malpensa International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NBO,Jomo Kenyatta International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NGB,Ningbo Lishe International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NGO,Chubu Centrair International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NNG,Nanning Wuxu Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+OSL,Oslo Lufthavn,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+OVB,Tolmachevo Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PEK,Beijing Capital International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PUS,Gimhae International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SVO,Sheremetyevo International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SVX,Koltsovo Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SWA,Jieyang Chaoshan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SYD,Sydney Kingsford Smith International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TAO,Liuting Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TAS,Tashkent International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TLV,Ben Gurion International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TNA,Yaoqiang Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TNR,Ivato Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ULN,Chinggis Khaan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+VIE,Vienna International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+WUH,Wuhan Tianhe International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+XMN,Xiamen Gaoqi International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ZRH,Zürich Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NTX,Ranai Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+VKO,Vnukovo International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DWC,Al Maktoum International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+JED,King Abdulaziz International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+POM,Port Moresby Jacksons International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+RUH,King Khaled International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CHC,Christchurch International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+CJB,Coimbatore International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+COK,Cochin International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+WNZ,Wenzhou Longwan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DRW,Darwin International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KHN,Nanchang Changbei International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+XIY,Xi'an Xianyang International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DMM,King Fahd International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PHE,Port Hedland International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FNJ,Pyongyang Sunan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+GUM,Antonio B. Won Pat International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HAK,Haikou Meilan International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+RMQ,Taichung Ching Chuang Kang Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KWE,Longdongbao Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+HNL,Daniel K Inouye International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+JHG,Xishuangbanna Gasa Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KWL,Guilin Liangjiang International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MRU,Sir Seewoosagur Ramgoolam International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+OOL,Gold Coast Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PEW,Peshawar International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TRZ,Tiruchirapally Civil Airport Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LAX,Los Angeles International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LJG,Lijiang Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MSP,Minneapolis-St Paul International/Wold-Chamberlain Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ORD,Chicago O'Hare International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ROR,Babelthuap Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SFO,San Francisco International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+YVR,Vancouver International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+XBE,Bearskin Lake Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+YXL,Sioux Lookout Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ZPB,Sachigo Lake Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ZRJ,Round Lake (Weagamow Lake) Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+NKG,Nanjing Lukou Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TRV,Trivandrum International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TSN,Tianjin Binhai International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+VTZ,Vishakhapatnam Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+WUX,Sunan Shuofang International Airport,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+THU,Thule Air Base,7,kode ICAO; wilayah/kota; status; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+DHX,Dhoho International Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KJX,Blangpidie Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GYO,Senubung Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+OMY,Thbeng Meanchey Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+APD,Arung Palakka Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AAS,Apalapsili Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+JIO,Jos Orno Imsula Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MAP,Mapanduma Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PAI,Pailin Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KMT,Kampot Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KTI,Phnom Penh Techo International Airport,6,wilayah/kota; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SPT,Sipitang Airport,6,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AOU,Attopeu,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+VNA,Saravane Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BXW,Bawean Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+CPF,Ngloram Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+EWE,Ewer Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AKM,Akimuga Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+FOO,Kornasoren Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GAW,Gangaw airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KYT,Kyauktu Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PYX,Pattaya Airpark,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+IAX,Miangas Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KHM,Khamti Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KKZ,Koh Kong Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KSR,H. Aroeppala Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LAH,Oesman Sadik Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LKI,Lasikin Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LNU,Robert Atty Bessing Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LSR,Alas Leuser Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MEQ,Cut Nyak Dhien Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+NMT,Namtu Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+NDA,Bandanaira Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PPU,Hpapun Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+RDE,Merdey Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+NTI,Bintuni Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+RGT,Japura Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SPE,Sepulot Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MXB,Andi Jemma Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SUP,Trunojoyo Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SXT,Sungai Tiang Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+TJG,Warukin Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SXS,Sahabat Sahabat 16 Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+WAR,Waris Baru Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BXM,Batom Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AYW,Ayawasi Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BXG,Bomakia Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ABY,Aboy Airport,5,kode ICAO; pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ARJ,Arso Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AUT,Atauro aerodrome,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+VIQ,Viqueque Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BXT,Bontang Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+CXP,Tunggul Wulung Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PWL,Wirasaba Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ELR,Elelim Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GLX,Gamar Malamo Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+OTI,Pitu Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GWA,Gwa Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GXA,Beringin Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+HMS,Haji Muhammad Sidik Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ILA,Ilaga Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+IVD,Nusantara International Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+JHN,Bandar Udara Jenderal Besar Abdul Haris Nasution,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KMM,Kimaam Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KOG,Khong Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LMU,Letung Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MGK,Mong Tong Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MLP,Malabang Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MPC,Mukomuko Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KRC,Depati Parbo Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MWV,Mondulkiri Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SQG,Tebelian Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PAU,Pauk Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PXA,Atung Bungsu Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+UOL,Buol Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+RKI,Rokot Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+AGD,Anggi Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SBG,Maimun Saleh Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+THK,Thakhek,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+VTG,Vung Tau Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PGQ,Buli Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+XIE,Xienglom,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+XYE,Ye Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ZBY,Sayaboury Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+RZP,Taytay Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KLP,Seruyan Kuala Pembuang Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MGU,Manaung Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PAY,Pamol Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+TEL,Telupid Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+RNU,Ranau Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+UTR,Uttaradit Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BOR,Bokeo International Airport,5,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PCB,Pondok Cabe Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ARD,Alor Island Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BBM,Battambang Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+CDY,Cagayan de Sulu Airport,4,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+DRH,Dabra Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BUI,Bokondini Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KWB,Dewandaru Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+WDB,Weda Bay Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LPU,Long Apung Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BLG,Belaga Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LSU,Long Sukang Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+GSA,Long Pasia Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MEP,Mersing Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+MOE,Momeik Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+MWQ,Magway Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+AHI,Amahai Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NYW,Monywar Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PKK,Pakokku Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+OEC,Oecusse Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SAI,Siem Reap-Angkor International Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PRU,Pyay Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PSU,Pangsuma Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+RBE,Ratanakiri Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TNX,Stung Treng Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BUU,Muara Bungo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SAU,Tardamu Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SIQ,Dabo Singkep Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SMM,Semporna Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SQN,Emalamo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SQR,Soroako Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SWQ,Brangbiji Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TJB,Sei Bati Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+XSP,Seletar Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BTK,Sanggu Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TKH,Takhli Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KDT,Kamphaeng Saen Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LSW,Malikus Saleh Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+WNI,Matahora Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+WRR,Werur Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+ZEG,Senggo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SKO,Seko Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+FKQ,Siboru Airport,4,wilayah/kota; pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+SXK,Mathilda Batyaleri Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+KBU,Gusti Syamsir Alam Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+TGC,Tanjung Manis Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LBP,Long Banga Airport,4,kode ICAO; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LUW,Syukuran Aminuddin Amir Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MJU,Tampa Padang Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+MSA,Sumarorong Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+ODY,Oudomsay Airport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+SVR,Savissivik Heliport,4,pengelola; penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+AMI,Selaparang Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BCH,Baucau Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BJK,Benjina Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BMO,Bhamo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BRG,Taman Bung Karno Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BSE,Sematan Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+SGQ,Sangkimah Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+CJN,Nusawiru Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SIW,Sibisa Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+DTD,Datadawai Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+GHS,Melalan Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SEQ,Sei Selari Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+EWI,Enarotali Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+UGU,Bilorai Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+FLZ,Ferdinand Lumban Tobing Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+AEG,Aek Godang Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BSX,Pathein Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+JBB,Notohadinegoro Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KSX,John Becker Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KBX,Kambuaya Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BXD,Bade Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KMV,Kalaymyo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SRU,Surbung Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+KOX,Kokonao Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KZC,Kampong Chhnang Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KZD,Krakor Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LIW,Loikaw Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LKA,Gewayantana Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LWE,Wonopito Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LKM,Raja Loloda Mokoagow Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LLO,Palopo Lagaligo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TRT,Toraja Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+MWK,Matak Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LSH,Lashio Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LSM,Long Semado Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LSX,Lhok Sukon Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+MOG,Monghsat Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NEU,Sam Neua,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SQH,Nà Sản Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NMS,Namsang Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NNX,Nunukan Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NPO,Nanga Pinoh Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+OJU,Tanjung Api Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PAN,Pattani Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PDO,Pendopo Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SWY,Sitiawan Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+PWX,Panua Pohuwato Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PXR,Surin Pakdi Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+RSK,Ransiki Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SGZ,Songkhla Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SRI,Temindung Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TMG,Tommanggong Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TKT,Tak Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TLI,Sultan Bantilan Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TMH,Tanah Merah Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+UAI,Suai Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+VBC,Mandalay Chanmyathazi Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+WYK,Gatot Subroto Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+MNU,Mawlamyaing Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+ZRI,Stevanus Rumbewas Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BJW,Bajawa Soa Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SMQ,Sampit Airport,4,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+LBW,Juvai Semaring Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LLJ,Silampari Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+RAQ,Sugimanuru Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TJS,Tanjung Harapan Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TPG,Taiping Airport,4,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+VBP,Bokpyin Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+LLC,Cagayan North International Airport,4,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+ENI,El Nido Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+RGN,Yangon International Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+REP,Siem Reap International Airport,3,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs)
+BWN,Brunei International Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+MDL,Mandalay International Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+SFS,Subic Bay International Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+BPA,Borongan Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+BPH,Bislig Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+BQA,Dr. Juan C. Angara Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+BSI,Balesin Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+CYU,Cuyo Airport,3,landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+HHQ,Hua Hin Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+MYT,Myitkyina Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+NYU,Nyaung U Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+NAK,Nakhon Ratchasima Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+ABU,A. A. Bere Tallo Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PAA,Hpa-An Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SNW,Thandwe Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+KPI,Kapit Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+RTI,David Constantijn Saudale Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NAM,Namlea Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TXE,Takengon Rembele Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+AKY,Sittwe Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+LUV,Karel Sadsuitubun Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+NBX,Nabire Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PKN,Iskandar Airport,3,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs)
+KUD,Kudat Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LPQ,Luang Prabang International Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+NYT,Nay Pyi Taw International Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+ZVK,Savannakhet Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+BKM,Ba'kelalan Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+BKS,Fatmawati Soekarno Airport,3,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs)
+TJQ,H.A.S. Hanandjoeddin International Airport,3,pengelola; landasan terpanjang; tautan eksternal (owl:sameAs)
+OKL,Oksibil Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+MOF,Frans Seda Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+TMC,Lede Kalumbang Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+WGP,Mau Hau Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+KNG,Kaimana Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+HEH,Heho Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+THL,Tachilek Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+HOE,Ban Huoeisay Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+MGZ,Myeik Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+KAW,Kawthaung Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+KET,Kengtung Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+KYP,Kyaukpyu Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+LGL,Long Lellang Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LKH,Long Akah Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LSE,Lasondre Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+LXG,Louangnamtha Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+MNA,Melonguane Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+NAH,Naha Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+TVY,Dawei Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+ODN,Long Seridan Airport,3,penumpang per tahun; landasan terpanjang; tautan eksternal (owl:sameAs)
+PBU,Putao Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+PSJ,Kasiguncu Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+PUM,Sangia Nibandera Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+XKH,Xieng Khouang Airport,3,pengelola; penumpang per tahun; tautan eksternal (owl:sameAs)
+AAV,Allah Valley Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+CBN,Penggung Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+TSY,Tasikmalaya Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+DTB,Raja Sisingamangaraja XII International Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+DUM,Pinang Kampai Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+GNS,Binaka Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+IPE,Ipil Airport,3,landasan terpanjang; tautan eksternal (owl:sameAs); punya rute keluar
+BWX,Banyuwangi International Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+NRE,Namrole Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+PHY,Phetchabun Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+RJM,Marinda Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+SGL,Sangley Point Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+SKJ,Singkawang Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+VDO,Van Don International Airport,3,pengelola; tautan eksternal (owl:sameAs); punya rute keluar
+YIA,Yogyakarta International Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+BTW,Batu Licin Airport,3,penumpang per tahun; tautan eksternal (owl:sameAs); punya rute keluar
+KCH,Kuching International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+PNH,Phnom Penh International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+DIL,Presidente Nicolau Lobato International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+HLP,Halim Perdanakusuma International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+HAN,Noi Bai International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+CEB,Mactan–Cebu International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+SRG,Jenderal Ahmad Yani International Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+SIN,Singapore Changi Airport,2,pengelola; tautan eksternal (owl:sameAs)
+AAP,Aji Pangeran Tumenggung Pranoto International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+VTE,Wattay International Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+SZB,Sultan Abdul Aziz Shah Airport,2,pengelola; tautan eksternal (owl:sameAs)
+CRK,Clark International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+TIM,Mozes Kilangin Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+TDG,Tandag Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+DTE,Bagasbas Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+EUQ,Evelio Javier Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+MKW,Rendani Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+MXI,Mati Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+TRK,Juwata International Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+JHB,Senai International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+MKZ,Malacca International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+MRQ,Marinduque Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+TBH,Tugdan Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+BFV,Buriram Airport,2,pengelola; tautan eksternal (owl:sameAs)
+TWT,Sanga-Sanga Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+BUW,Betoambari Airport,2,pengelola; tautan eksternal (owl:sameAs)
+MUR,Marudi Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+BBN,Bario Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+MYY,Miri International Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+JOG,Adisucipto Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+BTH,Hang Nadim International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+LWY,Lawas Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+KBV,Krabi Airport,2,pengelola; tautan eksternal (owl:sameAs)
+KKC,Khon Kaen Airport,2,pengelola; tautan eksternal (owl:sameAs)
+LPT,Lampang Airport,2,pengelola; tautan eksternal (owl:sameAs)
+UBP,Ubon Ratchathani International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+URT,Surat Thani Airport,2,pengelola; tautan eksternal (owl:sameAs)
+UTH,Udon Thani International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+BMU,Bima Airport,2,pengelola; tautan eksternal (owl:sameAs)
+BMV,Buon Ma Thuot Airport,2,pengelola; tautan eksternal (owl:sameAs)
+VII,Vinh Airport,2,pengelola; tautan eksternal (owl:sameAs)
+DJB,Sultan Thaha Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+PDG,Minangkabau International Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+BXB,Babo Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+CAH,Cà Mau Airport,2,pengelola; tautan eksternal (owl:sameAs)
+LGP,Legazpi Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+MLG,Abdul Rachman Saleh Airport,2,pengelola; tautan eksternal (owl:sameAs)
+SOC,Adi Soemarmo International Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+TTE,Babullah Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+CJM,Chumphon Airport,2,pengelola; tautan eksternal (owl:sameAs)
+HGN,Mae Hong Son Airport,2,pengelola; tautan eksternal (owl:sameAs)
+NNT,Nan Nakhon Airport,2,pengelola; tautan eksternal (owl:sameAs)
+DLI,Lien Khuong Airport,2,pengelola; tautan eksternal (owl:sameAs)
+HPH,Cat Bi International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+PXU,Pleiku Airport,2,pengelola; tautan eksternal (owl:sameAs)
+MKQ,Mopah International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+WMX,Wamena Airport,2,pengelola; tautan eksternal (owl:sameAs)
+KOP,Nakhon Phanom Airport,2,pengelola; tautan eksternal (owl:sameAs)
+LOE,Loei Airport,2,pengelola; tautan eksternal (owl:sameAs)
+NAW,Narathiwat Airport,2,pengelola; tautan eksternal (owl:sameAs)
+PRH,Phrae Airport,2,pengelola; tautan eksternal (owl:sameAs)
+ROI,Roi Et Airport,2,pengelola; tautan eksternal (owl:sameAs)
+TST,Trang Airport,2,pengelola; tautan eksternal (owl:sameAs)
+UNN,Ranong Airport,2,pengelola; tautan eksternal (owl:sameAs)
+DOB,Dobo Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+LBJ,Komodo International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+ENE,H. Hasan Aroeboesman Airport,2,pengelola; tautan eksternal (owl:sameAs)
+HUI,Phu Bai International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+TBB,Tuy Hoa Airport,2,pengelola; tautan eksternal (owl:sameAs)
+UIH,Phu Cat Airport,2,pengelola; tautan eksternal (owl:sameAs)
+VCA,Can Tho International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+VCL,Chu Lai Airport,2,pengelola; tautan eksternal (owl:sameAs)
+UTP,U-Tapao International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+KAZ,Kuabang Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+KOS,Sihanouk International Airport,2,pengelola; tautan eksternal (owl:sameAs)
+KTE,Kerteh Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+KTG,Ketapang Airport,2,pengelola; tautan eksternal (owl:sameAs)
+LMN,Limbang Airport,2,pengelola; tautan eksternal (owl:sameAs)
+PKZ,Pakse International Airport,2,penumpang per tahun; tautan eksternal (owl:sameAs)
+TAG,Tagbilaran Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+RDN,Redang Airport,2,landasan terpanjang; tautan eksternal (owl:sameAs)
+VCS,Con Dao Airport,2,pengelola; tautan eksternal (owl:sameAs)
+VKG,Rach Gia Airport,2,pengelola; tautan eksternal (owl:sameAs)
+BAG,Loakan Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+SFE,San Fernando Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+KJT,Kertajati International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+KNO,Kualanamu International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+LBX,Lubang Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+MBO,Mamburao Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+OMC,Ormoc Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+PKG,Pangkor Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+DRP,Bicol International Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+IGN,Maria Cristina Airport,2,tautan eksternal (owl:sameAs); punya rute keluar
+MNL,Ninoy Aquino International Airport,1,tautan eksternal (owl:sameAs)
+CGK,Soekarno Hatta International Airport,1,tautan eksternal (owl:sameAs)
+ZAM,Zamboanga International Airport,1,tautan eksternal (owl:sameAs)
+BKI,Kota Kinabalu International Airport,1,tautan eksternal (owl:sameAs)
+LBU,Labuan Airport,1,tautan eksternal (owl:sameAs)
+LDU,Lahad Datu Airport,1,tautan eksternal (owl:sameAs)
+SGN,Tan Son Nhat International Airport,1,tautan eksternal (owl:sameAs)
+DPS,I Gusti Ngurah Rai International Airport,1,tautan eksternal (owl:sameAs)
+BKK,Suvarnabhumi Airport,1,tautan eksternal (owl:sameAs)
+DMK,Don Mueang International Airport,1,tautan eksternal (owl:sameAs)
+MDC,Sam Ratulangi International Airport,1,tautan eksternal (owl:sameAs)
+SUB,Juanda International Airport,1,tautan eksternal (owl:sameAs)
+BDO,Husein Sastranegara Airport,1,tautan eksternal (owl:sameAs)
+DJJ,Sentani International Airport,1,tautan eksternal (owl:sameAs)
+KUL,Kuala Lumpur International Airport,1,tautan eksternal (owl:sameAs)
+TNJ,Raja Haji Fisabilillah International Airport,1,tautan eksternal (owl:sameAs)
+BDJ,Syamsudin Noor International Airport,1,tautan eksternal (owl:sameAs)
+CNX,Chiang Mai International Airport,1,tautan eksternal (owl:sameAs)
+LAO,Laoag International Airport,1,tautan eksternal (owl:sameAs)
+KLO,Kalibo International Airport,1,tautan eksternal (owl:sameAs)
+HKT,Phuket International Airport,1,tautan eksternal (owl:sameAs)
+LGK,Langkawi International Airport,1,tautan eksternal (owl:sameAs)
+PKU,Sultan Syarif Kasim II International Airport,1,tautan eksternal (owl:sameAs)
+BTJ,Sultan Iskandar Muda International Airport,1,tautan eksternal (owl:sameAs)
+KOE,El Tari International Airport,1,tautan eksternal (owl:sameAs)
+TAC,Daniel Z. Romualdez Airport,1,tautan eksternal (owl:sameAs)
+SDK,Sandakan Airport,1,tautan eksternal (owl:sameAs)
+TDX,Trat Airport,1,tautan eksternal (owl:sameAs)
+UPG,Sultan Hasanuddin International Airport,1,tautan eksternal (owl:sameAs)
+TWU,Tawau Airport,1,tautan eksternal (owl:sameAs)
+LOP,Zainuddin Abdul Madjid International Airport,1,tautan eksternal (owl:sameAs)
+KUA,Sultan Haji Ahmad Shah Airport,1,tautan eksternal (owl:sameAs)
+AMQ,Pattimura International Airport,1,tautan eksternal (owl:sameAs)
+SOQ,Domine Eduard Osok International Airport,1,tautan eksternal (owl:sameAs)
+AOR,Sultan Abdul Halim Airport,1,tautan eksternal (owl:sameAs)
+BCD,Bacolod-Silay International Airport,1,tautan eksternal (owl:sameAs)
+CGY,Laguindingan Airport,1,tautan eksternal (owl:sameAs)
+DVO,Francisco Bangoy International Airport,1,tautan eksternal (owl:sameAs)
+BPN,Sultan Aji Muhammad Sulaiman Sepinggan International Airport,1,tautan eksternal (owl:sameAs)
+BEJ,Kalimarau Airport,1,tautan eksternal (owl:sameAs)
+BIK,Frans Kaisiepo International Airport,1,tautan eksternal (owl:sameAs)
+BTU,Bintulu Airport,1,tautan eksternal (owl:sameAs)
+KBR,Sultan Ismail Petra Airport,1,tautan eksternal (owl:sameAs)
+MZV,Mulu Airport,1,tautan eksternal (owl:sameAs)
+PEN,Penang International Airport,1,tautan eksternal (owl:sameAs)
+PPS,Puerto Princesa International Airport,1,tautan eksternal (owl:sameAs)
+SBW,Sibu Airport,1,tautan eksternal (owl:sameAs)
+CEI,Mae Fah Luang – Chiang Rai International Airport,1,tautan eksternal (owl:sameAs)
+HDY,Hat Yai International Airport,1,tautan eksternal (owl:sameAs)
+THS,Sukhothai Airport,1,tautan eksternal (owl:sameAs)
+USM,Samui Airport,1,tautan eksternal (owl:sameAs)
+DAD,Da Nang International Airport,1,tautan eksternal (owl:sameAs)
+PLW,Mutiara Sis Al Jufri International Airport,1,tautan eksternal (owl:sameAs)
+BSO,Basco Airport,1,tautan eksternal (owl:sameAs)
+PGK,Depati Amir Airport,1,tautan eksternal (owl:sameAs)
+PLM,Sultan Mahmud Badaruddin II International Airport,1,tautan eksternal (owl:sameAs)
+PNK,Supadio International Airport,1,tautan eksternal (owl:sameAs)
+TKG,Radin Inten II International Airport,1,tautan eksternal (owl:sameAs)
+BXU,Bancasi Airport,1,tautan eksternal (owl:sameAs)
+CBO,Awang Airport,1,tautan eksternal (owl:sameAs)
+CGM,Camiguin Airport,1,tautan eksternal (owl:sameAs)
+DGT,Sibulan Airport,1,tautan eksternal (owl:sameAs)
+DPL,Dipolog Airport,1,tautan eksternal (owl:sameAs)
+GES,General Santos International Airport,1,tautan eksternal (owl:sameAs)
+IAO,Sayak Airport,1,tautan eksternal (owl:sameAs)
+ILO,Iloilo International Airport,1,tautan eksternal (owl:sameAs)
+MPH,Godofredo P. Ramos Airport,1,tautan eksternal (owl:sameAs)
+OZC,Labo Airport,1,tautan eksternal (owl:sameAs)
+PAG,Pagadian Airport,1,tautan eksternal (owl:sameAs)
+SUG,Surigao Airport,1,tautan eksternal (owl:sameAs)
+USU,Francisco B. Reyes Airport,1,tautan eksternal (owl:sameAs)
+KDI,Haluoleo Airport,1,tautan eksternal (owl:sameAs)
+PKY,Tjilik Riwut Airport,1,tautan eksternal (owl:sameAs)
+PHS,Phitsanulok Airport,1,tautan eksternal (owl:sameAs)
+PYY,Pai Airport,1,tautan eksternal (owl:sameAs)
+CRM,Catarman National Airport,1,tautan eksternal (owl:sameAs)
+CXR,Cam Ranh International Airport,1,tautan eksternal (owl:sameAs)
+CYP,Calbayog Airport,1,tautan eksternal (owl:sameAs)
+CYZ,Cauayan Airport,1,tautan eksternal (owl:sameAs)
+DIN,Dien Bien Phu Airport,1,tautan eksternal (owl:sameAs)
+MAQ,Mae Sot Airport,1,tautan eksternal (owl:sameAs)
+NST,Nakhon Si Thammarat Airport,1,tautan eksternal (owl:sameAs)
+SNO,Sakon Nakhon Airport,1,tautan eksternal (owl:sameAs)
+GTO,Djalaluddin Gorontalo Airport,1,tautan eksternal (owl:sameAs)
+PQC,Phu Quoc International Airport,1,tautan eksternal (owl:sameAs)
+VDH,Dong Hoi Airport,1,tautan eksternal (owl:sameAs)
+IPH,Sultan Azlan Shah Airport,1,tautan eksternal (owl:sameAs)
+JOL,Jolo Airport,1,tautan eksternal (owl:sameAs)
+MKM,Mukah Airport,1,tautan eksternal (owl:sameAs)
+TGG,Sultan Mahmud Airport,1,tautan eksternal (owl:sameAs)
+MBT,Moises R. Espinosa Airport,1,tautan eksternal (owl:sameAs)
+RXS,Roxas Airport,1,tautan eksternal (owl:sameAs)
+SJI,San Jose Airport,1,tautan eksternal (owl:sameAs)
+TUG,Tuguegarao Airport,1,tautan eksternal (owl:sameAs)
+VRC,Virac Airport,1,tautan eksternal (owl:sameAs)
+WNP,Naga Airport,1,tautan eksternal (owl:sameAs)
+THD,Tho Xuan Airport,1,tautan eksternal (owl:sameAs)

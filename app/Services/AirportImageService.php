@@ -20,16 +20,18 @@ class AirportImageService
         'base', 'field', 'intl', 'bandar', 'bandara', 'udara', 'lanud', 'the', 'and',
     ];
 
-    // foto untuk halaman detail: coba judul persis, lalu pencarian Wikipedia, lalu Commons
-    public function photo(string $nama): ?array
+    // foto untuk halaman detail: judul persis, lalu Wikidata (dicocokkan lewat kode IATA),
+    // lalu pencarian Wikipedia, lalu Commons
+    public function photo(string $nama, ?string $iata = null): ?array
     {
-        $key = 'foto_detail_' . md5($nama);
+        $key = 'foto_detail_' . md5($nama . '|' . $iata);
         $cache = Cache::get($key);
         if ($cache !== null) {
             return $cache ?: null;
         }
 
         $hasil = $this->byTitles([$nama], 1200)[$nama] ?? null;
+        $hasil ??= $iata ? ($this->byWikidata([$iata], 1200)[strtoupper($iata)] ?? null) : null;
         $hasil ??= $this->bySearch($nama);
         $hasil ??= $this->byCommons($nama);
 
@@ -38,14 +40,20 @@ class AirportImageService
         return $hasil;
     }
 
-    // foto kecil untuk banyak bandara sekaligus (satu permintaan per 50 nama)
-    public function photos(array $names): array
+    // foto kecil untuk banyak bandara sekaligus. Isinya boleh nama saja atau ['nama' => ..., 'iata' => ...]
+    public function photos(array $airports): array
     {
-        $names = array_values(array_unique(array_filter($names)));
+        $iataDari = [];
+        foreach ($airports as $a) {
+            $nama = is_array($a) ? ($a['nama'] ?? null) : $a;
+            if ($nama) {
+                $iataDari[$nama] = is_array($a) ? ($a['iata'] ?? null) : null;
+            }
+        }
+
         $out = [];
         $belum = [];
-
-        foreach ($names as $nama) {
+        foreach ($iataDari as $nama => $iata) {
             $cache = Cache::get('foto_kecil_' . md5($nama));
             if ($cache === null) {
                 $belum[] = $nama;
@@ -56,6 +64,21 @@ class AirportImageService
 
         foreach (array_chunk($belum, 50) as $kelompok) {
             $dapat = $this->byTitles($kelompok, 320);
+
+            // yang belum ketemu dicoba lewat Wikidata dengan kode IATA
+            $cariIata = [];
+            foreach ($kelompok as $nama) {
+                if (empty($dapat[$nama]) && ! empty($iataDari[$nama])) {
+                    $cariIata[$nama] = strtoupper($iataDari[$nama]);
+                }
+            }
+            if ($cariIata) {
+                $wd = $this->byWikidata(array_values($cariIata), 320);
+                foreach ($cariIata as $nama => $iata) {
+                    $dapat[$nama] = $wd[$iata] ?? null;
+                }
+            }
+
             foreach ($kelompok as $nama) {
                 $hasil = $dapat[$nama] ?? null;
                 Cache::put('foto_kecil_' . md5($nama), $hasil ?: false, $hasil ? now()->addDays(7) : now()->addDay());
@@ -98,6 +121,33 @@ class AirportImageService
         ]);
 
         return self::parseTitles($json, $names);
+    }
+
+    // foto utama (P18) di Wikidata, dicocokkan dengan kode IATA sehingga tidak salah bandara
+    private function byWikidata(array $iatas, int $lebar): array
+    {
+        $iatas = array_values(array_unique(array_filter(
+            array_map('strtoupper', $iatas),
+            fn ($k) => preg_match('/^[A-Z]{3}$/', $k)
+        )));
+        if (! $iatas) {
+            return [];
+        }
+
+        $nilai = '"' . implode('" "', $iatas) . '"';
+        try {
+            $res = Http::timeout(6)
+                ->withHeaders(['User-Agent' => 'AeroSearch-TugasKuliah/1.0', 'Accept' => 'application/sparql-results+json'])
+                ->get('https://query.wikidata.org/sparql', [
+                    'format' => 'json',
+                    'query' => 'SELECT ?iata ?img WHERE { VALUES ?iata { ' . $nilai . ' } ?item wdt:P238 ?iata ; wdt:P18 ?img . }',
+                ]);
+            $json = $res->successful() ? ($res->json() ?? []) : [];
+        } catch (\Throwable $e) {
+            return [];
+        }
+
+        return self::parseWikidata($json, $lebar);
     }
 
     private function bySearch(string $nama): ?array
@@ -195,6 +245,30 @@ class AirportImageService
         }
 
         return null;
+    }
+
+    // hasil Wikidata: alamat berkas di Commons, diubah jadi alamat gambar berukuran sesuai
+    public static function parseWikidata(array $json, int $lebar): array
+    {
+        $out = [];
+        foreach ($json['results']['bindings'] ?? [] as $b) {
+            $iata = strtoupper($b['iata']['value'] ?? '');
+            $img = $b['img']['value'] ?? '';
+            if ($iata === '' || $img === '' || isset($out[$iata])) {
+                continue;
+            }
+            $berkas = urldecode(basename(parse_url($img, PHP_URL_PATH) ?: ''));
+            if (! preg_match('/\.(jpe?g|png|webp)$/i', $berkas) || ! self::layak($berkas)) {
+                continue;
+            }
+            $enc = rawurlencode($berkas);
+            $out[$iata] = [
+                'url' => 'https://commons.wikimedia.org/wiki/Special:FilePath/' . $enc . '?width=' . $lebar,
+                'page' => 'https://commons.wikimedia.org/wiki/File:' . $enc,
+            ];
+        }
+
+        return $out;
     }
 
     // buang logo, peta, dan gambar vektor

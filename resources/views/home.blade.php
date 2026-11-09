@@ -14,4 +14,6 @@
     <a class="chip" href="{{ route('search', ['q' => 'Suvarnabhumi']) }}">Suvarnabhumi</a>
   </div>
 </section>
+
+@include('partials.tim')
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\AirportImageService;
+use App\Services\DbpediaService;
 use App\Services\FlightService;
 use App\Services\FusekiService;
 use Illuminate\Http\Request;
@@ -53,18 +54,18 @@ class BandaraController extends Controller
             $error = 'Data bandara belum bisa diambil. Pastikan Fuseki sudah berjalan.';
         }
 
-        $fotos = $bandara ? $images->photos(array_column($bandara, 'nama')) : [];
+        $fotos = $bandara ? $images->photos(array_map(fn ($r) => ['nama' => $r['nama'], 'iata' => $r['iata']], $bandara)) : [];
 
         return view('bandara.index', compact('bandara', 'negaraList', 'q', 'negara', 'error', 'fotos'));
     }
 
-    public function show(string $iata, FusekiService $fuseki, AirportImageService $images, FlightService $flights)
+    public function show(string $iata, FusekiService $fuseki, AirportImageService $images, FlightService $flights, DbpediaService $dbpedia)
     {
         $iata = strtoupper($iata);
 
         $info = $fuseki->query(
             'SELECT ?nama ?icao ?negara ?status ?kategori ?operator ?lat ?long
-                    ?wilayah ?provinsi ?penumpang ?runway ?sameAs WHERE {
+                    ?wilayah ?provinsi ?penumpang ?runway ?sameAs ?website ?tahun WHERE {
                 ?a ex:hasIATACode "' . $iata . '" ; rdfs:label ?nama ; ex:locatedInCountry ?c .
                 ?c rdfs:label ?negara .
                 OPTIONAL { ?a ex:hasICAOCode ?icao }
@@ -75,6 +76,8 @@ class BandaraController extends Controller
                 OPTIONAL { ?a ex:annualPassengers ?penumpang }
                 OPTIONAL { ?a ex:longestRunwayLength ?runway }
                 OPTIONAL { ?a owl:sameAs ?sameAs }
+                OPTIONAL { ?a ex:website ?website }
+                OPTIONAL { ?a ex:openedYear ?tahun }
                 OPTIONAL {
                     ?a ex:locatedInRegion ?r . ?r rdfs:label ?wilayah .
                     OPTIONAL { ?r ex:partOfRegion ?pr . ?pr rdfs:label ?provinsi }
@@ -94,13 +97,30 @@ class BandaraController extends Controller
         );
 
         $b = $info[0];
+        $foto = $images->photo($b['nama'], $iata);
 
         return view('bandara.show', [
             'b' => $b,
             'iata' => $iata,
             'rute' => collect($rute)->groupBy('dst_iata'),
-            'foto' => $images->photo($b['nama']),
+            'foto' => $foto,
             'jadwal' => $flights->departures($iata),
+            'dbpedia' => $dbpedia->describe($this->alamatDbpedia($b, $foto)),
         ]);
+    }
+
+    // pakai tautan owl:sameAs dari data; kalau belum ada, turunkan dari halaman Wikipedia yang dipakai untuk foto
+    private function alamatDbpedia(array $b, ?array $foto): ?string
+    {
+        $sama = $b['sameAs'] ?? '';
+        if ($sama !== '' && DbpediaService::valid(DbpediaService::normalisasi($sama))) {
+            return $sama;
+        }
+
+        if (preg_match('#^https://en\.wikipedia\.org/wiki/(.+)$#', $foto['page'] ?? '', $m)) {
+            return 'http://dbpedia.org/resource/' . rawurldecode($m[1]);
+        }
+
+        return null;
     }
 }

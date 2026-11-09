@@ -149,6 +149,30 @@ tr:last-child td{border-bottom:0}
 .facts.compact{margin-top:20px}
 #peta-rute{margin-top:16px;height:420px;border:1px solid var(--line);border-radius:var(--radius)}
 
+/* peta dan citra satelit */
+.visual,.mapbox{isolation:isolate}
+#hero-sat{position:absolute;inset:0;background:#cfd8e6}
+#peta{height:340px;background:#e6ebf3}
+.thumb img.sat{max-width:none}
+
+.about{margin:0 0 6px;max-width:72ch}
+.about-src{margin:0;color:var(--muted);font-size:13.5px}
+
+/* tim pengembang */
+.tim{border-top:1px solid var(--line);padding:56px 0 24px;text-align:center}
+.tim h2{margin:0;font-size:22px;font-weight:800}
+.tim-sub{margin:4px 0 28px;color:var(--muted);font-size:14.5px}
+.tim-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:28px 36px}
+.tim-item{display:flex;flex-direction:column;align-items:center;width:132px;gap:2px}
+.tim-foto{width:92px;height:92px;border-radius:50%;object-fit:cover;margin-bottom:10px;border:3px solid #fff;box-shadow:0 0 0 2px var(--line)}
+.tim-inisial{display:grid;place-items:center;font-weight:800;font-size:28px;color:#fff;object-fit:initial}
+.tim-inisial.c0{background:var(--blue)}
+.tim-inisial.c1{background:var(--red)}
+.tim-inisial.c2{background:var(--yellow);color:#2b2200}
+.tim-item strong{font-size:15px;line-height:1.35}
+.tim-nim{color:var(--muted);font-size:13px}
+.tim-peran{margin-top:4px;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:1px 10px;border-radius:999px}
+
 footer{border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-size:13px;text-align:center}
 
 @media(max-width:720px){
@@ -175,7 +199,8 @@ footer{border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-s
   </nav>
 </div></header>
 <main class="wrap">@yield('content')</main>
-<footer><div class="wrap">BANDARA ASEAN &middot; Tugas besar Web Semantik</div></footer>
+<footer><div class="wrap">BANDARA ASEAN &middot; Tugas besar Web Semantik<br>Foto: Wikipedia dan Wikimedia Commons &middot; Citra satelit: Esri, Maxar, Earthstar Geographics &middot; Peta: OpenStreetMap</div></footer>
+@include('partials.chat')
 @stack('scripts')
 </body>
 </html>

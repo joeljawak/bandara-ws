@@ -1,5 +1,10 @@
-{{-- satu hasil: nama, lokasi, kode IATA, dan foto asli (atau gambar buatan kalau tidak ada foto) --}}
-@php($foto = $fotos[$r['nama']] ?? null)
+{{-- satu hasil: nama, lokasi, kode IATA, lalu foto asli. Urutan gambar: foto, citra satelit, gambar buatan --}}
+@php
+    $foto = $fotos[$r['nama']] ?? null;
+    $sat = (isset($r['lat'], $r['lon']) && is_numeric($r['lat']) && is_numeric($r['lon']))
+        ? \App\Support\Satellite::thumb((float) $r['lat'], (float) $r['lon'])
+        : null;
+@endphp
 <a class="res" href="{{ route('bandara.show', ['iata' => $r['iata']]) }}">
   <span>
     <div class="res-top"><span class="code">{{ $r['iata'] }}</span></div>
@@ -9,6 +14,9 @@
   <span class="thumb" aria-hidden="true">
     @if($foto)
       <img src="{{ $foto['url'] }}" alt="" loading="lazy">
+    @elseif($sat)
+      <img class="sat" src="{{ $sat['url'] }}" alt="" loading="lazy"
+           style="width:{{ $sat['ukuran'] }}px;height:{{ $sat['ukuran'] }}px;margin:-{{ $sat['atas'] }}px 0 0 -{{ $sat['kiri'] }}px">
     @else
       @include('partials.art', ['a' => [
           'iata' => $r['iata'],
