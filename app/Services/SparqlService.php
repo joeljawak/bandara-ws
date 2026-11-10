@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Http;
 class SparqlService
 {
     const PREFIX = "PREFIX ex: <http://example.org/bandara#>\n"
-        . "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n"
-        . "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n";
+        ."PREFIX owl: <http://www.w3.org/2002/07/owl#>\n"
+        ."PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
+        ."PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n";
 
     public function query(string $sparql): array
     {
@@ -16,10 +17,10 @@ class SparqlService
         $res = Http::timeout(20)
             ->withHeaders(['Accept' => 'application/sparql-results+json'])
             ->asForm()
-            ->post($endpoint, ['query' => self::PREFIX . $sparql]);
+            ->post($endpoint, ['query' => self::PREFIX.$sparql]);
 
         if (! $res->successful()) {
-            throw new \RuntimeException('Fuseki HTTP ' . $res->status() . ': ' . $res->body());
+            throw new \RuntimeException('Fuseki HTTP '.$res->status().': '.$res->body());
         }
 
         return collect($res->json('results.bindings') ?? [])->map(function ($row) {
