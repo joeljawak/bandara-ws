@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Rute Penerbangan — BANDARA ASEAN')
+@php
+    $seo = [
+        'description' => 'Hitung jarak dan lihat rute langsung atau satu transit antar bandara Asia Tenggara di BANDARA ASEAN.',
+        'canonical' => route('route.index', array_filter(['dari' => $dari, 'ke' => $ke])),
+    ];
+@endphp
 
 @section('head')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -8,33 +14,29 @@
 @section('content')
 <div class="panel">
   <h1>Lihat rute antar bandara</h1>
-  <p class="lead">Pilih bandara asal dan tujuan untuk melihat jalurnya di peta.</p>
+  <p class="lead">Pilih bandara asal dan tujuan untuk melihat jalurnya di peta, rute langsung, dan kemungkinan satu transit.</p>
 
-  @if($error)
-    <div class="state">{{ $error }}</div>
-  @else
-    <form class="routeform" method="get" action="{{ route('route.index') }}">
-      <div class="field">
-        <label for="dari">Dari</label>
-        <select id="dari" name="dari" required>
-          <option value="">Pilih bandara</option>
-          @foreach($bandara as $b)
-            <option value="{{ $b['iata'] }}" @selected($dari === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
-          @endforeach
-        </select>
-      </div>
-      <div class="field">
-        <label for="ke">Ke</label>
-        <select id="ke" name="ke" required>
-          <option value="">Pilih bandara</option>
-          @foreach($bandara as $b)
-            <option value="{{ $b['iata'] }}" @selected($ke === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
-          @endforeach
-        </select>
-      </div>
-      <button class="btn" type="submit">Lihat rute</button>
-    </form>
-  @endif
+  <form class="routeform" method="get" action="{{ route('route.index') }}">
+    <div class="field">
+      <label for="dari">Dari</label>
+      <select id="dari" name="dari" required>
+        <option value="">Pilih bandara</option>
+        @foreach($bandara as $b)
+          <option value="{{ $b['iata'] }}" @selected($dari === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="field">
+      <label for="ke">Ke</label>
+      <select id="ke" name="ke" required>
+        <option value="">Pilih bandara</option>
+        @foreach($bandara as $b)
+          <option value="{{ $b['iata'] }}" @selected($ke === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
+        @endforeach
+      </select>
+    </div>
+    <button class="btn" type="submit">Lihat rute</button>
+  </form>
 </div>
 
 @if($dari && $ke && $dari === $ke)
@@ -55,6 +57,46 @@
     data-nama-asal="{{ $asal['iata'] }} - {{ $asal['nama'] }}"
     data-nama-tujuan="{{ $tujuan['iata'] }} - {{ $tujuan['nama'] }}"
   ></div>
+
+  @if($langsung->isNotEmpty())
+    <h2 class="section">Rute langsung</h2>
+    <div class="routelist">
+      @foreach($langsung as $r)
+        <div class="routecard">
+          <div class="r-head">
+            <span class="code">{{ $r->originAirport->iata_code }}</span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+            <span class="code">{{ $r->destinationAirport->iata_code }}</span>
+            @if($r->airline)<span class="badge">{{ $r->airline->label }}</span>@endif
+          </div>
+          <div class="r-sub">{{ $r->originAirport->label }} &rarr; {{ $r->destinationAirport->label }}</div>
+        </div>
+      @endforeach
+    </div>
+  @else
+    <h2 class="section">Rute langsung</h2>
+    <div class="state">Belum ada rute langsung {{ $dari }} &rarr; {{ $ke }} di data.</div>
+
+    @if($transit->isNotEmpty())
+      <h2 class="section">Kemungkinan satu transit</h2>
+      <div class="routelist">
+        @foreach($transit as $t)
+          <div class="routecard">
+            <div class="r-head">
+              <span class="code">{{ $dari }}</span>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+              <span class="code">{{ $t['transit'] }}</span>
+              <span class="arrow" aria-hidden="true">&rarr;</span>
+              <span class="code">{{ $ke }}</span>
+            </div>
+            <div class="r-sub">{{ $t['nama'] }} &middot; maskapai lanjutan: {{ implode(', ', $t['maskapai']) ?: 'belum tercatat' }}</div>
+          </div>
+        @endforeach
+      </div>
+    @else
+      <div class="state">Tidak ditemukan rute langsung maupun satu transit untuk pasangan ini.</div>
+    @endif
+  @endif
 
   @push('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

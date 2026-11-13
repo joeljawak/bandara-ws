@@ -1,5 +1,25 @@
 @extends('layouts.app')
 @section('bodyclass', 'is-home')
+@section('title', 'BANDARA ASEAN — Cari Bandara, Maskapai, dan Rute Asia Tenggara')
+@php
+    $stats = $stats ?? ['airports' => 0, 'airlines' => 0, 'routes' => 0, 'countries' => 0];
+    $seo = [
+        'title' => 'BANDARA ASEAN — Cari Bandara, Maskapai, dan Rute Asia Tenggara',
+        'description' => 'Cari 617 bandara Asia Tenggara lewat nama, kode IATA, kota, alias populer, atau pencarian di sekitar lokasi. Dilengkapi rute, maskapai, peta, dan data RDF.',
+        'canonical' => route('home'),
+        'jsonld' => [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => 'BANDARA ASEAN',
+            'url' => route('home'),
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => route('search').'?q={search_term_string}',
+                'query-input' => 'required name=search_term_string',
+            ],
+        ],
+    ];
+@endphp
 @section('content')
 <section class="hero" aria-labelledby="judul-beranda">
   <div class="hero-inner">
@@ -14,15 +34,16 @@
     <div class="chips">
       <span>Coba:</span>
       <a class="chip" href="{{ route('search', ['q' => 'Kualanamu']) }}">Kualanamu</a>
-      <a class="chip" href="{{ route('search', ['q' => 'Soekarno-Hatta']) }}">Soekarno-Hatta</a>
       <a class="chip" href="{{ route('search', ['q' => 'Changi']) }}">Changi</a>
+      <a class="chip" href="{{ route('search', ['q' => 'CGK']) }}">CGK</a>
+      <a class="chip" href="{{ route('search', ['q' => 'Garuda']) }}">Garuda</a>
       <a class="chip" href="{{ route('search', ['q' => 'Suvarnabhumi']) }}">Suvarnabhumi</a>
     </div>
     <div class="hero-stats">
-      <span><strong>617</strong> bandara</span>
-      <span><strong>301</strong> maskapai</span>
-      <span><strong>4.432</strong> rute</span>
-      <span><strong>Peta</strong> interaktif</span>
+      <span><strong>{{ number_format($stats['airports'], 0, ',', '.') }}</strong> bandara</span>
+      <span><strong>{{ number_format($stats['airlines'], 0, ',', '.') }}</strong> maskapai</span>
+      <span><strong>{{ number_format($stats['routes'], 0, ',', '.') }}</strong> rute</span>
+      <span><strong>{{ number_format($stats['countries'], 0, ',', '.') }}</strong> negara</span>
     </div>
   </div>
 </section>

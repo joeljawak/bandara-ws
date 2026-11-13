@@ -2,34 +2,35 @@
 
 namespace Tests\Feature;
 
+use App\Models\Airport;
 use App\Services\AirportImageService;
 use App\Services\DbpediaService;
 use App\Support\AirportArt;
 use App\Support\Satellite;
 use DateTimeImmutable;
 use DateTimeZone;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Tests\Support\MembuatDataBandara;
 use Tests\TestCase;
 
 class BandaraTest extends TestCase
 {
+    use MembuatDataBandara;
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->buatDuniaBandara();
+    }
+
     public function test_halaman_detail_memuat_gambar_rdfa_dan_open_graph(): void
     {
         Http::preventStrayRequests();
-        Http::fake([
-            config('services.fuseki.url') => Http::sequence()
-                ->push(['results' => ['bindings' => [[
-                    'nama' => ['value' => 'Kualanamu International Airport'],
-                    'negara' => ['value' => 'Indonesia'],
-                    'lat' => ['value' => '3.6422'],
-                    'long' => ['value' => '98.8853'],
-                    'runway' => ['value' => '3750'],
-                ]]]])
-                ->push(['results' => ['bindings' => []]]),
-            'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
-            'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
-            'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
-        ]);
+        Http::fake($this->fakeLayanan());
 
         $this->get('/bandara/KNO')
             ->assertOk()
@@ -62,14 +63,12 @@ class BandaraTest extends TestCase
     {
         Http::preventStrayRequests();
         Http::fake([
-            config('sparql.endpoint') => Http::response(['results' => ['bindings' => [[
-                'nama' => ['value' => 'Kualanamu International Airport'],
-                'iata' => ['value' => 'KNO'],
-            ]]]]),
             'en.wikipedia.org/*' => Http::response(['query' => ['pages' => [[
                 'title' => 'Kualanamu International Airport',
                 'thumbnail' => ['source' => 'https://upload.wikimedia.org/a/KNO.jpg'],
             ]]]]),
+            'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
+            'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
         ]);
 
         $this->get('/cari?q=kualanamu')
@@ -104,12 +103,6 @@ class BandaraTest extends TestCase
     {
         Http::preventStrayRequests();
         Http::fake([
-            config('sparql.endpoint') => Http::response(['results' => ['bindings' => [[
-                'nama' => ['value' => 'Aek Godang Airport'],
-                'iata' => ['value' => 'AEG'],
-                'lat' => ['value' => '1.4001'],
-                'lon' => ['value' => '99.4305'],
-            ]]]]),
             'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
             'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
         ]);
@@ -154,23 +147,17 @@ class BandaraTest extends TestCase
 
     public function test_halaman_detail_menampilkan_deskripsi_dari_dbpedia(): void
     {
+        Airport::query()->where('iata_code', 'KNO')->update([
+            'dbpedia_url' => 'http://dbpedia.org/resource/Kualanamu_International_Airport',
+            'opened_year' => 2013,
+        ]);
+
         Http::preventStrayRequests();
-        Http::fake([
-            config('services.fuseki.url') => Http::sequence()
-                ->push(['results' => ['bindings' => [[
-                    'nama' => ['value' => 'Kualanamu International Airport'],
-                    'negara' => ['value' => 'Indonesia'],
-                    'sameAs' => ['value' => 'http://dbpedia.org/resource/Kualanamu_International_Airport'],
-                    'tahun' => ['value' => '2013'],
-                ]]]])
-                ->push(['results' => ['bindings' => []]]),
-            'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
-            'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
-            'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
+        Http::fake($this->fakeLayanan([
             'dbpedia.org/sparql*' => Http::response(['results' => ['bindings' => [[
                 'abstrak' => ['value' => 'Bandar Udara Internasional Kualanamu adalah bandara di Deli Serdang.', 'xml:lang' => 'id'],
             ]]]]),
-        ]);
+        ]));
 
         $this->get('/bandara/KNO')
             ->assertOk()
@@ -201,5 +188,50 @@ class BandaraTest extends TestCase
 
         $this->assertSame('Teks Indonesia.', $hasil['teks']);
         $this->assertSame('id', $hasil['bahasa']);
+    }
+
+    public function test_input_pencarian_mengabaikan_kata_umum_seperti_kota(): void
+    {
+        Http::preventStrayRequests();
+        Http::fake($this->fakeLayanan());
+
+        $this->get('/cari?q=kota+Medan')
+            ->assertOk()
+            ->assertSee('Kualanamu International Airport');
+    }
+
+    public function test_halaman_jelajah_mencari_bandara_lewat_nama_kota(): void
+    {
+        Http::preventStrayRequests();
+        Http::fake($this->fakeLayanan());
+
+        $this->get('/bandara?q=Medan')
+            ->assertOk()
+            ->assertSee('Kualanamu International Airport');
+    }
+
+    public function test_halaman_jelajah_memakai_paginasi_nomor_halaman(): void
+    {
+        Http::preventStrayRequests();
+        Http::fake($this->fakeLayanan());
+
+        $this->get('/bandara?page=2')
+            ->assertOk()
+            ->assertSee('aria-current="page">2', false)
+            ->assertSee('page=1', false);
+    }
+
+    /**
+     * @param  array<string, Response>  $tambahan
+     * @return array<string, Response>
+     */
+    private function fakeLayanan(array $tambahan = []): array
+    {
+        return $tambahan + [
+            'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
+            'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
+            'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
+            'dbpedia.org/sparql*' => Http::response(['results' => ['bindings' => []]]),
+        ];
     }
 }

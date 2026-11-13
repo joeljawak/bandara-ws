@@ -4,12 +4,28 @@
     $sat = (isset($r['lat'], $r['lon']) && is_numeric($r['lat']) && is_numeric($r['lon']))
         ? \App\Support\Satellite::thumb((float) $r['lat'], (float) $r['lon'])
         : null;
+    $token = $token ?? [];
+    $namaTampil = $token ? app(\App\Services\AirportSearch::class)->highlight($r['nama'], $token) : e($r['nama']);
+    $subTampil = $sub ?? collect([$r['kota'] ?? null, $r['negara'] ?? null])->filter()->implode(', ');
+    $jarak = $r['jarak_km'] ?? null;
 @endphp
 <a class="res" href="{{ route('bandara.show', ['iata' => $r['iata']]) }}">
   <span>
-    <div class="res-top"><span class="code">{{ $r['iata'] }}</span></div>
-    <div class="res-name">{{ $r['nama'] }}</div>
-    <div class="res-sub">{{ $sub }}</div>
+    <div class="res-top">
+      <span class="code">{{ $r['iata'] }}</span>
+      @if(!empty($r['kategori']))<span>{{ $r['kategori'] }}</span>@endif
+      @if(!empty($r['negara']))<span>{{ $r['negara'] }}</span>@endif
+    </div>
+    <div class="res-name">{!! $namaTampil !!}</div>
+    <div class="res-sub">{{ $subTampil }}</div>
+    <div class="res-meta">
+      @if($jarak !== null)<span class="pill dist">± {{ number_format($jarak, 0, ',', '.') }} km</span>@endif
+      @if(!empty($r['rute_count']))<span class="pill">{{ number_format((int) $r['rute_count'], 0, ',', '.') }} rute</span>@endif
+      @if(!empty($r['penumpang']))<span class="pill">{{ number_format((int) $r['penumpang'], 0, ',', '.') }} penumpang/tahun</span>@endif
+      @if(!empty($r['in_asean']))
+        <span class="pill asean">ASEAN</span>
+      @endif
+    </div>
   </span>
   <span class="thumb" aria-hidden="true">
     @if($foto)

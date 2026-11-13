@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Schema;
  */
 class RelationalChatService
 {
+    public function __construct(private AirportSearch $search) {}
+
     public function tersedia(): bool
     {
         return Schema::hasTable('airports') && Airport::query()->exists();
@@ -60,10 +62,10 @@ class RelationalChatService
     private function link(Airport $airport): string
     {
         if ($airport->iata_code) {
-            return route('data.airport', $airport->iata_code);
+            return route('bandara.show', $airport->iata_code);
         }
 
-        return route('data.airports', ['q' => $airport->label]);
+        return route('bandara.index', ['q' => $airport->label]);
     }
 
     /**
@@ -183,15 +185,16 @@ class RelationalChatService
             return null;
         }
 
-        $exact = Airport::query()->with(['country', 'region'])
-            ->whereRaw('LOWER(iata_code) = ?', [mb_strtolower($term)])
-            ->first();
+        $baris = $this->search->cari(['q' => $term, 'per_page' => 1])->items();
 
-        if ($exact) {
-            return $exact;
+        if ($baris === []) {
+            return null;
         }
 
-        return Airport::query()->with(['country', 'region'])->search($term)->orderBy('label')->first();
+        return Airport::query()
+            ->with(['country', 'region'])
+            ->where('iata_code', $baris[0]['iata'])
+            ->first();
     }
 
     /**
@@ -203,26 +206,34 @@ class RelationalChatService
             return $this->jawab('Bandara mana yang ingin kamu ketahui? Coba ketik nama atau kode IATA-nya, misalnya "Info Kualanamu".', [], true);
         }
 
-        $hasil = Airport::query()->with(['country', 'region'])->search($p['term'])->orderBy('label')->limit(50)->get();
+        $hasil = $this->search->cari(['q' => $p['term'], 'per_page' => 8]);
 
-        if ($hasil->isEmpty()) {
+        if ($hasil->total() === 0) {
             return $this->jawab('Aku belum menemukan bandara untuk "'.$p['term'].'". Coba nama lain, kode IATA, atau nama kotanya.', [], true);
         }
 
-        $utama = $hasil->first(fn (Airport $airport): bool => strtoupper((string) $airport->iata_code) === strtoupper((string) $p['term']))
-            ?? ($hasil->count() === 1 ? $hasil->first() : null);
+        $utama = collect($hasil->items())->first(
+            fn (array $row): bool => strtoupper((string) $row['iata']) === strtoupper((string) $p['term'])
+        ) ?? ($hasil->total() === 1 ? $hasil->items()[0] : null);
 
         if ($utama) {
-            return $this->kartu($utama);
+            $airport = Airport::query()
+                ->with(['country', 'region'])
+                ->where('iata_code', $utama['iata'])
+                ->first();
+
+            if ($airport) {
+                return $this->kartu($airport);
+            }
         }
 
-        $items = $hasil->take(6)->map(fn (Airport $airport): array => [
-            'judul' => $airport->label.' ('.($airport->iata_code ?? '-').')',
-            'sub' => collect([$airport->region?->label, $airport->country?->label])->filter()->implode(', '),
-            'url' => $this->link($airport),
+        $items = collect($hasil->items())->take(6)->map(fn (array $row): array => [
+            'judul' => $row['nama'].' ('.($row['iata'] ?? '-').')',
+            'sub' => collect([$row['kota'], $row['negara']])->filter()->implode(', '),
+            'url' => route('bandara.show', $row['iata']),
         ])->all();
 
-        return $this->jawab('Aku menemukan '.$hasil->count().' bandara yang cocok. Pilih salah satu:', $items);
+        return $this->jawab('Aku menemukan '.$hasil->total().' bandara yang cocok. Pilih salah satu:', $items);
     }
 
     private function kartu(Airport $airport): array
