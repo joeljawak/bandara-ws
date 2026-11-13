@@ -141,7 +141,7 @@ class AirportSearch
 
         return array_values(array_map(fn (array $row): array => [
             'judul' => $row['nama'],
-            'sub' => collect([$row['iata'], $row['kota'], $row['negara']])->filter()->implode(' · '),
+            'sub' => collect([$row['iata'], $row['kota'], $row['wilayah'], $row['negara']])->filter()->unique()->implode(' · '),
             'url' => route('bandara.show', $row['iata']),
             'iata' => $row['iata'],
         ], array_slice($hasil, 0, $limit)));
@@ -206,7 +206,7 @@ class AirportSearch
         $punyaRute = (string) ($opsi['rute'] ?? '');
 
         return Airport::query()
-            ->with(['country', 'region', 'aliases'])
+            ->with(['country', 'region.parent.parent.parent.parent', 'aliases'])
             ->withCount('departureRoutes')
             ->when($negara !== '', function (Builder $builder) use ($negara): void {
                 $builder->where(function (Builder $inner) use ($negara): void {
@@ -231,7 +231,7 @@ class AirportSearch
         $icao = strtoupper(trim((string) $airport->icao_code));
         $alias = $airport->aliases->pluck('alias')->map(fn ($nilai): string => $this->normalisasi((string) $nilai));
         $kataAlias = $alias->flatMap(fn (string $nilai): array => $this->kata($nilai))->unique()->values();
-        $kota = $this->normalisasi((string) $airport->region?->label);
+        $wilayah = $this->rantaiWilayah($airport);
         $negara = $this->normalisasi((string) $airport->country?->label);
         $operator = $this->normalisasi((string) $airport->operator);
         $kataLabel = $this->kata($label);
@@ -257,6 +257,16 @@ class AirportSearch
             $skor += 700;
         }
 
+        $wilayahTeks = implode(' ', $wilayah);
+
+        if ($wilayah !== []) {
+            if (in_array($qNormal, $wilayah, true)) {
+                $skor += 700;
+            } elseif (str_contains($wilayahTeks, $qNormal)) {
+                $skor += 500;
+            }
+        }
+
         foreach ($token as $kata) {
             $nilai = 0;
 
@@ -272,8 +282,8 @@ class AirportSearch
                 $nilai = 150;
             } elseif ($alias->contains(fn (string $nilaiAlias): bool => str_contains($nilaiAlias, $kata))) {
                 $nilai = 250;
-            } elseif (str_contains($kota, $kata)) {
-                $nilai = 110;
+            } elseif (collect($wilayah)->contains(fn (string $namaWilayah): bool => str_contains($namaWilayah, $kata))) {
+                $nilai = 130;
             } elseif (str_contains($negara, $kata)) {
                 $nilai = 90;
             } elseif (str_contains($operator, $kata)) {
@@ -281,17 +291,61 @@ class AirportSearch
             }
 
             if ($nilai === 0) {
-                $nilai = $this->skorMirip($kata, array_merge($kataLabel, $alias->all()));
+                $nilai = $this->skorMirip($kata, array_merge($kataLabel, $alias->all(), $wilayah));
             }
 
             $skor += $nilai;
         }
 
         if ($skor === 0) {
-            $skor = $this->skorMirip($qNormal, array_merge($kataLabel, $alias->all()));
+            $skor = $this->skorMirip($qNormal, array_merge($kataLabel, $alias->all(), $wilayah));
         }
 
         return $skor;
+    }
+
+    /**
+     * Rantai wilayah bandara dari yang terdekat sampai provinsi/negara bagian.
+     *
+     * Label negara dikeluarkan karena sudah dicocokkan lewat kolom country.
+     *
+     * @return list<string>
+     */
+    private function rantaiWilayah(Airport $airport): array
+    {
+        $rantai = [];
+        $region = $airport->region;
+        $negara = $this->normalisasi((string) $airport->country?->label);
+        $kedalaman = 0;
+
+        while ($region !== null && $kedalaman < 6) {
+            $label = $this->normalisasi((string) $region->label);
+
+            if ($label !== '' && $label !== $negara) {
+                $rantai[] = $label;
+            }
+
+            $region = $region->parent;
+            $kedalaman++;
+        }
+
+        return $rantai;
+    }
+
+    private function labelWilayah(Airport $airport): ?string
+    {
+        $negara = $airport->country?->label;
+        $region = $airport->region?->parent;
+
+        while ($region !== null) {
+            if ($region->label !== $negara) {
+                return $region->label;
+            }
+
+            $region = $region->parent;
+        }
+
+        return null;
     }
 
     /**
@@ -354,7 +408,7 @@ class AirportSearch
         $qNormal = $this->normalisasi($q);
         $hasil = [];
 
-        foreach (Airport::query()->with(['country', 'region'])->get() as $airport) {
+        foreach (Airport::query()->with(['country', 'region.parent', 'aliases'])->get() as $airport) {
             $kandidat = array_merge(
                 $this->kata($this->normalisasi((string) $airport->label)),
                 [$this->normalisasi((string) $airport->local_name)]
@@ -380,6 +434,7 @@ class AirportSearch
             'iata' => $airport->iata_code,
             'nama' => $airport->label,
             'kota' => $airport->region?->label,
+            'wilayah' => $this->labelWilayah($airport),
             'negara' => $airport->country?->label,
             'kategori' => $airport->category,
             'operator' => $airport->operator,

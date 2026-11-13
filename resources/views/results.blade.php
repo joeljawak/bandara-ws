@@ -121,7 +121,7 @@
         @include('partials.row', [
             'r' => $r,
             'token' => $token,
-            'sub' => collect([$r['kota'] ?? null, $r['negara'] ?? null])->filter()->implode(', '),
+            'sub' => collect([$r['kota'] ?? null, $r['wilayah'] ?? null, $r['negara'] ?? null])->filter()->unique()->implode(', '),
         ])
       @endforeach
     </div>
