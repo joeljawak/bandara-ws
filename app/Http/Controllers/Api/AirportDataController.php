@@ -11,27 +11,74 @@ use App\Models\Airport;
 use App\Models\Country;
 use App\Models\Region;
 use App\Models\Route;
+use App\Services\AirportSearch;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AirportDataController extends Controller
 {
-    public function airports(Request $request): AnonymousResourceCollection
+    public function airports(Request $request, AirportSearch $search): AnonymousResourceCollection
     {
-        $search = trim((string) $request->query('q', ''));
+        $q = mb_substr(trim((string) $request->query('q', '')), 0, 80);
+        $negara = trim((string) $request->query('negara', ''));
         $countryId = $request->integer('country') ?: null;
         $asean = $request->query('asean');
+        $kategori = trim((string) $request->query('kategori', ''));
+        $punyaRute = $request->query('rute');
+        $urut = (string) $request->query('urut', 'relevan');
+        $near = trim((string) $request->query('near', ''));
+        $radius = max(1, min(2000, $request->integer('radius', 100)));
         $perPage = $this->perPage($request);
+
+        $urutValid = in_array($urut, ['relevan', 'nama', 'penumpang'], true) ? $urut : 'relevan';
+
+        if ($q !== '' || $near !== '' || $urutValid !== 'relevan') {
+            $urut = $urutValid;
+            $hasil = $search->cari([
+                'q' => $q,
+                'negara' => $negara !== '' ? $negara : $countryId,
+                'kategori' => $kategori,
+                'asean' => $asean,
+                'rute' => $punyaRute,
+                'urut' => $urut,
+                'near' => $near,
+                'radius' => $radius,
+                'page' => $request->integer('page', 1),
+                'per_page' => $perPage,
+            ]);
+
+            $iata = collect($hasil->items())->pluck('iata')->filter()->all();
+            $model = Airport::query()
+                ->with(['country', 'region'])
+                ->withCount(['departureRoutes', 'arrivalRoutes'])
+                ->whereIn('iata_code', $iata)
+                ->get()
+                ->keyBy('iata_code');
+
+            $items = collect($iata)->map(fn (string $kode) => $model->get($kode))->filter()->values();
+
+            return AirportResource::collection(new LengthAwarePaginator(
+                $items,
+                $hasil->total(),
+                $hasil->perPage(),
+                $hasil->currentPage(),
+                ['path' => $request->url(), 'query' => $request->query()]
+            ));
+        }
 
         $airports = Airport::query()
             ->with(['country', 'region'])
             ->withCount(['departureRoutes', 'arrivalRoutes'])
-            ->search($search)
+            ->search($q)
             ->when($countryId, fn (Builder $query) => $query->where('country_id', $countryId))
+            ->when($negara !== '', fn (Builder $query) => $query->whereHas('country', fn (Builder $negaraQuery) => $negaraQuery->where('label', $negara)))
+            ->when($kategori !== '', fn (Builder $query) => $query->where('category', $kategori))
             ->when($asean === '1', fn (Builder $query) => $query->inAsean())
             ->when($asean === '0', fn (Builder $query) => $query->inAsean(false))
+            ->when($punyaRute === '1', fn (Builder $query) => $query->has('departureRoutes'))
             ->orderBy('label')
             ->paginate($perPage)
             ->withQueryString();

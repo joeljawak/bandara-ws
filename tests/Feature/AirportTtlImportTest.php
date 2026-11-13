@@ -102,12 +102,6 @@ class AirportTtlImportTest extends TestCase
 
         Http::preventStrayRequests();
         Http::fake([
-            config('services.fuseki.url') => Http::response(['results' => ['bindings' => [[
-                'nama' => ['value' => 'Soekarno-Hatta International Airport'],
-                'negara' => ['value' => 'Indonesia'],
-                'lat' => ['value' => '-6.1256'],
-                'long' => ['value' => '106.6558'],
-            ]]]]),
             'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
             'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
             'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
@@ -116,7 +110,7 @@ class AirportTtlImportTest extends TestCase
 
         $this->get('/bandara/CGK')
             ->assertOk()
-            ->assertSee('Rute dari CGK')
+            ->assertSee('Rute langsung dari CGK')
             ->assertSee('Kualanamu International Airport');
     }
 }

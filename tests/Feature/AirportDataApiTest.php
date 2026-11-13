@@ -81,10 +81,8 @@ class AirportDataApiTest extends TestCase
             ->assertSee('Soekarno-Hatta International Airport');
 
         $this->get('/data/bandara/CGK')
-            ->assertOk()
-            ->assertSee('Soekarno-Hatta International Airport')
-            ->assertSee('Rute keberangkatan')
-            ->assertSee('Kualanamu International Airport');
+            ->assertStatus(301)
+            ->assertRedirect(route('bandara.show', 'CGK'));
 
         $this->get('/data/maskapai')
             ->assertOk()
