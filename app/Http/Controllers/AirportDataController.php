@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Route;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AirportDataController extends Controller
@@ -38,34 +39,10 @@ class AirportDataController extends Controller
         ]);
     }
 
-    public function airport(Airport $airport): View
+    public function airport(Airport $airport): RedirectResponse
     {
-        $airport->load([
-            'country',
-            'region.parent',
-            'nearestAirport',
-            'hubAirlines',
-            'airlines',
-        ]);
-
-        $departures = Route::query()
-            ->with(['destinationAirport.country', 'airline'])
-            ->where('origin_airport_id', $airport->id)
-            ->orderBy('destination_airport_id')
-            ->get();
-
-        $arrivals = Route::query()
-            ->with(['originAirport.country', 'airline'])
-            ->where('destination_airport_id', $airport->id)
-            ->orderBy('origin_airport_id')
-            ->get();
-
-        return view('data.airport', [
-            'airport' => $airport,
-            'departures' => $departures,
-            'arrivals' => $arrivals,
-            'destinations' => $departures->pluck('destinationAirport')->filter()->unique('id'),
-        ]);
+        // Satu URL kanonik per entitas: halaman detail utama ada di /bandara/{iata}.
+        return redirect()->route('bandara.show', $airport->iata_code, 301);
     }
 
     public function airlines(Request $request): View

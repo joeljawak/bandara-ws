@@ -36,8 +36,4 @@ return [
         ],
     ],
 
-    'fuseki' => [
-        'url' => env('FUSEKI_URL', env('SPARQL_ENDPOINT', 'http://localhost:3030/bandara/sparql')),
-    ],
-
 ];

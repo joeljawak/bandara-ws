@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@yield('title', 'BANDARA ASEAN')</title>
+<title>@yield('title', $seo['title'] ?? 'BANDARA ASEAN')</title>
+@include('partials.seo')
 @yield('head')
+@stack('head')
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -201,7 +203,10 @@ tbody tr:hover{background:#f5faff}
 .pager a,.pager .pager-disabled{border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-weight:700;color:var(--blue-dark);background:#fff}
 .pager a:hover{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
 .pager .pager-disabled{color:#9aa9bd;background:var(--soft)}
-.pager .pager-info{color:var(--muted);font-weight:500}
+.pager .pager-num{min-width:40px;padding:7px 11px;text-align:center}
+.pager .pager-current{border-color:transparent;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-dark));box-shadow:0 6px 14px rgba(1,100,210,.24)}
+.pager .pager-gap{color:var(--muted);padding:0 2px;font-weight:700}
+.pager .pager-info{color:var(--muted);font-weight:500;flex-basis:100%;text-align:center}
 .badge{display:inline-block;background:var(--blue-soft);color:var(--blue-dark);font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;letter-spacing:.03em}
 .badge.asean{background:var(--accent-soft);color:var(--accent)}
 .mapbig{height:560px;border:1px solid var(--line);border-radius:20px;margin-top:18px;background:#e6ebf3;box-shadow:var(--shadow)}
@@ -225,6 +230,54 @@ tbody tr:hover{background:#f5faff}
 .tim-item strong{font-size:15px;line-height:1.35}
 .tim-nim{color:var(--muted);font-size:13px}
 .tim-peran{margin-top:4px;font-size:12px;font-weight:700;color:var(--blue-dark);background:var(--blue-soft);padding:2px 10px;border-radius:999px}
+
+/* mesin pencari: tab, filter, saran, highlight */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tab{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700;color:var(--muted);transition:border-color .15s,color .15s,background .15s}
+.tab:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.tab.active{border-color:transparent;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-dark));box-shadow:0 6px 14px rgba(1,100,210,.22)}
+.tab .n{font-weight:600;opacity:.8}
+.facets{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+.facets .field{margin:0}
+.facets .check{display:flex;align-items:center;gap:8px;min-height:48px;font-size:14px;font-weight:600;color:var(--ink)}
+.facets .check input{width:18px;height:18px;min-height:0;accent-color:var(--blue)}
+.facets .aksi{display:flex;align-items:end;gap:8px}
+.facets .aksi .btn{min-height:48px;padding:0 22px}
+.btn.ghost{background:#fff;color:var(--blue-dark);border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.hint{border:1px dashed #c7ddf5;background:#f7fbff;border-radius:14px;padding:14px 18px;margin:18px 0;color:var(--muted);font-size:14.5px}
+.hint strong{color:var(--ink)}
+mark{background:var(--yellow-soft);color:inherit;border-radius:4px;padding:0 2px}
+.res-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.pill{display:inline-flex;align-items:center;gap:4px;background:var(--soft);color:var(--muted);border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.pill.ok{background:#e3f6ee;color:var(--ok)}
+.pill.asean{background:var(--accent-soft);color:var(--accent)}
+.pill.dist{background:var(--blue-soft);color:var(--blue-dark)}
+.group-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;margin:32px 0 12px}
+.group-title .count{font-weight:500}
+.entity-card{display:grid;gap:2px;padding:15px 18px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow);transition:border-color .15s,box-shadow .15s,transform .15s}
+.entity-card:hover{border-color:#bfe3ff;transform:translateY(-1px);box-shadow:0 12px 26px rgba(1,100,210,.12)}
+.entity-card .nama{font-weight:700;color:var(--blue-deep)}
+.entity-card .sub{color:var(--muted);font-size:13.5px}
+/* autocomplete */
+.ac-wrap{position:relative;flex:1;min-width:0;display:flex}
+.ac-wrap input{width:100%}
+.ac-list{position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:70;list-style:none;margin:0;padding:6px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);max-height:340px;overflow:auto;text-align:left}
+.ac-list[hidden]{display:none}
+.ac-list li{margin:0}
+.ac-item{display:block;width:100%;border:0;background:transparent;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font:inherit;color:var(--ink)}
+.ac-item:hover,.ac-item[aria-selected="true"]{background:var(--blue-soft)}
+.ac-item .judul{display:block;font-weight:700;font-size:14.5px}
+.ac-item .sub{display:block;color:var(--muted);font-size:12.5px}
+.ac-item mark{background:var(--yellow-soft)}
+/* rute langsung dan transit */
+.routelist{display:grid;gap:10px;margin-top:14px}
+.routecard{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px 18px;box-shadow:var(--shadow)}
+.routecard .r-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:700}
+.routecard .r-sub{color:var(--muted);font-size:13.5px;margin-top:2px}
+.routecard .arrow{color:var(--blue)}
+.empty-help{margin-top:10px;padding-left:18px;color:var(--muted)}
+.empty-help li{margin:4px 0}
 
 footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:13px;text-align:center;background:#fff}
 

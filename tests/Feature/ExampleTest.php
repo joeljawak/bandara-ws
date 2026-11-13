@@ -2,13 +2,16 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Airport;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      */
@@ -23,17 +26,17 @@ class ExampleTest extends TestCase
 
     public function test_search_results_without_a_city_do_not_crash_the_page(): void
     {
-        $endpoint = config('sparql.endpoint');
         Http::preventStrayRequests();
         Http::fake([
-            $endpoint => Http::response([
-                'results' => [
-                    'bindings' => [[
-                        'nama' => ['value' => 'Soekarno-Hatta International Airport'],
-                        'iata' => ['value' => 'CGK'],
-                    ]],
-                ],
-            ]),
+            'en.wikipedia.org/*' => Http::response(['query' => ['pages' => []]]),
+            'commons.wikimedia.org/*' => Http::response(['query' => ['pages' => []]]),
+            'query.wikidata.org/*' => Http::response(['results' => ['bindings' => []]]),
+        ]);
+
+        Airport::create([
+            'external_id' => 'airport_CGK',
+            'label' => 'Soekarno-Hatta International Airport',
+            'iata_code' => 'CGK',
         ]);
 
         $this->get('/cari?q=Soekarno-Hatta')
@@ -41,10 +44,6 @@ class ExampleTest extends TestCase
             ->assertSee('Soekarno-Hatta International Airport')
             ->assertSee('CGK')
             ->assertSee('Lokasi tidak tersedia');
-
-        Http::assertSent(fn (Request $request): bool => str_contains($request['query'], 'soekarnohatta') &&
-            str_contains($request['query'], 'REPLACE(LCASE(STR(?nama)), "[ -]", "")')
-        );
     }
 
     public function test_null_country_filter_does_not_crash_bandara_listing(): void

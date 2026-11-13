@@ -3,12 +3,24 @@
 namespace Tests\Feature;
 
 use App\Services\ChatService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Tests\Support\MembuatDataBandara;
 use Tests\TestCase;
 
 class ChatTest extends TestCase
 {
+    use MembuatDataBandara;
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->buatDuniaBandara();
+    }
+
     public function test_chat_box_ada_di_beranda(): void
     {
         $this->get('/')
@@ -20,24 +32,20 @@ class ChatTest extends TestCase
     public function test_pertanyaan_jumlah_bandara_dijawab_dari_data(): void
     {
         Http::preventStrayRequests();
-        Http::fake([
-            config('sparql.endpoint') => Http::response(['results' => ['bindings' => [
-                ['n' => ['value' => '136']],
-            ]]]),
-        ]);
 
         $this->getJson('/chat?q='.urlencode('Berapa jumlah bandara di Indonesia?'))
             ->assertOk()
-            ->assertJsonPath('text', 'Ada 136 bandara di Indonesia menurut data yang tersimpan.');
+            ->assertJsonPath('text', 'Ada 24 bandara di Indonesia menurut data yang tersimpan.');
     }
 
-    public function test_jawaban_ramah_saat_fuseki_mati(): void
+    public function test_jawaban_tetap_ada_saat_layanan_luar_mati(): void
     {
-        Http::fake([config('sparql.endpoint') => Http::response('error', 500)]);
+        Http::preventStrayRequests();
+        Http::fake(['*' => Http::response('layanan mati', 500)]);
 
         $this->getJson('/chat?q='.urlencode('Berapa jumlah bandara di Indonesia?'))
             ->assertOk()
-            ->assertJsonPath('text', 'Data bandara belum bisa diambil. Pastikan Fuseki sudah berjalan.');
+            ->assertJsonPath('text', 'Ada 24 bandara di Indonesia menurut data yang tersimpan.');
     }
 
     public function test_sapaan_memberi_contoh_pertanyaan(): void
