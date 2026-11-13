@@ -1,0 +1,14 @@
+<http://example.org/asean-airport#airport_CGK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/asean-airport#Airport> <urn:uji:kanonik> .
+<http://example.org/asean-airport#airport_CGK> <http://www.w3.org/2000/01/rdf-schema#label> "Soekarno-Hatta International Airport" <urn:uji:kanonik> .
+<http://example.org/asean-airport#airport_CGK> <http://example.org/asean-airport#hasIATACode> "CGK" <urn:uji:kanonik> .
+<http://example.org/asean-airport#airport_CGK> <http://example.org/asean-airport#operator> "PT Angkasa Pura II" <urn:uji:kanonik> .
+<http://example.org/bandara#CGK> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/bandara#Bandara> <urn:uji:lama> .
+<http://example.org/bandara#CGK> <http://example.org/bandara#kodeIATA> "CGK" <urn:uji:lama> .
+<http://example.org/bandara#CGK> <http://example.org/bandara#pengelola> "Operator Lama" <urn:uji:lama> .
+<http://example.org/bandara#CGK> <http://example.org/bandara#penumpang> "54000000" <urn:uji:lama> .
+<http://example.org/bandara#KNO> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/bandara#Bandara> <urn:uji:lama> .
+<http://example.org/bandara#KNO> <http://example.org/bandara#kodeIATA> "KNO" <urn:uji:lama> .
+<http://example.org/bandara#KNO> <http://example.org/bandara#namaBandara> "Kualanamu International Airport" <urn:uji:lama> .
+<http://example.org/bandara#KNO> <http://example.org/bandara#negara> <http://example.org/bandara#country_ID> <urn:uji:lama> .
+<http://example.org/bandara#country_ID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/bandara#Negara> <urn:uji:lama> .
+<http://example.org/bandara#country_ID> <http://www.w3.org/2000/01/rdf-schema#label> "Indonesia" <urn:uji:lama> .

@@ -91,6 +91,11 @@ class Airport extends Model
         return $this->belongsTo(self::class, 'nearest_airport_id');
     }
 
+    public function aliases(): HasMany
+    {
+        return $this->hasMany(AirportAlias::class);
+    }
+
     public function nearbyAirports(): HasMany
     {
         return $this->hasMany(self::class, 'nearest_airport_id');

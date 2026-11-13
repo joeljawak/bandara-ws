@@ -4,64 +4,63 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 
+/**
+ * Klien tipis untuk SPARQL endpoint Fuseki.
+ *
+ * Satu-satunya konfigurasi ada di config/sparql.php. Vocabulary kanonik adalah
+ * http://example.org/asean-airport#; vocabulary lama bandara# hanya dipakai
+ * saat membaca berkas mentah atau endpoint lama.
+ */
 class SparqlService
 {
-    const PREFIX = "PREFIX ex: <http://example.org/bandara#>\n"
-        ."PREFIX owl: <http://www.w3.org/2002/07/owl#>\n"
-        ."PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
-        ."PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n";
+    public const VOCABULARY = 'http://example.org/asean-airport#';
 
+    public const LEGACY_VOCABULARY = 'http://example.org/bandara#';
+
+    public const RDF = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+
+    public const RDFS = 'http://www.w3.org/2000/01/rdf-schema#';
+
+    /**
+     * @return list<array<string, string|null>>
+     */
     public function query(string $sparql): array
     {
-        $endpoint = config('sparql.endpoint');
-        $res = Http::timeout(20)
+        $res = Http::timeout((int) config('sparql.timeout', 15))
             ->withHeaders(['Accept' => 'application/sparql-results+json'])
             ->asForm()
-            ->post($endpoint, ['query' => self::PREFIX.$sparql]);
+            ->post(config('sparql.endpoint'), ['query' => $this->prefix().$sparql]);
 
         if (! $res->successful()) {
             throw new \RuntimeException('Fuseki HTTP '.$res->status().': '.$res->body());
         }
 
-        return collect($res->json('results.bindings') ?? [])->map(function ($row) {
-            return collect($row)->map(fn ($v) => $v['value'] ?? null)->all();
-        })->all();
+        return collect($res->json('results.bindings') ?? [])
+            ->map(fn (array $row): array => collect($row)
+                ->map(fn (array $value): ?string => $value['value'] ?? null)
+                ->all())
+            ->values()
+            ->all();
     }
 
-    public function esc(string $s): string
+    public function prefix(): string
     {
-        return str_replace(['\\', '"', "\n", "\r"], ['\\\\', '\\"', ' ', ' '], $s);
+        return 'PREFIX ex: <'.config('sparql.vocabulary', self::VOCABULARY).">\n"
+            .'PREFIX rdf: <'.self::RDF.">\n"
+            .'PREFIX rdfs: <'.self::RDFS.">\n"
+            .'PREFIX owl: <http://www.w3.org/2002/07/owl#>'."\n"
+            .'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>'."\n";
     }
 
-    public function search(string $q): array
+    /**
+     * Escape literal string sebelum dimasukkan ke query SPARQL.
+     */
+    public static function esc(string $teks): string
     {
-        $q = $this->esc(mb_strtolower(trim($q)));
-        $qCompact = $this->esc(preg_replace('/[\s-]+/u', '', mb_strtolower(trim($q))) ?? '');
-
-        return $this->query('SELECT ?nama ?iata ?icao ?kota ?negara ?lat ?lon WHERE {
-            ?a a ex:Bandara ; ex:namaBandara ?nama ; ex:kodeIATA ?iata ; ex:negara ?negara .
-            OPTIONAL { ?a ex:kodeICAO ?icao }
-            OPTIONAL { ?a ex:terletakDi ?city . ?city ex:namaKota ?kota }
-            OPTIONAL { ?a ex:latitude ?lat }
-            OPTIONAL { ?a ex:longitude ?lon }
-            FILTER(
-                CONTAINS(LCASE(STR(?nama)), "'.$q.'") ||
-                LCASE(STR(?iata)) = "'.$q.'" ||
-                (BOUND(?icao) && LCASE(STR(?icao)) = "'.$q.'") ||
-                (BOUND(?kota) && CONTAINS(LCASE(STR(?kota)), "'.$q.'")) ||
-                CONTAINS(LCASE(STR(?negara)), "'.$q.'") ||
-                CONTAINS(REPLACE(LCASE(STR(?nama)), "[ -]", ""), "'.$qCompact.'")
-            )
-        }
-        ORDER BY ASC(IF(LCASE(STR(?iata)) = "'.$q.'", 0, IF(CONTAINS(LCASE(STR(?nama)), "'.$q.'"), 1, 2))) ?nama
-        LIMIT 50');
-    }
-
-    public function allWithCoords(): array
-    {
-        return $this->query('SELECT DISTINCT ?nama ?iata ?lat ?lon WHERE {
-            ?a a ex:Bandara ; ex:namaBandara ?nama ; ex:kodeIATA ?iata ;
-               ex:latitude ?lat ; ex:longitude ?lon .
-        } ORDER BY ?nama');
+        return str_replace(
+            ['\\', '"', "\r", "\n", "\t"],
+            ['\\\\', '\\"', ' ', ' ', '\\t'],
+            $teks
+        );
     }
 }
