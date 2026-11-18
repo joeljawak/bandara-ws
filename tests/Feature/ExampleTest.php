@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Airport;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -15,8 +14,20 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
+    private function isiBandara(): void
+    {
+        // halaman hanya tampil kalau indeks dari Fuseki sudah terisi (middleware data.ready)
+        Airport::create([
+            'external_id' => 'airport_CGK',
+            'label' => 'Soekarno-Hatta International Airport',
+            'iata_code' => 'CGK',
+        ]);
+    }
+
     public function test_the_application_returns_a_successful_response(): void
     {
+        $this->isiBandara();
+
         $response = $this->get('/');
 
         $response->assertStatus(200)
@@ -48,6 +59,8 @@ class ExampleTest extends TestCase
 
     public function test_null_country_filter_does_not_crash_bandara_listing(): void
     {
+        $this->isiBandara();
+
         $endpoint = config('services.fuseki.url');
         Http::preventStrayRequests();
         Http::fake([

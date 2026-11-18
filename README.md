@@ -1,7 +1,9 @@
 # BANDARA ASEAN
 
-Aplikasi pencarian bandara, maskapai, dan rute di Asia Tenggara. Data utama disimpan di
-tabel relasional MySQL/SQLite; Fuseki hanya dipakai sebagai endpoint SPARQL publik.
+Aplikasi pencarian bandara, maskapai, dan rute di Asia Tenggara berbasis Web Semantik.
+**Apache Jena Fuseki adalah database aplikasi ini.** Setiap permintaan membaca data langsung
+dari Fuseki lewat SPARQL. Kalau Fuseki tidak berjalan, halaman menampilkan pesan dan tidak ada
+pencarian yang bisa dilakukan.
 
 ## Fitur
 
@@ -16,7 +18,7 @@ tabel relasional MySQL/SQLite; Fuseki hanya dipakai sebagai endpoint SPARQL publ
 - Halaman detail bandara lengkap: data utama, koordinat, maskapai hub, rute langsung,
   foto, peta, deskripsi DBpedia, serta fallback satu transit untuk `/rute`.
 - SEO: sitemap dinamis, `robots.txt`, canonical, Open Graph/Twitter Card, JSON-LD, RDFa.
-- Chat tanya-jawab yang membaca database relasional (tetap jalan tanpa Fuseki).
+- Chat tanya-jawab yang membaca indeks hasil sinkronisasi dari Fuseki.
 
 ## Teknologi
 
@@ -41,34 +43,53 @@ cp .env.example .env        # Windows: copy .env.example .env
 php artisan key:generate
 ```
 
-Atur koneksi database di `.env`, lalu:
+Atur `SPARQL_ENDPOINT` di `.env`, jalankan Fuseki (lihat bagian di bawah), lalu:
 
 ```bash
-php artisan migrate
-php artisan import:airports-ttl storage/app/bandara.ttl   # sesuaikan lokasi berkas
-php artisan db:seed --class=AirportAliasSeeder
+php artisan migrate          # tabel bawaan Laravel (sesi, cache); data bandara tidak disimpan di sini
+php artisan fuseki:load      # muat data ke Fuseki, cukup sekali
 npm install
 npm run build
 php artisan serve
 ```
 
-Impor ulang bersifat idempoten. Gunakan `--fresh` bila ingin mengosongkan tabel hasil impor
-lebih dulu:
+### Fuseki sebagai database (wajib)
 
-```bash
-php artisan import:airports-ttl storage/app/bandara.ttl --fresh
-```
+1. Jalankan Apache Jena Fuseki, lalu buat dataset bernama `bandara` (tipe persistent TDB2).
+   Dengan opsi `--mem` data hilang setiap Fuseki dimatikan.
+2. Pastikan `.env` menunjuk ke dataset itu:
 
-### Konfigurasi SPARQL (opsional)
+   ```dotenv
+   SPARQL_ENDPOINT=http://localhost:3030/bandara/sparql
+   # opsional, kalau alamat dataset tidak berakhiran /sparql
+   # SPARQL_DATASET_URL=http://localhost:3030/bandara
+   # detik hasil unduhan dipakai ulang (0 = baca ulang dari Fuseki di setiap permintaan)
+   # FUSEKI_CACHE_SECONDS=10
+   ```
 
-Endpoint publik diatur di `config/sparql.php`:
+   `FUSEKI_URL` masih dibaca sebagai fallback agar `.env` lama tetap berjalan.
+3. Muat data ke Fuseki: `php artisan fuseki:load`
+   (memuat `database/data/bandara.ttl` dan `tambahan_wikidata.ttl`; `--replace` mengganti isi dataset).
+4. Cek koneksi kapan saja: `php artisan fuseki:status`
 
-```dotenv
-SPARQL_ENDPOINT=http://localhost:3030/bandara/sparql
-```
+**Cara kerja.** Pada setiap permintaan aplikasi (1) mengecek Fuseki lewat query SPARQL, (2) mengunduh
+seluruh graph lewat `CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }`, lalu (3) memuatnya ke database
+SQLite sementara di memori supaya peringkat, toleransi salah ketik, dan autocomplete bisa memakai
+query relasional. Salinan itu hilang saat permintaan selesai, jadi tidak ada data yang tinggal di
+luar Fuseki. Perubahan data di Fuseki langsung terlihat di web.
 
-`FUSEKI_URL` masih dibaca sebagai fallback agar `.env` lama tetap berjalan. Aplikasi tidak
-bergantung pada Fuseki untuk pencarian, daftar, detail, chat, maupun API.
+- Fuseki mati atau dataset kosong: semua halaman data (pencarian, jelajah, rute, API, chat)
+  menampilkan pesan "Apache Jena Fuseki tidak tersedia" (HTTP 503). `/robots.txt` tetap terbuka.
+- Hasil unduhan dipakai ulang selama `FUSEKI_CACHE_SECONDS` detik (bawaan 10) supaya klik beruntun
+  tidak mengunduh ulang puluhan ribu triple. Fuseki tetap dicek di setiap permintaan, dan
+  perubahan jumlah triple terdeteksi seketika.
+- `import:airports-ttl` mengisi database lokal langsung dari berkas. Itu hanya dipakai bersama
+  `FUSEKI_LIVE=false` (pengujian atau pengembangan tanpa Fuseki), bukan untuk penggunaan biasa.
+
+| Perintah | Fungsi |
+| --- | --- |
+| `php artisan fuseki:load` | Muat berkas Turtle ke Fuseki (`--replace` untuk mengganti isi dataset) |
+| `php artisan fuseki:status` | Cek koneksi Fuseki dan jumlah triple |
 
 ## Pencarian
 

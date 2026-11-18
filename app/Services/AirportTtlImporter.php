@@ -48,6 +48,20 @@ class AirportTtlImporter
             }
         }
 
+        return $this->importTriples($triples, $paths, $fresh, $startedAt);
+    }
+
+    /**
+     * Petakan triple yang sudah dibaca (dari berkas Turtle atau dari hasil SPARQL
+     * Fuseki) ke tabel relasional.
+     *
+     * @param  list<array{subject: string, predicate: string, object: string, object_type: 'iri'|'literal'|'bnode', datatype: string|null, language: string|null}>  $triples
+     * @param  list<string>  $paths
+     * @return array<string, mixed>
+     */
+    public function importTriples(array $triples, array $paths = [], bool $fresh = false, ?float $startedAt = null): array
+    {
+        $startedAt ??= microtime(true);
         $entities = $this->groupEntities($triples);
         $data = $this->buildEntities($entities);
 

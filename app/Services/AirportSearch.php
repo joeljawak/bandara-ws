@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Airline;
 use App\Models\Airport;
+use App\Models\Country;
+use App\Models\Region;
 use App\Models\Route;
 use App\Support\Geo;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator as PaginatorContract;
@@ -28,6 +30,44 @@ class AirportSearch
         'bandara', 'bandar', 'udara', 'airport', 'kota', 'kabupaten', 'provinsi',
         'wilayah', 'di', 'ke', 'dari', 'the', 'international', 'internasional',
         'domestik', 'domestic',
+    ];
+
+    /**
+     * Pulau/gugus pulau -> provinsi di dalamnya (nama sudah dinormalisasi).
+     * Query "sumatera" hanya menampilkan bandara di provinsi-provinsi ini.
+     */
+    private const PULAU = [
+        'sumatera' => [
+            'aceh', 'sumatera utara', 'sumatera barat', 'riau', 'kepulauan riau', 'jambi',
+            'sumatera selatan', 'bengkulu', 'lampung', 'kepulauan bangka belitung',
+        ],
+        'jawa' => ['banten', 'jakarta', 'jawa barat', 'jawa tengah', 'jawa timur', 'yogyakarta'],
+        'kalimantan' => [
+            'kalimantan barat', 'kalimantan tengah', 'kalimantan selatan', 'kalimantan timur', 'kalimantan utara',
+        ],
+        'sulawesi' => [
+            'sulawesi utara', 'sulawesi tengah', 'sulawesi selatan', 'sulawesi tenggara', 'sulawesi barat', 'gorontalo',
+        ],
+        'papua' => [
+            'papua', 'papua barat', 'papua barat daya', 'papua pegunungan', 'papua selatan', 'papua tengah',
+        ],
+        'maluku' => ['maluku', 'maluku utara'],
+        'nusa tenggara' => ['nusa tenggara barat', 'nusa tenggara timur'],
+    ];
+
+    /** Nama Inggris -> nama di data. */
+    private const ALIAS_WILAYAH = [
+        'north sumatera' => 'sumatera utara',
+        'west sumatera' => 'sumatera barat',
+        'south sumatera' => 'sumatera selatan',
+        'west java' => 'jawa barat',
+        'central java' => 'jawa tengah',
+        'east java' => 'jawa timur',
+        'north sulawesi' => 'sulawesi utara',
+        'south sulawesi' => 'sulawesi selatan',
+        'west kalimantan' => 'kalimantan barat',
+        'east kalimantan' => 'kalimantan timur',
+        'north kalimantan' => 'kalimantan utara',
     ];
 
     /**
@@ -79,33 +119,31 @@ class AirportSearch
             'near' => $near,
             'radius' => $radius,
             'token' => $token,
+            'v' => 2,
         ]));
 
         $baris = Cache::remember($kunci, now()->addSeconds(90), function () use ($query, $near, $radius, $q, $token, $urut): array {
-            $hasil = [];
+            $kandidat = $query->get();
+            $lingkup = $this->lingkupWilayah($q);
 
-            foreach ($query->get() as $airport) {
-                $jarak = null;
+            // Tahap 1: semua kata harus cocok (AND) dan tanpa toleransi typo, supaya
+            // "sumatera utara" tidak membawa "Zamboanga Utara" hanya karena kata "utara",
+            // dan "bali" tidak membawa "Bole" atau "Bao'an" lewat kemiripan huruf.
+            $hasil = $this->kumpulkan($kandidat, $q, $token, $near, $radius, $lingkup, true, false);
 
-                if ($near !== null) {
-                    if ($airport->latitude === null || $airport->longitude === null) {
-                        continue;
-                    }
+            // Tahap 2: kalau kosong, anggap salah ketik: nama provinsi/pulau yang mirip
+            // ("sumatera utra"), lalu kata yang mirip ("kualanamo").
+            if ($hasil === [] && $lingkup === null) {
+                $lingkupMirip = $this->lingkupWilayah($q, true);
 
-                    $jarak = Geo::jarakKm($near['lat'], $near['lon'], $airport->latitude, $airport->longitude);
+                $hasil = $lingkupMirip !== null
+                    ? $this->kumpulkan($kandidat, $q, $token, $near, $radius, $lingkupMirip, true, false)
+                    : $this->kumpulkan($kandidat, $q, $token, $near, $radius, null, true, true);
+            }
 
-                    if ($jarak > $radius) {
-                        continue;
-                    }
-                }
-
-                $skor = $q === '' ? 1 : $this->skor($airport, $q, $token);
-
-                if ($skor <= 0) {
-                    continue;
-                }
-
-                $hasil[] = $this->baris($airport, $skor, $jarak);
+            // Tahap 3: masih kosong dan query lebih dari satu kata -> cukup salah satu kata cocok.
+            if ($hasil === [] && $lingkup === null && ($lingkupMirip ?? null) === null && count($token) > 1) {
+                $hasil = $this->kumpulkan($kandidat, $q, $token, $near, $radius, null, false, true);
             }
 
             return $this->urutkan($hasil, $near !== null, $urut);
@@ -118,6 +156,222 @@ class AirportSearch
             $page,
             ['path' => request()->url(), 'query' => request()->query()]
         );
+    }
+
+    /**
+     * @param  iterable<int, Airport>  $kandidat
+     * @param  list<string>  $token
+     * @param  list<int>|null  $lingkup  id wilayah (beserta turunannya) kalau query berupa nama provinsi/pulau
+     * @param  array{lat: float, lon: float}|null  $near
+     * @return list<array<string, mixed>>
+     */
+    private function kumpulkan(iterable $kandidat, string $q, array $token, ?array $near, int $radius, ?array $lingkup, bool $semuaKata, bool $toleransiTypo): array
+    {
+        $hasil = [];
+        $diLingkup = $lingkup === null ? [] : array_flip($lingkup);
+
+        foreach ($kandidat as $airport) {
+            $jarak = null;
+
+            if ($near !== null) {
+                if ($airport->latitude === null || $airport->longitude === null) {
+                    continue;
+                }
+
+                $jarak = Geo::jarakKm($near['lat'], $near['lon'], $airport->latitude, $airport->longitude);
+
+                if ($jarak > $radius) {
+                    continue;
+                }
+            }
+
+            if ($lingkup !== null) {
+                // Query = nama provinsi/pulau: hanya bandara di wilayah itu (atau yang
+                // namanya/kodenya memang persis dicari, mis. alias "Jakarta" untuk CGK).
+                $skor = isset($diLingkup[$airport->region_id]) ? 1500 : $this->skorIdentitas($airport, $q);
+            } else {
+                $skor = $q === '' ? 1 : $this->skor($airport, $q, $token, $semuaKata, $toleransiTypo);
+            }
+
+            if ($skor <= 0) {
+                continue;
+            }
+
+            $hasil[] = $this->baris($airport, $skor, $jarak);
+        }
+
+        return $hasil;
+    }
+
+    /**
+     * Kecocokan lewat identitas bandara saja: kode, alias, atau nama. Tanpa wilayah/negara/fuzzy.
+     */
+    private function skorIdentitas(Airport $airport, string $q): int
+    {
+        $qNormal = $this->normalisasi($q);
+
+        if ($qNormal === '') {
+            return 0;
+        }
+
+        $label = $this->normalisasi((string) $airport->label);
+
+        if ($qNormal === $this->normalisasi((string) $airport->iata_code) || $qNormal === $this->normalisasi((string) $airport->icao_code)) {
+            return 1200;
+        }
+
+        if ($airport->aliases->contains(fn ($alias): bool => $this->normalisasi((string) $alias->alias) === $qNormal)) {
+            return 1100;
+        }
+
+        if ($label === $qNormal) {
+            return 1000;
+        }
+
+        return str_contains(' '.$label.' ', ' '.$qNormal.' ') ? 650 : 0;
+    }
+
+    /**
+     * Kalau seluruh query adalah nama provinsi atau pulau ("sumatera utara", "sumatera",
+     * "north sumatra"), kembalikan id wilayah itu beserta semua turunannya. Selain itu null.
+     *
+     * @return list<int>|null
+     */
+    private function lingkupWilayah(string $q, bool $mirip = false): ?array
+    {
+        $kunci = implode(' ', $this->token($q));
+
+        if ($kunci === '') {
+            return null;
+        }
+
+        $kunci = str_replace('sumatra', 'sumatera', $kunci);
+        $kunci = self::ALIAS_WILAYAH[$kunci] ?? $kunci;
+        $pulau = preg_replace('/^(pulau|island)\s+|\s+island$/u', '', $kunci) ?? $kunci;
+
+        $indeks = $this->indeksWilayah();
+        $cocok = [];
+
+        // Awalan juga diterima ("sumat" saat mengetik di kotak pencarian), minimal 5 huruf.
+        if (! isset(self::PULAU[$pulau]) && mb_strlen($pulau) >= 5) {
+            foreach (array_keys(self::PULAU) as $namaPulau) {
+                if (str_starts_with($namaPulau, $pulau)) {
+                    $pulau = $namaPulau;
+                    break;
+                }
+            }
+        }
+
+        if (isset(self::PULAU[$pulau])) {
+            $nama = array_flip(self::PULAU[$pulau]);
+
+            foreach ($indeks['label'] as $id => $label) {
+                if (isset($nama[$label]) && $this->tingkatProvinsi($id, $indeks)) {
+                    $cocok[] = $id;
+                }
+            }
+        } else {
+            foreach ($indeks['label'] as $id => $label) {
+                if ($label === $kunci && $this->tingkatProvinsi($id, $indeks)) {
+                    $cocok[] = $id;
+                }
+            }
+        }
+
+        // Salah ketik nama provinsi/pulau ("sumatera utra"): ambil yang paling mirip.
+        if ($cocok === [] && $mirip && mb_strlen($kunci) >= 5) {
+            $batas = mb_strlen($kunci) >= 9 ? 2 : 1;
+
+            foreach (array_keys(self::PULAU) as $namaPulau) {
+                if (levenshtein($pulau, $namaPulau) <= $batas) {
+                    return $this->lingkupWilayah($namaPulau);
+                }
+            }
+
+            $terbaik = $batas;
+
+            foreach ($indeks['label'] as $id => $label) {
+                $jarak = levenshtein($kunci, $label);
+
+                if ($jarak > $terbaik || ! $this->tingkatProvinsi($id, $indeks)) {
+                    continue;
+                }
+
+                if ($jarak < $terbaik) {
+                    $cocok = [];
+                    $terbaik = $jarak;
+                }
+
+                $cocok[] = $id;
+            }
+        }
+
+        if ($cocok === []) {
+            return null;
+        }
+
+        $anak = [];
+        foreach ($indeks['induk'] as $id => $induk) {
+            if ($induk !== null) {
+                $anak[$induk][] = $id;
+            }
+        }
+
+        $semua = $cocok;
+        for ($antre = $cocok; $antre !== [];) {
+            $id = array_pop($antre);
+
+            foreach ($anak[$id] ?? [] as $turunan) {
+                if (! in_array($turunan, $semua, true)) {
+                    $semua[] = $turunan;
+                    $antre[] = $turunan;
+                }
+            }
+        }
+
+        return $semua;
+    }
+
+    /**
+     * Provinsi = wilayah tepat di bawah akar negara, atau akar itu sendiri
+     * kalau datanya tidak punya akar negara (mis. provinsi Thailand). Nama negara
+     * sendiri tidak dihitung, karena sudah ditangani lewat kolom country.
+     *
+     * @param  array{label: array<int, string>, induk: array<int, int|null>, negara: list<string>}  $indeks
+     */
+    private function tingkatProvinsi(int $id, array $indeks): bool
+    {
+        $induk = $indeks['induk'][$id] ?? null;
+
+        if ($induk === null) {
+            return ! in_array($indeks['label'][$id], $indeks['negara'], true);
+        }
+
+        return ($indeks['induk'][$induk] ?? null) === null;
+    }
+
+    /**
+     * @return array{label: array<int, string>, induk: array<int, int|null>, negara: list<string>}
+     */
+    private function indeksWilayah(): array
+    {
+        return Cache::remember('wilayah.indeks.v1', now()->addSeconds(90), function (): array {
+            $label = [];
+            $induk = [];
+
+            foreach (Region::query()->get(['id', 'label', 'parent_id']) as $region) {
+                $label[(int) $region->id] = $this->normalisasi((string) $region->label);
+                $induk[(int) $region->id] = $region->parent_id === null ? null : (int) $region->parent_id;
+            }
+
+            return [
+                'label' => $label,
+                'induk' => $induk,
+                'negara' => Country::query()->pluck('label')
+                    ->map(fn ($nama): string => $this->normalisasi((string) $nama))
+                    ->all(),
+            ];
+        });
     }
 
     /**
@@ -223,7 +477,7 @@ class AirportSearch
     /**
      * @param  list<string>  $token
      */
-    private function skor(Airport $airport, string $q, array $token): int
+    private function skor(Airport $airport, string $q, array $token, bool $semuaKata = false, bool $toleransiTypo = true): int
     {
         $label = $this->normalisasi((string) $airport->label);
         $qNormal = $this->normalisasi($q);
@@ -290,14 +544,18 @@ class AirportSearch
                 $nilai = 70;
             }
 
-            if ($nilai === 0) {
+            if ($nilai === 0 && $toleransiTypo) {
                 $nilai = $this->skorMirip($kata, array_merge($kataLabel, $alias->all(), $wilayah));
+            }
+
+            if ($nilai === 0 && $semuaKata) {
+                return 0;
             }
 
             $skor += $nilai;
         }
 
-        if ($skor === 0) {
+        if ($skor === 0 && $toleransiTypo) {
             $skor = $this->skorMirip($qNormal, array_merge($kataLabel, $alias->all(), $wilayah));
         }
 

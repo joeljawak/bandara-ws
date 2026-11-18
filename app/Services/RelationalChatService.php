@@ -23,7 +23,7 @@ class RelationalChatService
 
     public function tersedia(): bool
     {
-        return Schema::hasTable('airports') && Airport::query()->exists();
+        return Schema::connection((new Airport)->getConnectionName())->hasTable('airports') && Airport::query()->exists();
     }
 
     /**

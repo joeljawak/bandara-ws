@@ -14,7 +14,32 @@ return [
 
     'endpoint' => env('SPARQL_ENDPOINT', env('FUSEKI_URL', 'http://localhost:3030/bandara/sparql')),
 
+    /*
+    | Alamat dataset Fuseki (tanpa /sparql), dipakai untuk memuat data dan
+    | mengunduh seluruh graph. Kalau kosong, diturunkan dari endpoint di atas.
+    */
+    'dataset_url' => env('SPARQL_DATASET_URL'),
+
+    /*
+    | Mode live: setiap permintaan membaca seluruh data dari Fuseki lewat SPARQL.
+    | Kalau Fuseki mati, halaman menampilkan pesan dan tidak ada pencarian.
+    | Matikan hanya untuk pengujian (FUSEKI_LIVE=false memakai database lokal).
+    */
+    'live' => (bool) env('FUSEKI_LIVE', true),
+
+    /*
+    | Lama (detik) hasil unduhan dari Fuseki dipakai ulang supaya halaman tidak
+    | mengunduh ulang puluhan ribu triple di setiap klik. Fuseki tetap dicek
+    | di SETIAP permintaan: kalau mati, web langsung berhenti mencari. Perubahan
+    | jumlah triple terdeteksi seketika; perubahan lain paling lambat setelah
+    | masa ini. Isi 0 untuk membaca ulang dari Fuseki pada setiap permintaan.
+    */
+    'cache_seconds' => (int) env('FUSEKI_CACHE_SECONDS', 10),
+
     'timeout' => (int) env('SPARQL_TIMEOUT', 15),
+
+    // Unduh seluruh graph (puluhan ribu triple) butuh waktu lebih lama.
+    'dump_timeout' => (int) env('SPARQL_DUMP_TIMEOUT', 120),
 
     'vocabulary' => env('SPARQL_VOCABULARY', 'http://example.org/asean-airport#'),
 
