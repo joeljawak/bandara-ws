@@ -95,6 +95,19 @@ class BandaraController extends Controller
             ->filter(fn (array $row): bool => ! empty($row['dst_iata']))
             ->groupBy('dst_iata');
 
+        $masuk = $airport->arrivalRoutes()
+            ->with(['originAirport', 'airline'])
+            ->get()
+            ->map(fn (Route $route): array => [
+                'src_iata' => $route->originAirport?->iata_code,
+                'src_nama' => $route->originAirport?->label,
+                'maskapai' => $route->airline?->label,
+            ])
+            ->filter(fn (array $row): bool => ! empty($row['src_iata']))
+            ->groupBy('src_iata');
+
+        $dekat = $airport->nearestAirport;
+
         $b = [
             'nama' => $airport->label,
             'negara' => $airport->country?->label,
@@ -111,6 +124,21 @@ class BandaraController extends Controller
             'long' => $airport->longitude,
             'website' => $airport->website,
             'sameAs' => $airport->dbpedia_url,
+            'wikidata' => $airport->wikidata_url,
+            'nama_lokal' => $airport->local_name,
+            'elevasi' => $airport->elevation,
+            'jarak_kota' => $airport->distance_to_city_center_km,
+            'jarak_terdekat' => $airport->distance_to_nearest_airport_km,
+            'terdekat' => $dekat ? ['nama' => $dekat->label, 'iata' => $dekat->iata_code] : null,
+            'penumpang_puncak' => $airport->peak_annual_passengers,
+            'landasan_lebar' => $airport->longest_runway_width,
+            'landasan_jumlah' => $airport->runway_count,
+            'landasan_nama' => $airport->runway_designation,
+            'permukaan' => $airport->surface_material,
+            'jml_maskapai' => $airport->number_of_airlines,
+            'tujuan' => $airport->number_of_destinations,
+            'tujuan_asean' => $airport->number_of_destinations_asean,
+            'tujuan_luar' => $airport->number_of_destinations_outside_asean,
         ];
 
         $foto = $images->photo($airport->label, $iata);
@@ -120,6 +148,7 @@ class BandaraController extends Controller
             'b' => $b,
             'iata' => $iata,
             'rute' => $rute,
+            'masuk' => $masuk,
             'foto' => $foto,
             'jadwal' => $flights->departures($iata),
             'dbpedia' => $dbpedia->describe($this->alamatDbpedia($b, $foto)),

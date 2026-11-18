@@ -76,7 +76,30 @@ class ChatTest extends TestCase
             ['rute dari KNO ke CGK', 'rute_ab'],
             ['maskapai di CGK', 'maskapai'],
             ['halo', 'sapaan'],
+            ['Hai kak', 'sapaan'],
+            ['hai bandara di bali', 'info'],
+            ['halo bandara paling ramai', 'ramai'],
+            ['selamat pagi, info kualanamu', 'info'],
+            ['dari medan ke jakarta', 'rute_ab'],
+            ['rute kualanamu ke changi', 'rute_ab'],
+            ['kno ke cgk', 'rute_ab'],
+            ['berapa jumlah bandara dari sabang ke merauke', 'hitung'],
+            ['terima kasih', 'terimakasih'],
         ];
+    }
+
+    public function test_pesan_bukan_teks_tidak_membuat_error(): void
+    {
+        $this->getJson('/chat?q[]=a&q[]=b')
+            ->assertOk()
+            ->assertJsonCount(count(ChatService::contoh()), 'saran');
+    }
+
+    public function test_salam_dengan_pertanyaan_tetap_dijawab(): void
+    {
+        $this->getJson('/chat?q='.urlencode('halo, berapa jumlah bandara di Indonesia?'))
+            ->assertOk()
+            ->assertJsonPath('text', 'Ada 24 bandara di Indonesia menurut data yang tersimpan.');
     }
 
     public function test_nama_bandara_dan_negara_diambil_dari_kalimat(): void

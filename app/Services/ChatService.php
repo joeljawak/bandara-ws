@@ -46,7 +46,13 @@ class ChatService
         'asean', 'tenggara', 'asia', 'se', 'seluruh', 'negara', 'di',
     ];
 
-    private const BUKAN_IATA = ['ADA', 'APA', 'DAN', 'YANG', 'ATAU'];
+    private const BUKAN_IATA = ['ADA', 'APA', 'DAN', 'YANG', 'ATAU', 'HAI', 'HEY'];
+
+    // salam di awal kalimat; sisanya tetap dibaca sebagai pertanyaan
+    private const SALAM = '/^\s*(?:halo|hai|hi|hello|hey|selamat\s+(?:pagi|siang|sore|malam)|assalamualaikum|permisi)\b[\s,!.]*/iu';
+
+    // kata basa-basi yang boleh menemani salam tanpa menjadi pertanyaan
+    private const BASA_BASI = ['kak', 'kakak', 'min', 'admin', 'bot', 'chatbot', 'bang', 'mas', 'mbak', 'pak', 'bu', 'semua', 'all', 'there', 'apa', 'kabar', 'ya', 'nih', 'dong', 'warahmatullahi', 'wabarakatuh'];
 
     public function __construct(private SparqlService $sparql)
     {
@@ -57,6 +63,19 @@ class ChatService
     public static function parse(string $pesan): array
     {
         $asli = trim($pesan);
+
+        // "halo, info kualanamu" = salam + pertanyaan. Salam saja baru dijawab sapaan.
+        $sapaan = false;
+        if (preg_match(self::SALAM, $asli)) {
+            $sisa = trim((string) preg_replace(self::SALAM, '', $asli, 1));
+
+            if (self::hanyaBasaBasi($sisa)) {
+                $sapaan = true;
+            } else {
+                $asli = $sisa;
+            }
+        }
+
         $t = mb_strtolower($asli);
         $t = trim(preg_replace('/\s+/u', ' ', preg_replace('/[?!.,;:]+/u', ' ', $t)));
 
@@ -70,6 +89,10 @@ class ChatService
             'ke' => null,
         ];
 
+        if ($sapaan) {
+            return ['intent' => 'sapaan'] + $hasil;
+        }
+
         if ($t === '') {
             return ['intent' => 'bantuan'] + $hasil;
         }
@@ -77,15 +100,33 @@ class ChatService
         $kataRute = '/\b(rute|penerbangan|terbang|pesawat|jalur)\b/u';
         $kodeIata = self::kodeIata($asli);
 
-        if (preg_match('/^(halo|hai|hi|hello|hey|selamat (pagi|siang|sore|malam)|assalamualaikum|permisi)\b/u', $t) && mb_strlen($t) < 28) {
-            return ['intent' => 'sapaan'] + $hasil;
+        if (mb_strlen($t) < 28 && preg_match('/^(terima ?kasih|makasih|thanks|thank you|thx|trims)\b/u', $t)) {
+            return ['intent' => 'terimakasih'] + $hasil;
         }
 
-        if (preg_match('/\bdari\s+(.+?)\s+(?:ke|menuju|to)\s+(.+)$/u', $t, $m) && preg_match($kataRute, $t)) {
-            $hasil['dari'] = self::bersihkan($m[1]);
-            $hasil['ke'] = self::bersihkan($m[2]);
-            if ($hasil['dari'] !== '' && $hasil['ke'] !== '') {
-                return ['intent' => 'rute_ab'] + $hasil;
+        // rute A ke B: "dari A ke B", "rute A ke B", atau cukup "A ke B" (tiap sisi maks. 2 kata)
+        $tanyaJumlah = preg_match('/\b(berapa|jumlah|banyak)\b/u', $t) === 1;
+        $polaAB = [
+            '/\bdari\s+(.+?)\s+(?:ke|menuju|to)\s+(.+)$/u',
+            '/\b(?:rute|penerbangan|terbang|pesawat|jalur)\s+(.+?)\s+(?:ke|menuju|to)\s+(.+)$/u',
+            '/^(\S+(?:\s\S+)?)\s+(?:ke|to)\s+(\S+(?:\s\S+)?)$/u',
+        ];
+
+        if (! $tanyaJumlah || preg_match($kataRute, $t)) {
+            foreach ($polaAB as $pola) {
+                if (! preg_match($pola, $t, $m)) {
+                    continue;
+                }
+
+                $dari = self::bersihkan($m[1]);
+                $ke = self::bersihkan($m[2]);
+
+                if ($dari !== '' && $ke !== '') {
+                    $hasil['dari'] = $dari;
+                    $hasil['ke'] = $ke;
+
+                    return ['intent' => 'rute_ab'] + $hasil;
+                }
             }
         }
 
@@ -125,6 +166,14 @@ class ChatService
         }
 
         return ['intent' => 'info'] + $hasil;
+    }
+
+    // true bila setelah salam tidak ada isi pertanyaan lagi (mis. "hai kak")
+    private static function hanyaBasaBasi(string $sisa): bool
+    {
+        $kata = preg_split('/[^\p{L}\p{N}]+/u', mb_strtolower($sisa), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+
+        return array_diff($kata, self::BASA_BASI) === [];
     }
 
     // cari nama negara di kalimat, yang terpanjang dulu supaya "timor leste" menang atas "timor"
@@ -177,6 +226,7 @@ class ChatService
         try {
             return match ($p['intent']) {
                 'sapaan' => $this->sapaan(),
+                'terimakasih' => $this->terimakasih(),
                 'bantuan' => $this->bantuan(),
                 'hitung' => $this->hitung($p),
                 'ramai' => $this->peringkat($p, 'penumpang'),
@@ -211,6 +261,11 @@ class ChatService
     private function sapaan(): array
     {
         return $this->jawab('Halo! Aku bisa membantu mencari informasi bandara di Asia Tenggara. Coba salah satu pertanyaan ini:', [], true);
+    }
+
+    private function terimakasih(): array
+    {
+        return $this->jawab('Sama-sama! Kalau masih ada yang ingin ditanyakan soal bandara, silakan:', [], true);
     }
 
     private function bantuan(): array

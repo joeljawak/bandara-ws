@@ -36,6 +36,7 @@ class RelationalChatService
 
         return match ($p['intent']) {
             'sapaan' => $this->jawab('Halo! Aku bisa membantu mencari informasi bandara di Asia Tenggara. Coba salah satu pertanyaan ini:', [], true),
+            'terimakasih' => $this->jawab('Sama-sama! Kalau masih ada yang ingin ditanyakan soal bandara, silakan:', [], true),
             'bantuan' => $this->jawab('Aku bisa menjawab jumlah bandara, bandara paling ramai, landasan terpanjang, daftar bandara per negara, info satu bandara, rute, dan maskapai. Contohnya:', [], true),
             'hitung' => $this->hitung($p),
             'ramai' => $this->peringkat($p, 'penumpang'),

@@ -30,6 +30,7 @@
 .chat-form button{flex:none;width:44px;height:44px;border:0;border-radius:50%;background:var(--blue);color:#fff;cursor:pointer;display:grid;place-items:center}
 .chat-form button:hover{background:var(--blue-dark)}
 @media(max-width:560px){
+  .chat-form input{font-size:16px}
   .chat-fab{right:14px;bottom:14px}
   .chat-panel{right:12px;bottom:12px;height:72vh}
 }
@@ -138,16 +139,24 @@
     wait.classList.add('is-wait');
 
     fetch(root.dataset.url + '?q=' + encodeURIComponent(q), { headers: { 'Accept': 'application/json' } })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (r) {
+        if (r.ok) return r.json();
+        var err = new Error(r.status);
+        err.status = r.status;
+        return r.json().catch(function () { return {}; }).then(function (j) { err.pesan = j.message; throw err; });
+      })
       .then(function (d) {
         wait.remove();
         var b = bubble('bot', d.text);
         items(b, d.items || []);
         chips(d.saran || []);
       })
-      .catch(function () {
+      .catch(function (e) {
         wait.remove();
-        bubble('bot', 'Maaf, ada gangguan. Coba lagi sebentar.');
+        var teks = 'Maaf, ada gangguan. Coba lagi sebentar.';
+        if (e && e.status === 429) teks = 'Pertanyaannya terlalu cepat. Tunggu sebentar lalu coba lagi.';
+        else if (e && e.status === 503) teks = e.pesan || 'Data bandara belum tersedia. Pastikan Fuseki sudah berjalan.';
+        bubble('bot', teks);
       })
       .then(function () { busy = false; down(); });
   }
@@ -158,6 +167,7 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var q = input.value;
+    if (busy || !q.trim()) return;
     input.value = '';
     ask(q);
   });
