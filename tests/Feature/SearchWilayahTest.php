@@ -13,6 +13,14 @@ class SearchWilayahTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @return list<array<string, mixed>>
+     */
+    private function cari(string $q): array
+    {
+        return array_values(app(AirportSearch::class)->cari(['q' => $q, 'per_page' => 50])->items());
+    }
+
     private function seedData(): void
     {
         $id = Country::create(['external_id' => 'country_Indonesia', 'label' => 'Indonesia', 'member_of_asean' => true]);
@@ -37,7 +45,7 @@ class SearchWilayahTest extends TestCase
     {
         $this->seedData();
 
-        $hasil = collect(app(AirportSearch::class)->search('sumatera utara'));
+        $hasil = collect($this->cari('sumatera utara'));
 
         $this->assertEqualsCanonicalizing(['KNO', 'DTB'], $hasil->pluck('iata')->all());
         // bandara yang paling ramai di atas
@@ -48,15 +56,15 @@ class SearchWilayahTest extends TestCase
     {
         $this->seedData();
 
-        $this->assertCount(2, app(AirportSearch::class)->search('North Sumatra'));
-        $this->assertCount(2, app(AirportSearch::class)->search('  SUMATERA   utara '));
+        $this->assertCount(2, $this->cari('North Sumatra'));
+        $this->assertCount(2, $this->cari('  SUMATERA   utara '));
     }
 
     public function test_kode_iata_persis_paling_atas(): void
     {
         $this->seedData();
 
-        $this->assertSame('KNO', app(AirportSearch::class)->search('kno')[0]['iata']);
+        $this->assertSame('KNO', $this->cari('kno')[0]['iata']);
     }
 
     public function test_halaman_cari_menampilkan_provinsi(): void
@@ -74,8 +82,9 @@ class SearchWilayahTest extends TestCase
     {
         $this->seedData();
 
-        $this->assertSame([], app(AirportSearch::class)->search("'; DROP TABLE airports; --"));
-        $this->assertSame([], app(AirportSearch::class)->search('%'));
+        // tidak melempar error dan tidak merusak tabel
+        $this->cari("'; DROP TABLE airports; --");
+        $this->assertSame([], $this->cari('%'));
         $this->assertSame(3, Airport::count());
     }
 }

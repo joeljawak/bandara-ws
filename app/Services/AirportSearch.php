@@ -71,6 +71,24 @@ class AirportSearch
     ];
 
     /**
+     * Nama lain / singkatan / bahasa Inggris -> label negara di data (sudah dinormalisasi).
+     * Dipakai agar query "indo", "philippines", "uae" dll. dikenali sebagai negara.
+     */
+    private const ALIAS_NEGARA = [
+        'indo' => 'indonesia', 'indonesian' => 'indonesia', 'republik indonesia' => 'indonesia',
+        'philippines' => 'filipina', 'philippine' => 'filipina', 'pilipina' => 'filipina',
+        'cambodia' => 'kamboja', 'singapore' => 'singapura', 'burma' => 'myanmar',
+        'east timor' => 'timor leste', 'timor leste' => 'timor leste',
+        'brunei darussalam' => 'brunei', 'viet nam' => 'vietnam', 'hongkong' => 'hong kong',
+        'tiongkok' => 'china', 'cina' => 'china', 'jepang' => 'japan', 'rusia' => 'russia',
+        'jerman' => 'germany', 'prancis' => 'france', 'belanda' => 'netherlands',
+        'inggris' => 'united kingdom', 'uk' => 'united kingdom', 'amerika serikat' => 'united states',
+        'usa' => 'united states', 'uae' => 'united arab emirates', 'png' => 'papua new guinea',
+        'korea selatan' => 'south korea', 'korea utara' => 'north korea',
+        'arab saudi' => 'saudi arabia', 'selandia baru' => 'new zealand', 'afrika selatan' => 'south africa',
+    ];
+
+    /**
      * @param  array{
      *     q?: string|null,
      *     negara?: string|null,
@@ -108,6 +126,11 @@ class AirportSearch
             return $paginator->through(fn (Airport $airport): array => $this->baris($airport));
         }
 
+        if ($near === null && $this->normalisasi($q) === '') {
+            // query hanya tanda baca ("%", "--"): tidak ada yang bisa dicocokkan
+            return new LengthAwarePaginator([], 0, $perPage, $page, ['path' => request()->url(), 'query' => request()->query()]);
+        }
+
         $token = $this->token($q);
         $kunci = 'cari.'.md5(json_encode([
             'q' => mb_strtolower($q),
@@ -119,12 +142,25 @@ class AirportSearch
             'near' => $near,
             'radius' => $radius,
             'token' => $token,
-            'v' => 2,
+            'v' => 3,
         ]));
 
         $baris = Cache::remember($kunci, now()->addSeconds(90), function () use ($query, $near, $radius, $q, $token, $urut): array {
             $kandidat = $query->get();
-            $lingkup = $this->lingkupWilayah($q);
+
+            // Query = nama negara ("indo", "indonesia", "philippines"): hanya bandara negara itu.
+            // Kata lain di query ("indonesia medan") tetap harus cocok di dalam negara tersebut.
+            $negara = $this->lingkupNegara($q);
+
+            if ($negara !== null) {
+                $kandidat = $kandidat
+                    ->filter(fn (Airport $airport): bool => (int) $airport->country_id === $negara['id'])
+                    ->values();
+                $q = $negara['sisa'];
+                $token = $q === '' ? [] : $this->token($q);
+            }
+
+            $lingkup = $q === '' ? null : $this->lingkupWilayah($q);
 
             // Tahap 1: semua kata harus cocok (AND) dan tanpa toleransi typo, supaya
             // "sumatera utara" tidak membawa "Zamboanga Utara" hanya karena kata "utara",
@@ -229,6 +265,73 @@ class AirportSearch
         }
 
         return str_contains(' '.$label.' ', ' '.$qNormal.' ') ? 650 : 0;
+    }
+
+    /**
+     * Kalau query memuat nama negara ("indonesia", "indo", "philippines", "bandara malaysia"),
+     * kembalikan id negara itu dan sisa query tanpa kata negara/kata umum.
+     * Awalan nama negara (minimal 4 huruf, mis. "indo", "mala") hanya dikenali kalau itu
+     * satu-satunya isi query dan hanya cocok ke satu negara, supaya "north sumatra" tidak
+     * dianggap Korea Utara dan "papua" tetap berarti provinsi Papua.
+     *
+     * @return array{id: int, sisa: string}|null
+     */
+    private function lingkupNegara(string $q): ?array
+    {
+        $inti = array_values(array_filter(
+            $this->kata($q),
+            fn (string $kata): bool => ! in_array($kata, self::KATA_UMUM, true)
+        ));
+
+        if ($inti === []) {
+            return null;
+        }
+
+        $label = $this->indeksNegara();
+
+        // Nama persis atau alias, frasa terpanjang dulu (maks. 3 kata: "papua new guinea").
+        for ($panjang = min(3, count($inti)); $panjang >= 1; $panjang--) {
+            for ($mulai = 0; $mulai + $panjang <= count($inti); $mulai++) {
+                $frasa = implode(' ', array_slice($inti, $mulai, $panjang));
+                $frasa = self::ALIAS_NEGARA[$frasa] ?? $frasa;
+                $id = array_search($frasa, $label, true);
+
+                if ($id !== false) {
+                    $sisa = array_merge(array_slice($inti, 0, $mulai), array_slice($inti, $mulai + $panjang));
+
+                    return ['id' => (int) $id, 'sisa' => implode(' ', $sisa)];
+                }
+            }
+        }
+
+        // Awalan nama negara saat mengetik ("indo", "indon"), hanya kalau tidak ambigu.
+        $semua = implode(' ', $inti);
+
+        if (mb_strlen($semua) >= 4 && $this->lingkupWilayah($semua) === null) {
+            $cocok = array_keys(array_filter($label, fn (string $nama): bool => str_starts_with($nama, $semua)));
+
+            if (count($cocok) === 1) {
+                return ['id' => (int) $cocok[0], 'sisa' => ''];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array<int, string> id negara => label ternormalisasi
+     */
+    private function indeksNegara(): array
+    {
+        return Cache::remember('negara.indeks.v1', now()->addSeconds(90), function (): array {
+            $label = [];
+
+            foreach (Country::query()->get(['id', 'label']) as $negara) {
+                $label[(int) $negara->id] = $this->normalisasi((string) $negara->label);
+            }
+
+            return $label;
+        });
     }
 
     /**
@@ -592,18 +695,21 @@ class AirportSearch
 
     private function labelWilayah(Airport $airport): ?string
     {
+        // Rantai dari induk terdekat sampai provinsi (tanpa nama negara), mis.
+        // "Tapanuli Utara, Sumatera Utara". Bandara di kecamatan tetap menampilkan provinsinya.
         $negara = $airport->country?->label;
+        $rantai = [];
         $region = $airport->region?->parent;
 
-        while ($region !== null) {
+        for ($kedalaman = 0; $region !== null && $kedalaman < 6; $kedalaman++) {
             if ($region->label !== $negara) {
-                return $region->label;
+                $rantai[] = $region->label;
             }
 
             $region = $region->parent;
         }
 
-        return null;
+        return $rantai === [] ? null : implode(', ', $rantai);
     }
 
     /**

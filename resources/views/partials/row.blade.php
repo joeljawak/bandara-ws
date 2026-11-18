@@ -6,7 +6,7 @@
         : null;
     $token = $token ?? [];
     $namaTampil = $token ? app(\App\Services\AirportSearch::class)->highlight($r['nama'], $token) : e($r['nama']);
-    $subTampil = $sub ?? collect([$r['kota'] ?? null, $r['wilayah'] ?? null, $r['negara'] ?? null])->filter()->unique()->implode(', ');
+    $subTampil = $sub ?? collect([$r['kota'] ?? null, $r['wilayah'] ?? null, $r['negara'] ?? null])->filter()->unique()->implode(', ') ?: 'Lokasi tidak tersedia';
     $jarak = $r['jarak_km'] ?? null;
 @endphp
 <a class="res" href="{{ route('bandara.show', ['iata' => $r['iata']]) }}">

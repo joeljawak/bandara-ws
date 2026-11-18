@@ -1,0 +1,51 @@
+@prefix ex: <http://example.org/asean-airport#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Perbaikan hierarki provinsi Indonesia.
+#
+# Di bandara.ttl ada 14 wilayah Indonesia yang tidak punya induk (partOfRegion),
+# sehingga aplikasi menganggap kabupaten itu sebagai "provinsi" dan bandara di sana
+# tidak muncul saat pengguna mencari provinsinya (mis. "bali", "riau", "aceh").
+# Berkas ini hanya MENAMBAH triple; tidak mengubah atau menghapus data asli.
+# Dimuat otomatis oleh `php artisan fuseki:load` bersama tambahan_wikidata.ttl.
+
+# --- Provinsi yang belum ada di data ---------------------------------------
+ex:region_Bali a ex:Region ;
+    rdfs:label "Bali" ;
+    ex:adminLevel 1 ;
+    ex:locatedInCountry ex:country_Indonesia ;
+    ex:partOfRegion ex:region_Q252 .
+
+# Sulawesi Barat sudah ada tetapi tidak tersambung ke akar Indonesia.
+ex:region_Q5082 ex:partOfRegion ex:region_Q252 .
+
+# --- Kabupaten tanpa induk -> provinsinya -----------------------------------
+ex:region_Q11482 ex:partOfRegion ex:region_Bali .                # Badung (Bali)
+ex:region_Q14131 ex:partOfRegion ex:region_Q5061 .               # Alor -> Nusa Tenggara Timur
+ex:region_Q3803 ex:partOfRegion ex:region_Q5061 .                # Kepulauan Nusa Tenggara (Komodo/Labuan Bajo) -> Nusa Tenggara Timur
+ex:region_Q19148 ex:partOfRegion ex:region_Q5094 .               # Halmahera Selatan -> Maluku Utara
+ex:region_Q19144 ex:partOfRegion ex:region_Q5094 .               # Halmahera Tengah -> Maluku Utara
+ex:region_Q5757 ex:partOfRegion ex:region_Q1823 .                # Simeulue -> Aceh
+ex:region_Q26810 ex:partOfRegion ex:region_Q115253263 .          # Tambrauw -> Papua Barat Daya
+ex:region_Q27738 ex:partOfRegion ex:region_Q12486766 .           # Paniai -> Papua Tengah
+ex:region_Q15823 ex:partOfRegion ex:region_Q5065 .               # Tojo Una-Una -> Sulawesi Tengah
+ex:region_Q15729116 ex:partOfRegion ex:region_Q2271 .            # Penukal Abab Lematang Ilir -> Sumatera Selatan
+ex:region_Q14389 ex:partOfRegion ex:region_Q3891 .               # Seruyan -> Kalimantan Tengah
+ex:region_Q7594 ex:partOfRegion ex:region_Q2175 .                # Bengkalis -> Riau
+ex:region_Q5918 ex:partOfRegion ex:region_Q2140 .                # Nias Selatan -> Sumatera Utara
+
+# --- Dua bandara Indonesia yang belum punya wilayah -------------------------
+ex:region_Natuna a ex:Region ;
+    rdfs:label "Natuna" ;
+    ex:adminLevel 3 ;
+    ex:locatedInCountry ex:country_Indonesia ;
+    ex:partOfRegion ex:region_Q2223 .                            # Kepulauan Riau
+
+ex:region_Fakfak a ex:Region ;
+    rdfs:label "Fakfak" ;
+    ex:adminLevel 3 ;
+    ex:locatedInCountry ex:country_Indonesia ;
+    ex:partOfRegion ex:region_Q5096 .                            # Papua Barat
+
+ex:airport_NTX ex:locatedInRegion ex:region_Natuna .             # Ranai Airport
+ex:airport_FKQ ex:locatedInRegion ex:region_Fakfak .             # Siboru Airport

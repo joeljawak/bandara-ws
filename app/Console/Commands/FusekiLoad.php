@@ -8,7 +8,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Throwable;
 
-#[Signature('fuseki:load {file? : Berkas Turtle utama (default: database/data/bandara.ttl)} {--supplement=* : Berkas Turtle tambahan, boleh diulang} {--no-supplement : Jangan memuat tambahan_wikidata.ttl} {--replace : Ganti seluruh isi dataset, bukan menambahkan}')]
+#[Signature('fuseki:load {file? : Berkas Turtle utama (default: database/data/bandara.ttl)} {--supplement=* : Berkas Turtle tambahan, boleh diulang} {--no-supplement : Jangan memuat tambahan_wikidata.ttl dan tambahan_provinsi.ttl} {--replace : Ganti seluruh isi dataset, bukan menambahkan}')]
 #[Description('Muat berkas RDF Turtle ke dataset Apache Jena Fuseki')]
 class FusekiLoad extends Command
 {
@@ -54,8 +54,12 @@ class FusekiLoad extends Command
         $paths = [$this->absolute($this->argument('file') ?: database_path('data/bandara.ttl'))];
         $tambahan = $this->option('supplement');
 
-        if ($tambahan === [] && ! $this->option('no-supplement') && is_file(base_path('tambahan_wikidata.ttl'))) {
-            $tambahan = [base_path('tambahan_wikidata.ttl')];
+        if ($tambahan === [] && ! $this->option('no-supplement')) {
+            // tambahan_provinsi.ttl memperbaiki hierarki provinsi Indonesia (lihat isi berkasnya)
+            $tambahan = array_values(array_filter([
+                base_path('tambahan_wikidata.ttl'),
+                base_path('tambahan_provinsi.ttl'),
+            ], 'is_file'));
         }
 
         foreach ($tambahan as $path) {
