@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Services\ChatService;
+use App\Services\SparqlService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -85,7 +86,23 @@ class ChatTest extends TestCase
             ['kno ke cgk', 'rute_ab'],
             ['berapa jumlah bandara dari sabang ke merauke', 'hitung'],
             ['terima kasih', 'terimakasih'],
+            ['filipi', 'daftar'],
+            ['bandara filipi', 'daftar'],
+            ['jumlah bandara di filipi', 'hitung'],
+            ['bandara paling ramai di indon', 'ramai'],
         ];
+    }
+
+    public function test_regex_sparql_cocok_sebagian_dan_aman(): void
+    {
+        $this->assertSame('REGEX(LCASE(STR(?negara)), "filipi", "i")', SparqlService::regex('?negara', 'Filipi'));
+        $this->assertSame('REGEX(LCASE(STR(?x)), "a\\\\.b", "i")', SparqlService::regex('x', 'a.b'));
+        $this->assertSame('REGEX(LCASE(STR(?x)), "^fil", "i")', SparqlService::regex('?x', '^fil', false));
+        $this->assertSame(
+            'FILTER(REGEX(LCASE(STR(?negara)), "filipina", "i") || REGEX(LCASE(STR(?negara)), "philippines", "i"))',
+            SparqlService::filterRegex('?negara', ['filipina', 'philippines'])
+        );
+        $this->assertSame('', SparqlService::filterRegex('?negara', []));
     }
 
     public function test_pesan_bukan_teks_tidak_membuat_error(): void

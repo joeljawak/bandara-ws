@@ -129,6 +129,88 @@ class SparqlService
     }
 
     /**
+     * Ekspresi REGEX untuk FILTER SPARQL: cocok SEBAGIAN dan tidak peka huruf besar-kecil.
+     *
+     *   regex('?negara', 'filipi')  =>  REGEX(LCASE(STR(?negara)), "filipi", "i")
+     *
+     * Jadi cukup mengetik sebagian kata ("filipi" -> Filipina, "indo" -> Indonesia).
+     * Secara bawaan kata kunci diperlakukan sebagai teks biasa (karakter regex di-escape),
+     * jadi aman dipakai untuk input pengguna. Isi $literal = false kalau memang ingin
+     * menulis pola regex sendiri, mis. "^fil".
+     */
+    public static function regex(string $var, string $kata, bool $literal = true): string
+    {
+        $kata = mb_strtolower(trim($kata));
+
+        if ($literal) {
+            // karakter spesial regex XPath/SPARQL diberi backslash
+            $kata = preg_replace('/[.\\\\?*+{}()|^$\[\]\-]/', '\\\\$0', $kata) ?? $kata;
+        }
+
+        $var = '?'.ltrim($var, '?');
+
+        return 'REGEX(LCASE(STR('.$var.')), "'.self::esc($kata).'", "i")';
+    }
+
+    /**
+     * FILTER dari beberapa kata kunci yang digabung dengan OR:
+     *   FILTER(REGEX(LCASE(STR(?negara)), "filipi", "i") || REGEX(...))
+     * Daftar kosong menghasilkan string kosong (tanpa filter).
+     *
+     * @param  array<int, string>  $kata
+     */
+    public static function filterRegex(string $var, array $kata): string
+    {
+        $kata = array_values(array_filter(array_map('trim', $kata), fn (string $k): bool => $k !== ''));
+
+        if ($kata === []) {
+            return '';
+        }
+
+        return 'FILTER('.implode(' || ', array_map(fn (string $k): string => self::regex($var, $k), $kata)).')';
+    }
+
+    /**
+     * Cari bandara dengan kata kunci sebagian. Setiap kata harus muncul di salah satu dari
+     * nama, kode IATA/ICAO, wilayah, atau negara ("soekarno hatta", "kualanamu", "filipi").
+     *
+     * @return list<array<string, string|null>> iata, nama, kota, negara
+     */
+    public function search(string $kata, int $limit = 10): array
+    {
+        $kataKunci = preg_split('/[^\p{L}\p{N}]+/u', mb_strtolower(trim($kata)), -1, PREG_SPLIT_NO_EMPTY) ?: [];
+        $kataKunci = array_slice($kataKunci, 0, 5);
+
+        if ($kataKunci === []) {
+            return [];
+        }
+
+        $syarat = implode(' && ', array_map(fn (string $k): string => self::regex('?teks', $k), $kataKunci));
+
+        $rows = $this->query(
+            'SELECT DISTINCT ?iata ?nama ?kota ?negara WHERE {
+                ?a a ex:Airport ; rdfs:label ?nama ; ex:hasIATACode ?iata ; ex:locatedInCountry ?c .
+                ?c rdfs:label ?negara .
+                OPTIONAL { ?a ex:hasICAOCode ?icao }
+                OPTIONAL { ?a ex:locatedInRegion ?r . ?r rdfs:label ?kota }
+                BIND(CONCAT(STR(?nama), " ", STR(?iata), " ", COALESCE(STR(?icao), ""), " ", COALESCE(STR(?kota), ""), " ", STR(?negara)) AS ?teks)
+                FILTER('.$syarat.')
+            } ORDER BY ?nama LIMIT '.max(1, $limit)
+        );
+
+        // urutan: kode IATA persis, lalu nama yang diawali kata kunci, lalu sisanya
+        $kunci = mb_strtolower(trim($kata));
+        $skor = fn (array $r): int => strtolower((string) $r['iata']) === $kunci
+            ? 0
+            : (str_starts_with(mb_strtolower((string) $r['nama']), $kunci) ? 1 : 2);
+
+        $urut = array_keys($rows);
+        usort($urut, fn (int $a, int $b): int => [$skor($rows[$a]), $a] <=> [$skor($rows[$b]), $b]);
+
+        return array_map(fn (int $i): array => $rows[$i], $urut);
+    }
+
+    /**
      * Escape literal string sebelum dimasukkan ke query SPARQL.
      */
     public static function esc(string $teks): string

@@ -133,16 +133,15 @@ class BandaraTest extends TestCase
         $this->assertSame(340, (int) floor($y));
     }
 
-    public function test_beranda_memuat_bagian_tim(): void
+    public function test_beranda_tidak_memuat_bagian_tim(): void
     {
         config(['tim' => [['nama' => 'Budi Santoso', 'nim' => '231402001', 'peran' => 'Backend', 'foto' => 'images/tim/tidak-ada.jpg']]]);
 
         $this->get('/')
             ->assertOk()
-            ->assertSee('Tim pengembang')
-            ->assertSee('Budi Santoso')
-            ->assertSee('231402001')
-            ->assertSee('BS');
+            ->assertDontSee('Tim pengembang')
+            ->assertDontSee('Budi Santoso')
+            ->assertDontSee('231402001');
     }
 
     public function test_halaman_detail_menampilkan_deskripsi_dari_dbpedia(): void

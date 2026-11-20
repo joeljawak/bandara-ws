@@ -47,6 +47,4 @@
     </div>
   </div>
 </section>
-
-@include('partials.tim')
 @endsection

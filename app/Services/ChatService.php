@@ -16,16 +16,16 @@ class ChatService
         'malaysia' => ['malaysia'],
         'thailand' => ['thailand'],
         'thai' => ['thailand'],
-        'singapura' => ['singapore'],
-        'singapore' => ['singapore'],
-        'filipina' => ['philippines'],
-        'philippines' => ['philippines'],
+        'singapura' => ['singapura', 'singapore'],
+        'singapore' => ['singapura', 'singapore'],
+        'filipina' => ['filipina', 'philippines'],
+        'philippines' => ['filipina', 'philippines'],
         'vietnam' => ['viet'],
         'viet nam' => ['viet'],
         'myanmar' => ['myanmar', 'burma'],
         'burma' => ['myanmar', 'burma'],
-        'kamboja' => ['cambodia'],
-        'cambodia' => ['cambodia'],
+        'kamboja' => ['kamboja', 'cambodia'],
+        'cambodia' => ['kamboja', 'cambodia'],
         'laos' => ['lao'],
         'brunei' => ['brunei'],
         'timor leste' => ['timor'],
@@ -187,7 +187,44 @@ class ChatService
             }
         }
 
+        // nama negara diketik sebagian: "filipi" -> Filipina, "indon" -> Indonesia
+        foreach (preg_split('/[^\p{L}]+/u', $t, -1, PREG_SPLIT_NO_EMPTY) ?: [] as $kata) {
+            if ($sebagian = self::negaraSebagian($kata)) {
+                return $sebagian;
+            }
+        }
+
         return null;
+    }
+
+    // awalan nama negara (min. 4 huruf) yang menunjuk ke satu negara saja; kata itu ikut jadi kata kunci REGEX
+    private static function negaraSebagian(string $kata): ?array
+    {
+        if (mb_strlen($kata) < 4) {
+            return null;
+        }
+
+        $nama = null;
+        $token = null;
+
+        foreach (self::NEGARA as $kunci => $tokens) {
+            if (str_starts_with($kunci, 'east ') || ! str_starts_with($kunci, $kata)) {
+                continue;
+            }
+            if ($token !== null && $tokens !== $token) {
+                return null; // ambigu antar negara
+            }
+            if ($token === null) {
+                $nama = $kunci;
+                $token = $tokens;
+            }
+        }
+
+        if ($token === null) {
+            return null;
+        }
+
+        return [$nama, array_values(array_unique(array_merge([$kata], $token)))];
     }
 
     // kode IATA ditulis huruf besar semua, misalnya KNO
@@ -212,7 +249,7 @@ class ChatService
             $teks = preg_replace('/(?<![\p{L}])' . preg_quote($n, '/') . '(?![\p{L}])/u', ' ', $teks);
         }
         $kata = preg_split('/\s+/u', trim(preg_replace('/[^\p{L}\p{N}\- ]+/u', ' ', $teks)), -1, PREG_SPLIT_NO_EMPTY) ?: [];
-        $kata = array_filter($kata, fn ($k) => ! in_array($k, self::KATA_UMUM, true));
+        $kata = array_filter($kata, fn ($k) => ! in_array($k, self::KATA_UMUM, true) && self::negaraSebagian($k) === null);
 
         return trim(implode(' ', $kata));
     }
@@ -282,9 +319,8 @@ class ChatService
         if (! $tokens) {
             return '';
         }
-        $bagian = array_map(fn ($t) => 'CONTAINS(LCASE(STR(' . $var . ')), "' . $t . '")', $tokens);
-
-        return 'FILTER(' . implode(' || ', $bagian) . ')';
+        // REGEX(LCASE(STR(?negara)), "kata", "i"): cocok sebagian, jadi "filipi" tetap menemukan Filipina
+        return SparqlService::filterRegex($var, $tokens);
     }
 
     private function angka(string|float|int $n): string

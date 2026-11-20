@@ -182,6 +182,11 @@ class AirportSearch
                 $hasil = $this->kumpulkan($kandidat, $q, $token, $near, $radius, null, false, true);
             }
 
+            // Tahap 4: masih kosong -> tanya langsung ke Fuseki dengan FILTER REGEX (cocok sebagian).
+            if ($hasil === [] && $near === null && $lingkup === null && $q !== '') {
+                $hasil = $this->cariRegexFuseki($query, $q);
+            }
+
             return $this->urutkan($hasil, $near !== null, $urut);
         });
 
@@ -237,6 +242,39 @@ class AirportSearch
         }
 
         return $hasil;
+    }
+
+    /**
+     * Pencarian langsung ke Fuseki: SparqlService::search() memakai
+     * FILTER(REGEX(LCASE(STR(?teks)), "kata", "i")) pada nama, kode, wilayah, dan negara.
+     * Hanya jalan di mode live dan memakai filter yang sama (negara, kategori, dst.).
+     * Kalau Fuseki tidak bisa dihubungi, hasilnya dianggap kosong.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function cariRegexFuseki(Builder $query, string $q): array
+    {
+        if (! config('sparql.live')) {
+            return [];
+        }
+
+        try {
+            $iata = array_values(array_filter(array_column(app(SparqlService::class)->search($q, 50), 'iata')));
+        } catch (\Throwable $e) {
+            report($e);
+
+            return [];
+        }
+
+        if ($iata === []) {
+            return [];
+        }
+
+        return (clone $query)
+            ->whereIn('iata_code', $iata)
+            ->get()
+            ->map(fn (Airport $airport): array => $this->baris($airport, 100))
+            ->all();
     }
 
     /**
@@ -309,6 +347,16 @@ class AirportSearch
 
         if (mb_strlen($semua) >= 4 && $this->lingkupWilayah($semua) === null) {
             $cocok = array_keys(array_filter($label, fn (string $nama): bool => str_starts_with($nama, $semua)));
+
+            // label negara di data berbahasa Indonesia, jadi awalan bahasa Inggris juga dikenali
+            // lewat alias ("phili" -> Filipina, "cambo" -> Kamboja, "burm" -> Myanmar)
+            foreach (self::ALIAS_NEGARA as $alias => $namaLabel) {
+                if (str_starts_with($alias, $semua) && ($id = array_search($namaLabel, $label, true)) !== false) {
+                    $cocok[] = $id;
+                }
+            }
+
+            $cocok = array_values(array_unique($cocok));
 
             if (count($cocok) === 1) {
                 return ['id' => (int) $cocok[0], 'sisa' => ''];
