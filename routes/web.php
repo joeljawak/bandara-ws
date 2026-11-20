@@ -29,7 +29,7 @@ Route::middleware('data.ready')->group(function (): void {
     Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
     // chat box: tanya jawab bandara, maksimal 40 pertanyaan per menit per pengguna
-    Route::get('/chat', [ChatController::class, 'ask'])->middleware('throttle:40,1')->name('chat.ask');
+    Route::match(['get', 'post'], '/chat', [ChatController::class, 'ask'])->middleware('throttle:40,1')->name('chat.ask');
 
     // Data relasional hasil impor RDF Turtle (bandara.ttl).
     Route::prefix('data')->name('data.')->group(function (): void {
