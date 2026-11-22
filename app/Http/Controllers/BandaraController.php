@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Region;
 use App\Models\Route;
 use App\Services\AirportImageService;
+use App\Services\AirportSparqlSearch;
 use App\Services\AirportSearch;
 use App\Services\DbpediaService;
 use App\Services\FlightService;
@@ -27,17 +28,23 @@ class BandaraController extends Controller
             'page' => $request->query('page'),
         ]);
 
-        $negaraList = Country::query()
-            ->withCount('airports')
-            ->whereHas('airports')
-            ->orderBy('label')
-            ->get(['id', 'label']);
+        if (config('sparql.live')) {
+            $facets = app(AirportSparqlSearch::class)->facets();
+            $negaraList = collect($facets['countries']);
+            $kategoriList = collect($facets['categories']);
+        } else {
+            $negaraList = Country::query()
+                ->withCount('airports')
+                ->whereHas('airports')
+                ->orderBy('label')
+                ->get(['id', 'label']);
 
-        $kategoriList = Airport::query()
-            ->whereNotNull('category')
-            ->distinct()
-            ->orderBy('category')
-            ->pluck('category');
+            $kategoriList = Airport::query()
+                ->whereNotNull('category')
+                ->distinct()
+                ->orderBy('category')
+                ->pluck('category');
+        }
 
         $fotos = [];
         if ($bandara->isNotEmpty()) {

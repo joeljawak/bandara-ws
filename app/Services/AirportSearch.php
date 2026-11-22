@@ -18,9 +18,9 @@ use Illuminate\Support\Str;
 /**
  * Satu pintu pencarian bandara untuk web, API, dan chat.
  *
- * Kandidat diambil dari tabel airports (maksimal beberapa ratus baris), lalu
- * diberi skor di PHP. Cara ini cukup cepat untuk dataset ASEAN dan membuat
- * typo tolerance serta alias tidak bergantung pada fitur khusus MySQL.
+ * Mode live menjalankan pencarian katalog langsung di Fuseki melalui SELECT SPARQL.
+ * Mode lokal/pengujian tetap memakai Eloquent agar fixture dan pengembangan offline
+ * tidak bergantung pada endpoint Fuseki.
  */
 class AirportSearch
 {
@@ -110,6 +110,12 @@ class AirportSearch
         $near = Geo::parseKoordinat($opsi['near'] ?? null);
         $radius = max(1, min(2000, (int) ($opsi['radius'] ?? 100)));
         $urut = (string) ($opsi['urut'] ?? 'relevan');
+
+        // Dalam mode live, katalog dicari langsung di Fuseki melalui SELECT SPARQL.
+        // Jalur Eloquent dipertahankan hanya untuk mode pengujian/lokal.
+        if (config('sparql.live')) {
+            return app(AirportSparqlSearch::class)->search($opsi);
+        }
 
         $query = $this->queryDasar($opsi);
 
@@ -287,7 +293,6 @@ class AirportSearch
         if ($qNormal === '') {
             return 0;
         }
-
         $label = $this->normalisasi((string) $airport->label);
 
         if ($qNormal === $this->normalisasi((string) $airport->iata_code) || $qNormal === $this->normalisasi((string) $airport->icao_code)) {

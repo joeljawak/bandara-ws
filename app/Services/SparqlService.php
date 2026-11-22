@@ -125,7 +125,8 @@ class SparqlService
             .'PREFIX rdf: <'.self::RDF.">\n"
             .'PREFIX rdfs: <'.self::RDFS.">\n"
             .'PREFIX owl: <http://www.w3.org/2002/07/owl#>'."\n"
-            .'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>'."\n";
+            .'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>'."\n"
+            .'PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>'."\n";
     }
 
     /**

@@ -15,14 +15,15 @@ return [
     'endpoint' => env('SPARQL_ENDPOINT', env('FUSEKI_URL', 'http://localhost:3030/bandara/sparql')),
 
     /*
-    | Alamat dataset Fuseki (tanpa /sparql), dipakai untuk memuat data dan
-    | mengunduh seluruh graph. Kalau kosong, diturunkan dari endpoint di atas.
+    | Alamat dataset Fuseki (tanpa /sparql), dipakai untuk Graph Store Protocol.
+    | Kalau kosong, diturunkan dari endpoint di atas.
     */
     'dataset_url' => env('SPARQL_DATASET_URL'),
 
     /*
-    | Mode live: setiap permintaan membaca seluruh data dari Fuseki lewat SPARQL.
-    | Kalau Fuseki mati, halaman menampilkan pesan dan tidak ada pencarian.
+    | Mode live: Fuseki menjadi sumber data RDF. Katalog /bandara memakai SELECT
+    | langsung dan pagination di Fuseki; halaman lama yang masih memakai relasi
+    | Eloquent memakai FusekiDataset sebagai adapter sementara.
     | Matikan hanya untuk pengujian (FUSEKI_LIVE=false memakai database lokal).
     */
     'live' => (bool) env('FUSEKI_LIVE', true),

@@ -20,7 +20,16 @@ class EnsureDataReady
     {
         if (config('sparql.live')) {
             try {
-                app(FusekiDataset::class)->load();
+                // Katalog /bandara memakai SELECT langsung ke Fuseki; jangan dump
+                // seluruh graph ke SQLite hanya untuk menampilkan daftar bandara.
+                if ($request->routeIs('bandara.index')) {
+                    $status = app(\App\Services\SparqlService::class)->status();
+                    if (! $status['ok'] || (int) ($status['triples'] ?? 0) === 0) {
+                        throw new \RuntimeException($status['error'] ?: 'Dataset Fuseki kosong.');
+                    }
+                } else {
+                    app(FusekiDataset::class)->load();
+                }
             } catch (Throwable $e) {
                 report($e);
 
