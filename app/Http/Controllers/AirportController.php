@@ -18,14 +18,57 @@ class AirportController extends Controller
 
     public function home()
     {
-        $stats = Cache::remember('beranda.stats', now()->addMinutes(10), fn (): array => [
+        $stats = Cache::remember('beranda.stats.v2', now()->addMinutes(10), fn (): array => [
             'airports' => Airport::query()->count(),
-            'airlines' => Airline::query()->count(),
-            'routes' => Route::query()->count(),
-            'countries' => Country::query()->count(),
         ]);
 
-        return view('home', compact('stats'));
+        $beranda = Cache::remember('beranda.data.v1', now()->addMinutes(10), function (): array {
+            $populer = Airport::query()
+                ->with('country:id,label')
+                ->whereNotNull('iata_code')
+                ->whereNotNull('annual_passengers')
+                ->orderByDesc('annual_passengers')
+                ->limit(8)
+                ->get(['id', 'label', 'iata_code', 'category', 'annual_passengers', 'country_id'])
+                ->map(fn (Airport $a): array => [
+                    'nama' => $a->label,
+                    'iata' => $a->iata_code,
+                    'kategori' => $a->category,
+                    'penumpang' => (int) $a->annual_passengers,
+                    'negara' => $a->country?->label,
+                ])
+                ->all();
+
+            $negara = Country::query()
+                ->withCount('airports')
+                ->whereHas('airports')
+                ->orderByDesc('airports_count')
+                ->orderBy('label')
+                ->get(['id', 'label'])
+                ->map(fn (Country $c): array => ['label' => $c->label, 'jumlah' => (int) $c->airports_count])
+                ->all();
+
+            return ['populer' => $populer, 'negara' => $negara];
+        });
+
+        $fotos = [];
+        if ($beranda['populer'] !== []) {
+            try {
+                $fotos = $this->images->photos(array_map(
+                    fn (array $r): array => ['nama' => $r['nama'], 'iata' => $r['iata']],
+                    $beranda['populer']
+                ));
+            } catch (\Throwable $e) {
+                report($e);
+            }
+        }
+
+        return view('home', [
+            'stats' => $stats,
+            'populer' => $beranda['populer'],
+            'negaraList' => $beranda['negara'],
+            'fotos' => $fotos,
+        ]);
     }
 
     public function search(Request $request)

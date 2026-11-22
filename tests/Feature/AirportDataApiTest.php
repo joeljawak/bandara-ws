@@ -72,29 +72,4 @@ class AirportDataApiTest extends TestCase
             ->assertJsonPath('data.routes', 1)
             ->assertJsonPath('data.top_countries.0.airports', 2);
     }
-
-    public function test_halaman_web_data_relasional_dapat_dibuka(): void
-    {
-        $this->get('/data/bandara')
-            ->assertOk()
-            ->assertSee('Data bandara')
-            ->assertSee('Soekarno-Hatta International Airport');
-
-        $this->get('/data/bandara/CGK')
-            ->assertStatus(301)
-            ->assertRedirect(route('bandara.show', 'CGK'));
-
-        $this->get('/data/maskapai')
-            ->assertOk()
-            ->assertSee('Garuda Indonesia');
-
-        $this->get('/data/rute')
-            ->assertOk()
-            ->assertSee('Soekarno-Hatta International Airport')
-            ->assertSee('Kualanamu International Airport');
-
-        $this->get('/data/peta')
-            ->assertOk()
-            ->assertSee('id="peta-data"', false);
-    }
 }

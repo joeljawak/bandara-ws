@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Airport;
 use App\Models\Country;
+use App\Models\Region;
 use App\Models\Route;
 use App\Services\AirportImageService;
 use App\Services\AirportSearch;
 use App\Services\DbpediaService;
 use App\Services\FlightService;
+use App\Support\Geo;
 use Illuminate\Http\Request;
 
 class BandaraController extends Controller
@@ -68,9 +70,11 @@ class BandaraController extends Controller
         string $iata,
         AirportImageService $images,
         FlightService $flights,
-        DbpediaService $dbpedia
+        DbpediaService $dbpedia,
+        Request $request
     ) {
         $iata = strtoupper($iata);
+        $arahJadwal = $request->query('jadwal') === 'kedatangan' ? 'kedatangan' : 'keberangkatan';
 
         $airport = Airport::query()
             ->with([
@@ -150,9 +154,76 @@ class BandaraController extends Controller
             'rute' => $rute,
             'masuk' => $masuk,
             'foto' => $foto,
-            'jadwal' => $flights->departures($iata),
+            'jadwal' => $arahJadwal === 'kedatangan' ? $flights->arrivals($iata) : $flights->departures($iata),
+            'arahJadwal' => $arahJadwal,
+            'serupa' => $this->bandaraSerupa($airport),
             'dbpedia' => $dbpedia->describe($this->alamatDbpedia($b, $foto)),
         ]);
+    }
+
+    /**
+     * Bandara lain di provinsi/wilayah yang sama. Kalau data wilayahnya kosong
+     * atau tidak ada bandara lain di sana, pakai bandara terdekat di negara yang sama.
+     *
+     * @return array{judul: string, daftar: \Illuminate\Support\Collection<int, array<string, mixed>>}
+     */
+    private function bandaraSerupa(Airport $airport, int $batas = 6): array
+    {
+        $punyaKoordinat = $airport->latitude !== null && $airport->longitude !== null;
+        $kolom = ['id', 'label', 'iata_code', 'category', 'annual_passengers', 'latitude', 'longitude', 'country_id', 'region_id'];
+
+        $judul = null;
+        $kandidat = collect();
+
+        if ($airport->region_id && $airport->region) {
+            $indukId = $airport->region->parent_id;
+            $idWilayah = $indukId
+                ? Region::query()->where('parent_id', $indukId)->pluck('id')->push($indukId)->push($airport->region_id)
+                : collect([$airport->region_id]);
+
+            $kandidat = Airport::query()
+                ->select($kolom)
+                ->where('id', '!=', $airport->id)
+                ->whereNotNull('iata_code')
+                ->whereIn('region_id', $idWilayah->unique()->values())
+                ->get();
+
+            $nama = $airport->region->parent?->label ?? $airport->region->label;
+            $judul = $nama ? 'Bandara lain di '.$nama : null;
+        }
+
+        if ($kandidat->isEmpty() && $airport->country_id) {
+            $kandidat = Airport::query()
+                ->select($kolom)
+                ->where('id', '!=', $airport->id)
+                ->whereNotNull('iata_code')
+                ->where('country_id', $airport->country_id)
+                ->get();
+            $judul = 'Bandara terdekat lainnya';
+        }
+
+        $daftar = $kandidat->map(function (Airport $a) use ($airport, $punyaKoordinat): array {
+            $jarak = $punyaKoordinat && $a->latitude !== null && $a->longitude !== null
+                ? Geo::jarakKm((float) $airport->latitude, (float) $airport->longitude, (float) $a->latitude, (float) $a->longitude)
+                : null;
+
+            return [
+                'iata' => $a->iata_code,
+                'nama' => $a->label,
+                'kategori' => $a->category,
+                'penumpang' => $a->annual_passengers,
+                'jarak' => $jarak,
+            ];
+        });
+
+        $daftar = $punyaKoordinat
+            ? $daftar->sortBy(fn (array $r) => $r['jarak'] ?? PHP_FLOAT_MAX)
+            : $daftar->sortByDesc(fn (array $r) => $r['penumpang'] ?? 0);
+
+        return [
+            'judul' => $judul ?? 'Bandara lain di sekitar sini',
+            'daftar' => $daftar->take($batas)->values(),
+        ];
     }
 
     /**

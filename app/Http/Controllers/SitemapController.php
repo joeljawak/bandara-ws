@@ -31,10 +31,6 @@ class SitemapController extends Controller
                 ['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'daily'],
                 ['loc' => route('search'), 'priority' => '0.8', 'changefreq' => 'daily'],
                 ['loc' => route('bandara.index'), 'priority' => '0.8', 'changefreq' => 'daily'],
-                ['loc' => route('data.airports'), 'priority' => '0.6', 'changefreq' => 'weekly'],
-                ['loc' => route('data.airlines'), 'priority' => '0.6', 'changefreq' => 'weekly'],
-                ['loc' => route('data.routes'), 'priority' => '0.6', 'changefreq' => 'weekly'],
-                ['loc' => route('data.map'), 'priority' => '0.5', 'changefreq' => 'weekly'],
                 ['loc' => route('route.index'), 'priority' => '0.5', 'changefreq' => 'monthly'],
             ];
 
@@ -48,19 +44,6 @@ class SitemapController extends Controller
                         'priority' => '0.7',
                         'changefreq' => 'monthly',
                         'lastmod' => optional($airport->updated_at)->toAtomString(),
-                    ];
-                });
-
-            Airline::query()
-                ->whereNotNull('label')
-                ->orderBy('label')
-                ->cursor()
-                ->each(function (Airline $airline) use (&$urls): void {
-                    $urls[] = [
-                        'loc' => route('data.airlines', ['q' => $airline->label]),
-                        'priority' => '0.4',
-                        'changefreq' => 'monthly',
-                        'lastmod' => optional($airline->updated_at)->toAtomString(),
                     ];
                 });
 

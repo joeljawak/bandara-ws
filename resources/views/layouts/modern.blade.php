@@ -34,7 +34,6 @@
       <a class="bx-navlink" href="{{ route('home') }}" @if(request()->routeIs('home', 'search')) aria-current="page" @endif>Cari</a>
       <a class="bx-navlink" href="{{ route('bandara.index') }}" @if(request()->routeIs('bandara.*')) aria-current="page" @endif>Jelajahi</a>
       <a class="bx-navlink" href="{{ route('route.index') }}" @if(request()->routeIs('route.index')) aria-current="page" @endif>Rute</a>
-      <a class="bx-navlink" href="{{ route('data.airports') }}" @if(request()->routeIs('data.*')) aria-current="page" @endif>Data</a>
     </nav>
 
     <div class="ml-auto flex items-center gap-2">
@@ -56,7 +55,6 @@
       <a class="bx-navlink" href="{{ route('home') }}">Cari</a>
       <a class="bx-navlink" href="{{ route('bandara.index') }}">Jelajahi</a>
       <a class="bx-navlink" href="{{ route('route.index') }}">Rute</a>
-      <a class="bx-navlink" href="{{ route('data.airports') }}">Data</a>
     </nav>
   </div>
 </header>

@@ -307,8 +307,8 @@ class RelationalChatService
 
         $items[] = [
             'judul' => 'Lihat semua bandara di '.$this->namaScope($p),
-            'sub' => 'Buka halaman data bandara',
-            'url' => route('data.airports', ['q' => $this->namaScope($p)]),
+            'sub' => 'Buka hasil pencarian',
+            'url' => route('search', ['q' => $this->namaScope($p)]),
         ];
 
         return $this->jawab('Ini beberapa bandara di '.$this->namaScope($p).' (urut abjad):', $items);
@@ -459,8 +459,8 @@ class RelationalChatService
 
         $peta = [[
             'judul' => 'Lihat rute '.$asal->iata_code.' ke '.$tujuan->iata_code,
-            'sub' => 'Daftar rute di halaman data',
-            'url' => route('data.routes', ['origin' => $asal->id, 'destination' => $tujuan->id]),
+            'sub' => 'Buka di peta rute',
+            'url' => route('route.index', ['dari' => $asal->iata_code, 'ke' => $tujuan->iata_code]),
         ]];
 
         $maskapai = Route::query()

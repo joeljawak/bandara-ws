@@ -133,13 +133,14 @@
   <h2 class="group-title">Maskapai <span class="count">{{ $maskapai->count() }} hasil</span></h2>
   <div class="list">
     @foreach($maskapai as $a)
-      <a class="entity-card" href="{{ route('data.airlines', ['q' => $a->label]) }}">
+      @php $hub = $a->hubAirport; @endphp
+      @if($hub && $hub->iata_code)<a class="entity-card" href="{{ route('bandara.show', $hub->iata_code) }}">@else<div class="entity-card">@endif
         <span class="nama">{{ $a->label }} @if($a->airline_code)<span class="badge">{{ $a->airline_code }}</span>@endif</span>
         <span class="sub">
           {{ number_format($a->routes_count, 0, ',', '.') }} rute
           @if($a->hubAirport) · hub {{ $a->hubAirport->label }} ({{ $a->hubAirport->iata_code }})@endif
         </span>
-      </a>
+      @if($hub && $hub->iata_code)</a>@else</div>@endif
     @endforeach
   </div>
 @endif

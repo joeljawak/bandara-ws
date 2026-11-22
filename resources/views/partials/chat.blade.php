@@ -1,6 +1,6 @@
 {{-- chat box tanya jawab bandara, tampil di pojok kanan bawah semua halaman --}}
 <style>
-.chat-fab{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;height:54px;padding:0 20px 0 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;font:600 15px 'Plus Jakarta Sans',sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(29,63,158,.35);transition:background .15s,transform .15s}
+.chat-fab{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;height:54px;padding:0 20px 0 16px;border:0;border-radius:999px;background:var(--blue);color:#fff;font:600 15px var(--font-body);cursor:pointer;box-shadow:0 6px 20px rgba(29,63,158,.35);transition:background .15s,transform .15s}
 .chat-fab:hover{background:var(--blue-dark);transform:translateY(-1px)}
 .chat-fab.is-open{display:none}
 .chat-panel{position:fixed;right:22px;bottom:22px;z-index:61;width:372px;max-width:calc(100vw - 24px);height:540px;max-height:calc(100vh - 44px);display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 40px rgba(31,36,51,.22);overflow:hidden}
@@ -28,7 +28,7 @@
 .chat-item b{display:block;color:var(--blue);font-size:14px;line-height:1.35}
 .chat-item small{display:block;color:var(--muted);font-size:12.5px}
 .chat-chips{display:flex;flex-wrap:wrap;gap:6px;align-self:flex-start}
-.chat-chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:5px 13px;font:500 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.chat-chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:5px 13px;font:500 13px var(--font-body);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
 .chat-chip:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
 .chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}
 .chat-form input{flex:1;min-width:0;height:44px;border:1px solid #d5dae5;border-radius:999px;padding:0 16px;font:inherit;font-size:14.5px;color:var(--ink)}

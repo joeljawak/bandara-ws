@@ -17,29 +17,10 @@
 <http://example.org/asean-airport#airport_ABU> owl:sameAs <http://dbpedia.org/resource/A._A._Bere_Tallo_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3889241> .
 
-<http://example.org/asean-airport#airport_ABV> ex:hasICAOCode "DNAA" ;
-    ex:annualPassengers "5029843"^^xsd:integer ;
-    ex:website <http://abuja.airport-authority.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Nnamdi_Azikiwe_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q525030> .
-
 <http://example.org/asean-airport#airport_ABY> ex:hasICAOCode "KABY" ;
     ex:annualPassengers "82536"^^xsd:integer ;
     owl:sameAs <http://dbpedia.org/resource/Southwest_Georgia_Regional_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2875753> .
-
-<http://example.org/asean-airport#airport_ADD> ex:hasICAOCode "HAAB" ;
-    ex:annualPassengers "13134076"^^xsd:integer ;
-    ex:website <https://boleairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Addis_Ababa_Bole_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q44923> .
-
-<http://example.org/asean-airport#airport_ADL> ex:hasICAOCode "YPAD" ;
-    ex:annualPassengers "9154558"^^xsd:integer ;
-    ex:openedYear "1955"^^xsd:integer ;
-    ex:website <https://www.adelaideairport.com.au> ;
-    owl:sameAs <http://dbpedia.org/resource/Adelaide_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q14302> .
 
 <http://example.org/asean-airport#airport_AEG> owl:sameAs <http://dbpedia.org/resource/Aek_Godang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4687689> .
@@ -50,52 +31,19 @@
 <http://example.org/asean-airport#airport_AHI> owl:sameAs <http://dbpedia.org/resource/Amahai_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4272496> .
 
-<http://example.org/asean-airport#airport_AKL> ex:hasICAOCode "NZAA" ;
-    ex:annualPassengers "1175930"^^xsd:integer ;
-    ex:website <https://www.aucklandairport.co.nz/> ;
-    owl:sameAs <http://dbpedia.org/resource/Auckland_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q45938> .
-
 <http://example.org/asean-airport#airport_AKM> owl:sameAs <http://dbpedia.org/resource/Zakouma_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q889632> .
 
 <http://example.org/asean-airport#airport_AKY> owl:sameAs <http://dbpedia.org/resource/Sittwe_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1927143> .
 
-<http://example.org/asean-airport#airport_ALA> ex:hasICAOCode "UAAA" ;
-    ex:operator "TAV Airports Holding" ;
-    ex:annualPassengers "11426650"^^xsd:integer ;
-    ex:openedYear "1935"^^xsd:integer ;
-    ex:website <http://www.alaport.com/en/> ;
-    owl:sameAs <http://dbpedia.org/resource/Almaty_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q858844> .
-
-<http://example.org/asean-airport#airport_AMD> ex:hasICAOCode "VAAH" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "777975"^^xsd:integer ;
-    ex:website <https://www.adani.com/svpia-ahmedabad-airport> ;
-    owl:sameAs <http://dbpedia.org/resource/Ahmedabad_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q401700> .
-
 <http://example.org/asean-airport#airport_AMI> ex:website <http://www.angkasapura1.co.id/> ;
     owl:sameAs <http://dbpedia.org/resource/Selaparang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2670834> .
 
-<http://example.org/asean-airport#airport_AMM> ex:hasICAOCode "OJAI" ;
-    ex:annualPassengers "7837501"^^xsd:integer ;
-    ex:website <https://qaiairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Queen_Alia_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q721494> .
-
 <http://example.org/asean-airport#airport_AMQ> ex:website <http://www.pattimura-airport.co.id> ;
     owl:sameAs <http://dbpedia.org/resource/Pattimura_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2232506> .
-
-<http://example.org/asean-airport#airport_AMS> ex:hasICAOCode "EHAM" ;
-    ex:annualPassengers "66828453"^^xsd:integer ;
-    ex:website <https://www.schiphol.nl/> ;
-    owl:sameAs <http://dbpedia.org/resource/Amsterdam_Airport_Schiphol> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q9694> .
 
 <http://example.org/asean-airport#airport_AOR> ex:website <http://www.malaysiaairports.com.my/index.php/component/content/article/11> ;
     owl:sameAs <http://dbpedia.org/resource/Sultan_Abdul_Halim_Airport> ;
@@ -114,27 +62,6 @@
 <http://example.org/asean-airport#airport_ARJ> owl:sameAs <http://dbpedia.org/resource/Arso_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2901837> .
 
-<http://example.org/asean-airport#airport_ARN> ex:hasICAOCode "ESSA" ;
-    ex:operator "Swedavia" ;
-    ex:annualPassengers "732436"^^xsd:integer ;
-    ex:openedYear "1959"^^xsd:integer ;
-    ex:website <https://www.swedavia.com/arlanda/> ;
-    owl:sameAs <http://dbpedia.org/resource/Stockholm_Arlanda_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q223499> .
-
-<http://example.org/asean-airport#airport_ATL> ex:hasICAOCode "KATL" ;
-    ex:annualPassengers "106302208"^^xsd:integer ;
-    ex:website <https://www.atl.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Hartsfield–Jackson_Atlanta_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q214861> .
-
-<http://example.org/asean-airport#airport_AUH> ex:hasICAOCode "OMAA" ;
-    ex:operator "Abu Dhabi Airports" ;
-    ex:annualPassengers "22935316"^^xsd:integer ;
-    ex:website <https://www.zayedinternationalairport.ae/> ;
-    owl:sameAs <http://dbpedia.org/resource/Zayed_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q643562> .
-
 <http://example.org/asean-airport#airport_AUT> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824227> .
 
 <http://example.org/asean-airport#airport_AYW> owl:sameAs <http://dbpedia.org/resource/Ayawasi_Airport> ;
@@ -142,13 +69,6 @@
 
 <http://example.org/asean-airport#airport_BAG> owl:sameAs <http://dbpedia.org/resource/Loakan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1931154> .
-
-<http://example.org/asean-airport#airport_BAH> ex:hasICAOCode "OBBI" ;
-    ex:operator "Bahrain Airport Company" ;
-    ex:annualPassengers "6900000"^^xsd:integer ;
-    ex:website <http://www.bahrainairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Bahrain_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q637639> .
 
 <http://example.org/asean-airport#airport_BBM> owl:sameAs <http://dbpedia.org/resource/Battambang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2265750> .
@@ -162,14 +82,6 @@
 
 <http://example.org/asean-airport#airport_BCH> owl:sameAs <http://dbpedia.org/resource/Baucau_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1430948> .
-
-<http://example.org/asean-airport#airport_BCN> ex:hasICAOCode "LEBL" ;
-    ex:operator "Aena" ;
-    ex:annualPassengers "57483036"^^xsd:integer ;
-    ex:openedYear "1918"^^xsd:integer ;
-    ex:website <https://www.aena.es/es/josep-tarradellas-barcelona-el-prat.html> ;
-    owl:sameAs <http://dbpedia.org/resource/Josep_Tarradellas_Barcelona–El_Prat_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q56973> .
 
 <http://example.org/asean-airport#airport_BDJ> ex:website <http://syamsudinnoor-airport.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Syamsudin_Noor_International_Airport> ;
@@ -213,12 +125,6 @@
 <http://example.org/asean-airport#airport_BLG> owl:sameAs <http://dbpedia.org/resource/Belaga_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1657996> .
 
-<http://example.org/asean-airport#airport_BLR> ex:hasICAOCode "VOBL" ;
-    ex:annualPassengers "41875620"^^xsd:integer ;
-    ex:website <https://www.bengaluruairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Kempegowda_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q503364> .
-
 <http://example.org/asean-airport#airport_BMO> owl:sameAs <http://dbpedia.org/resource/Bhamo_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q619664> .
 
@@ -229,19 +135,6 @@
 <http://example.org/asean-airport#airport_BMV> ex:website <https://www.vietnamairport.vn/buonmathuotairport/> ;
     owl:sameAs <http://dbpedia.org/resource/Buon_Ma_Thuot_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q695570> .
-
-<http://example.org/asean-airport#airport_BNE> ex:hasICAOCode "YBBN" ;
-    ex:annualPassengers "16905697"^^xsd:integer ;
-    ex:openedYear "1988"^^xsd:integer ;
-    ex:website <http://www.bne.com.au/> ;
-    owl:sameAs <http://dbpedia.org/resource/Brisbane_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q45523> .
-
-<http://example.org/asean-airport#airport_BOM> ex:hasICAOCode "VABB" ;
-    ex:annualPassengers "3029008"^^xsd:integer ;
-    ex:website <https://csmia.adaniairports.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Chhatrapati_Shivaji_Maharaj_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q504368> .
 
 <http://example.org/asean-airport#airport_BOR> ex:openedYear "2024"^^xsd:integer ;
     ex:website <https://bkia.net/> ;
@@ -263,13 +156,6 @@
 
 <http://example.org/asean-airport#airport_BRG> owl:sameAs <http://dbpedia.org/resource/Taman_Bung_Karno_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q97372841> .
-
-<http://example.org/asean-airport#airport_BRU> ex:hasICAOCode "EBBR" ;
-    ex:operator "Brussels Airport Company" ;
-    ex:annualPassengers "1128791"^^xsd:integer ;
-    ex:website <http://www.brusselsairport.be/> ;
-    owl:sameAs <http://dbpedia.org/resource/Brussels_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q28934> .
 
 <http://example.org/asean-airport#airport_BSE> owl:sameAs <http://dbpedia.org/resource/Sematan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q7449138> .
@@ -347,41 +233,11 @@
 <http://example.org/asean-airport#airport_CAH> owl:sameAs <http://dbpedia.org/resource/Ca_Mau_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q900492> .
 
-<http://example.org/asean-airport#airport_CAI> ex:hasICAOCode "HECA" ;
-    ex:operator "Cairo Airport Company" ;
-    ex:annualPassengers "31137557"^^xsd:integer ;
-    ex:website <https://www.cairo-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Cairo_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q461793> .
-
-<http://example.org/asean-airport#airport_CAN> ex:hasICAOCode "ZGGG" ;
-    ex:operator "Guangzhou Baiyun International Airport Corporation Limited" ;
-    ex:annualPassengers "76370000"^^xsd:integer ;
-    ex:openedYear "2004"^^xsd:integer ;
-    ex:website <https://www.baiyunairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Guangzhou_Baiyun_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q44868> .
-
 <http://example.org/asean-airport#airport_CBN> owl:sameAs <http://dbpedia.org/resource/Penggung_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3544693> .
 
 <http://example.org/asean-airport#airport_CBO> owl:sameAs <http://dbpedia.org/resource/Cotabato_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2902817> .
-
-<http://example.org/asean-airport#airport_CCU> ex:hasICAOCode "VECC" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "870569"^^xsd:integer ;
-    ex:website <https://www.aai.aero/en/airports/kolkata> ;
-    owl:sameAs <http://dbpedia.org/resource/Netaji_Subhas_Chandra_Bose_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q388535> .
-
-<http://example.org/asean-airport#airport_CDG> ex:hasICAOCode "LFPG" ;
-    ex:operator "Groupe ADP" ;
-    ex:annualPassengers "72029407"^^xsd:integer ;
-    ex:openedYear "1974"^^xsd:integer ;
-    ex:website <https://www.parisaeroport.fr/fr/passagers/roissy-charles-de-gaulle> ;
-    owl:sameAs <http://dbpedia.org/resource/Paris_Charles_de_Gaulle_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q46280> .
 
 <http://example.org/asean-airport#airport_CDY> owl:sameAs <http://dbpedia.org/resource/Cagayan_de_Sulu_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3813576> .
@@ -404,36 +260,9 @@
 <http://example.org/asean-airport#airport_CGM> owl:sameAs <http://dbpedia.org/resource/Camiguin_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3274689> .
 
-<http://example.org/asean-airport#airport_CGO> ex:hasICAOCode "ZHCC" ;
-    ex:annualPassengers "9221674"^^xsd:integer ;
-    ex:openedYear "1997"^^xsd:integer ;
-    ex:website <http://www.zzairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Zhengzhou_Xinzheng_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q2034869> .
-
-<http://example.org/asean-airport#airport_CGP> ex:hasICAOCode "VGEG" ;
-    ex:operator "Civil Aviation Authority of Bangladesh" ;
-    ex:annualPassengers "1687000"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Shah_Amanat_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q525609> .
-
 <http://example.org/asean-airport#airport_CGY> ex:website <http://www.laguindinganinternationalairport.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Laguindingan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3274023> .
-
-<http://example.org/asean-airport#airport_CHC> ex:hasICAOCode "NZCH" ;
-    ex:annualPassengers "478900"^^xsd:integer ;
-    ex:openedYear "1940"^^xsd:integer ;
-    ex:website <http://www.christchurchairport.co.nz/> ;
-    owl:sameAs <http://dbpedia.org/resource/Christchurch_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1061330> .
-
-<http://example.org/asean-airport#airport_CJB> ex:hasICAOCode "VOCB" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "115554"^^xsd:integer ;
-    ex:website <https://www.aai.aero/en/airports/coimbatore> ;
-    owl:sameAs <http://dbpedia.org/resource/Coimbatore_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q505572> .
 
 <http://example.org/asean-airport#airport_CJM> ex:website <http://www.chumphonairport.net> ;
     owl:sameAs <http://dbpedia.org/resource/Chumphon_Airport> ;
@@ -442,38 +271,12 @@
 <http://example.org/asean-airport#airport_CJN> owl:sameAs <http://dbpedia.org/resource/Cijulang_Nusawiru_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q56215> .
 
-<http://example.org/asean-airport#airport_CKG> ex:hasICAOCode "ZUCK" ;
-    ex:annualPassengers "21673547"^^xsd:integer ;
-    ex:website <https://www.cqa.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Chongqing_Jiangbei_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q788417> .
-
-<http://example.org/asean-airport#airport_CMB> ex:hasICAOCode "VCBI" ;
-    ex:operator "Sri Lanka Air Force" ;
-    ex:annualPassengers "36490"^^xsd:integer ;
-    ex:openedYear "1944"^^xsd:integer ;
-    ex:website <http://www.airport.lk/> ;
-    owl:sameAs <http://dbpedia.org/resource/Bandaranaike_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q60900> .
-
 <http://example.org/asean-airport#airport_CNX> ex:website <http://www.chiangmaiairportthai.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Chiang_Mai_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1065082> .
 
-<http://example.org/asean-airport#airport_COK> ex:hasICAOCode "VOCI" ;
-    ex:annualPassengers "723532"^^xsd:integer ;
-    ex:website <http://cial.aero/> ;
-    owl:sameAs <http://dbpedia.org/resource/Cochin_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q592172> .
-
 <http://example.org/asean-airport#airport_CPF> owl:sameAs <http://dbpedia.org/resource/Ngloram_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q7022413> .
-
-<http://example.org/asean-airport#airport_CPH> ex:hasICAOCode "EKCH" ;
-    ex:annualPassengers "32433694"^^xsd:integer ;
-    ex:website <http://www.cph.dk/> ;
-    owl:sameAs <http://dbpedia.org/resource/Copenhagen_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q206277> .
 
 <http://example.org/asean-airport#airport_CRK> ex:openedYear "1903"^^xsd:integer ;
     ex:website <http://www.clarkairport.com/> ;
@@ -482,27 +285,6 @@
 
 <http://example.org/asean-airport#airport_CRM> owl:sameAs <http://dbpedia.org/resource/Catarman_National_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1961070> .
-
-<http://example.org/asean-airport#airport_CSX> ex:hasICAOCode "ZGHA" ;
-    ex:annualPassengers "12508779"^^xsd:integer ;
-    ex:openedYear "1989"^^xsd:integer ;
-    ex:website <http://csa.hnjcjt.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Changsha_Huanghua_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1330618> .
-
-<http://example.org/asean-airport#airport_CTS> ex:hasICAOCode "RJCC" ;
-    ex:operator "Hokkaido Airports" ;
-    ex:annualPassengers "23968186"^^xsd:integer ;
-    ex:openedYear "1988"^^xsd:integer ;
-    ex:website <https://www.hokkaido-airports.com/ja/new-chitose/> ;
-    owl:sameAs <http://dbpedia.org/resource/New_Chitose_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q908296> .
-
-<http://example.org/asean-airport#airport_CTU> ex:hasICAOCode "ZUUU" ;
-    ex:annualPassengers "33518945"^^xsd:integer ;
-    ex:website <http://www.cdairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Chengdu_Shuangliu_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q387560> .
 
 <http://example.org/asean-airport#airport_CXP> owl:sameAs <http://dbpedia.org/resource/Tunggul_Wulung_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q56216> .
@@ -520,22 +302,9 @@
 <http://example.org/asean-airport#airport_CYZ> owl:sameAs <http://dbpedia.org/resource/Cauayan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1961117> .
 
-<http://example.org/asean-airport#airport_DAC> ex:hasICAOCode "VGHS" ;
-    ex:operator "Civil Aviation Authority of Bangladesh" ;
-    ex:annualPassengers "8898000"^^xsd:integer ;
-    ex:website <https://www.hsia.gov.bd/> ;
-    owl:sameAs <http://dbpedia.org/resource/Hazrat_Shahjalal_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q30603> .
-
 <http://example.org/asean-airport#airport_DAD> ex:website <http://www.danangairportonline.com> ;
     owl:sameAs <http://dbpedia.org/resource/Da_Nang_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q773330> .
-
-<http://example.org/asean-airport#airport_DEL> ex:hasICAOCode "VIDP" ;
-    ex:annualPassengers "77820834"^^xsd:integer ;
-    ex:website <http://www.newdelhiairport.in/> ;
-    owl:sameAs <http://dbpedia.org/resource/Indira_Gandhi_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q821275> .
 
 <http://example.org/asean-airport#airport_DGT> owl:sameAs <http://dbpedia.org/resource/Sibulan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2022069> .
@@ -560,37 +329,13 @@
     owl:sameAs <http://dbpedia.org/resource/Lien_Khuong_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q165146> .
 
-<http://example.org/asean-airport#airport_DME> ex:hasICAOCode "UUDD" ;
-    ex:operator "East Line Group" ;
-    ex:annualPassengers "13860000"^^xsd:integer ;
-    ex:openedYear "1964"^^xsd:integer ;
-    ex:website <http://www.domodedovo.ru> ;
-    owl:sameAs <http://dbpedia.org/resource/Moscow_Domodedovo_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q186614> .
-
 <http://example.org/asean-airport#airport_DMK> ex:openedYear "1914"^^xsd:integer ;
     ex:website <https://donmueang.airportthai.co.th/> ;
     owl:sameAs <http://dbpedia.org/resource/Don_Mueang_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1046755> .
 
-<http://example.org/asean-airport#airport_DMM> ex:hasICAOCode "OEDF" ;
-    ex:operator "General Authority of Civil Aviation" ;
-    ex:annualPassengers "5971668"^^xsd:integer ;
-    ex:openedYear "1999"^^xsd:integer ;
-    ex:website <https://gaca.gov.sa/web/ar-sa/airport/king-fahd-international-airport> ;
-    owl:sameAs <http://dbpedia.org/resource/King_Fahd_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q911155> .
-
 <http://example.org/asean-airport#airport_DOB> owl:sameAs <http://dbpedia.org/resource/Rar_Gwamar_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1657877> .
-
-<http://example.org/asean-airport#airport_DOH> ex:hasICAOCode "OTHH" ;
-    ex:operator "Qatar Airways" ;
-    ex:annualPassengers "35700000"^^xsd:integer ;
-    ex:openedYear "2014"^^xsd:integer ;
-    ex:website <https://dohahamadairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Hamad_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1198791> .
 
 <http://example.org/asean-airport#airport_DPL> owl:sameAs <http://dbpedia.org/resource/Dipolog_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1655982> .
@@ -604,13 +349,6 @@
 
 <http://example.org/asean-airport#airport_DRP> owl:sameAs <http://dbpedia.org/resource/Bicol_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4903706> .
-
-<http://example.org/asean-airport#airport_DRW> ex:hasICAOCode "YPDN" ;
-    ex:operator "Royal Australian Air Force" ;
-    ex:annualPassengers "1673129"^^xsd:integer ;
-    ex:website <https://www.darwinairport.com.au/> ;
-    owl:sameAs <http://dbpedia.org/resource/Darwin_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q17609> .
 
 <http://example.org/asean-airport#airport_DTB> ex:openedYear "2005"^^xsd:integer ;
     ex:website <http://www.silangit-airport.co.id/> ;
@@ -630,20 +368,6 @@
     owl:sameAs <http://dbpedia.org/resource/Francisco_Bangoy_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1192811> .
 
-<http://example.org/asean-airport#airport_DWC> ex:hasICAOCode "OMDW" ;
-    ex:operator "Dubai Airports Company" ;
-    ex:annualPassengers "1100000"^^xsd:integer ;
-    ex:website <https://dubaiairports.ae/> ;
-    owl:sameAs <http://dbpedia.org/resource/Al_Maktoum_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1065223> .
-
-<http://example.org/asean-airport#airport_DXB> ex:hasICAOCode "OMDB" ;
-    ex:operator "Dubai Airports Company" ;
-    ex:annualPassengers "95200000"^^xsd:integer ;
-    ex:website <https://www.dubaiairports.ae/ar> ;
-    owl:sameAs <http://dbpedia.org/resource/Dubai_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q193439> .
-
 <http://example.org/asean-airport#airport_ELR> rdfs:seeAlso <http://www.wikidata.org/entity/Q112302579> .
 
 <http://example.org/asean-airport#airport_ENE> ex:website <http://indonesiaairport.com/provinces/lesser_sunda_islands/ende_airport.htm> ;
@@ -662,56 +386,14 @@
 <http://example.org/asean-airport#airport_EWI> owl:sameAs <http://dbpedia.org/resource/Enarotali_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q5375247> .
 
-<http://example.org/asean-airport#airport_FCO> ex:hasICAOCode "LIRF" ;
-    ex:operator "Aeroporti di Roma SpA" ;
-    ex:annualPassengers "51306744"^^xsd:integer ;
-    ex:openedYear "1960"^^xsd:integer ;
-    ex:website <https://www.adr.it/fiumicino> ;
-    owl:sameAs <http://dbpedia.org/resource/Rome_Fiumicino_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q19101> .
-
 <http://example.org/asean-airport#airport_FKQ> owl:sameAs <http://dbpedia.org/resource/Siboru_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q133575293> .
 
 <http://example.org/asean-airport#airport_FLZ> owl:sameAs <http://dbpedia.org/resource/Ferdinand_Lumban_Tobing_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4272430> .
 
-<http://example.org/asean-airport#airport_FNJ> ex:hasICAOCode "ZKPY" ;
-    ex:operator "North Korea" ;
-    owl:sameAs <http://dbpedia.org/resource/Pyongyang_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q491767> .
-
-<http://example.org/asean-airport#airport_FOC> ex:hasICAOCode "ZSFZ" ;
-    ex:annualPassengers "16118000"^^xsd:integer ;
-    ex:openedYear "1997"^^xsd:integer ;
-    ex:website <https://www.fuzhouairport.com.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Fuzhou_Changle_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1350630> .
-
 <http://example.org/asean-airport#airport_FOO> owl:sameAs <http://dbpedia.org/resource/Kornasoren_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q6432401> .
-
-<http://example.org/asean-airport#airport_FRA> ex:hasICAOCode "EDDF" ;
-    ex:operator "Fraport" ;
-    ex:annualPassengers "61564957"^^xsd:integer ;
-    ex:website <https://www.frankfurt-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Frankfurt_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q46033> .
-
-<http://example.org/asean-airport#airport_FUK> ex:hasICAOCode "RJFF" ;
-    ex:operator "Fukuoka International Airport Company, Ministry of Land, Infrastructure, Transport and Tourism" ;
-    ex:annualPassengers "26755262"^^xsd:integer ;
-    ex:openedYear "1943"^^xsd:integer ;
-    ex:website <https://www.fukuoka-airport.jp/> ;
-    owl:sameAs <http://dbpedia.org/resource/Fukuoka_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1137465> .
-
-<http://example.org/asean-airport#airport_GAU> ex:hasICAOCode "VEGT" ;
-    ex:operator "Airports Authority of India, Indian Air Force" ;
-    ex:annualPassengers "424394"^^xsd:integer ;
-    ex:website <https://www.adani.com/lgbia-guwahati-airport> ;
-    owl:sameAs <http://dbpedia.org/resource/Lokpriya_Gopinath_Bordoloi_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q2673008> .
 
 <http://example.org/asean-airport#airport_GAW> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824389> .
 
@@ -734,26 +416,12 @@
 <http://example.org/asean-airport#airport_GTO> owl:sameAs <http://dbpedia.org/resource/Djalaluddin_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2903040> .
 
-<http://example.org/asean-airport#airport_GUM> ex:hasICAOCode "PGUM" ;
-    ex:annualPassengers "3701842"^^xsd:integer ;
-    ex:website <http://www.GuamAirport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Antonio_B._Won_Pat_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1136355> .
-
 <http://example.org/asean-airport#airport_GWA> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824408> .
 
 <http://example.org/asean-airport#airport_GXA> owl:sameAs <http://dbpedia.org/resource/Beringin_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q619822> .
 
 <http://example.org/asean-airport#airport_GYO> rdfs:seeAlso <http://www.wikidata.org/entity/Q17998805> .
-
-<http://example.org/asean-airport#airport_HAK> ex:hasICAOCode "ZJHK" ;
-    ex:operator "Hainan Meilan International Airport Company Limited" ;
-    ex:annualPassengers "11162161"^^xsd:integer ;
-    ex:openedYear "1999"^^xsd:integer ;
-    ex:website <http://www.mlairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Haikou_Meilan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1143116> .
 
 <http://example.org/asean-airport#airport_HAN> ex:website <http://noibaiairport.vn/> ;
     owl:sameAs <http://dbpedia.org/resource/Noi_Bai_International_Airport> ;
@@ -766,20 +434,6 @@
 <http://example.org/asean-airport#airport_HEH> owl:sameAs <http://dbpedia.org/resource/Heho_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1320846> .
 
-<http://example.org/asean-airport#airport_HEL> ex:hasICAOCode "EFHK" ;
-    ex:operator "Finavia" ;
-    ex:annualPassengers "16308814"^^xsd:integer ;
-    ex:openedYear "1952"^^xsd:integer ;
-    ex:website <https://www.finavia.fi/en/airports/helsinki-airport> ;
-    owl:sameAs <http://dbpedia.org/resource/Helsinki_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q215327> .
-
-<http://example.org/asean-airport#airport_HGH> ex:hasICAOCode "ZSHC" ;
-    ex:annualPassengers "50459018"^^xsd:integer ;
-    ex:website <http://www.hzairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Hangzhou_Xiaoshan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1197691> .
-
 <http://example.org/asean-airport#airport_HGN> ex:website <https://www.flightradar24.com/data/airports/hgn/> ;
     owl:sameAs <http://dbpedia.org/resource/Mae_Hong_Son_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1431989> .
@@ -787,13 +441,6 @@
 <http://example.org/asean-airport#airport_HHQ> ex:website <http://www.huahinairport.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Hua_Hin_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1431510> .
-
-<http://example.org/asean-airport#airport_HKG> ex:hasICAOCode "VHHH" ;
-    ex:operator "Airport Authority Hong Kong" ;
-    ex:annualPassengers "53055000"^^xsd:integer ;
-    ex:website <https://www.hongkongairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Hong_Kong_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q17704> .
 
 <http://example.org/asean-airport#airport_HKT> ex:website <https://www.phuketairportonline.com> ;
     owl:sameAs <http://dbpedia.org/resource/Phuket_International_Airport> ;
@@ -806,21 +453,6 @@
 <http://example.org/asean-airport#airport_HMS> owl:sameAs <http://dbpedia.org/resource/Haji_Muhammad_Sidik_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q97306995> .
 
-<http://example.org/asean-airport#airport_HND> ex:hasICAOCode "RJTT" ;
-    ex:operator "Ministry of Land, Infrastructure, Transport and Tourism" ;
-    ex:annualPassengers "85900617"^^xsd:integer ;
-    ex:openedYear "1952"^^xsd:integer ;
-    ex:website <https://tokyo-haneda.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Haneda_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q204853> .
-
-<http://example.org/asean-airport#airport_HNL> ex:hasICAOCode "PHNL" ;
-    ex:operator "Hawaii Department of Transportation, United States Navy" ;
-    ex:annualPassengers "21188678"^^xsd:integer ;
-    ex:website <http://www.cnic.navy.mil/PearlHarbor-Hickam/> ;
-    owl:sameAs <http://dbpedia.org/resource/Joint_Base_Pearl_Harbor–Hickam> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q5669602> .
-
 <http://example.org/asean-airport#airport_HOE> owl:sameAs <http://dbpedia.org/resource/Ban_Huoeisay_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1430931> .
 
@@ -832,13 +464,6 @@
     owl:sameAs <http://dbpedia.org/resource/Phu_Bai_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q160094> .
 
-<http://example.org/asean-airport#airport_HYD> ex:hasICAOCode "VOHS" ;
-    ex:operator "Airports Authority of India, GMR Group, Government of Andhra Pradesh, Malaysia Airports" ;
-    ex:annualPassengers "1646056"^^xsd:integer ;
-    ex:website <http://www.hyderabad.aero> ;
-    owl:sameAs <http://dbpedia.org/resource/Rajiv_Gandhi_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q278667> .
-
 <http://example.org/asean-airport#airport_IAO> owl:sameAs <http://dbpedia.org/resource/Sayak_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q7429098> .
 
@@ -846,29 +471,8 @@
     owl:sameAs <http://dbpedia.org/resource/Miangas_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q34498760> .
 
-<http://example.org/asean-airport#airport_ICN> ex:hasICAOCode "RKSI" ;
-    ex:operator "Incheon International Airport Corporation" ;
-    ex:annualPassengers "74071475"^^xsd:integer ;
-    ex:website <https://www.airport.kr> ;
-    owl:sameAs <http://dbpedia.org/resource/Incheon_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q20932> .
-
 <http://example.org/asean-airport#airport_IGN> owl:sameAs <http://dbpedia.org/resource/Maria_Cristina_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1031517> .
-
-<http://example.org/asean-airport#airport_IKA> ex:hasICAOCode "OIIE" ;
-    ex:operator "Imam Khomeini Airport City" ;
-    ex:annualPassengers "7672152"^^xsd:integer ;
-    ex:openedYear "2004"^^xsd:integer ;
-    ex:website <http://www.ikac.ir> ;
-    owl:sameAs <http://dbpedia.org/resource/Imam_Khomeini_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q734729> .
-
-<http://example.org/asean-airport#airport_IKT> ex:hasICAOCode "UIII" ;
-    ex:annualPassengers "4000000"^^xsd:integer ;
-    ex:website <https://iktport.ru/zh/> ;
-    owl:sameAs <http://dbpedia.org/resource/International_Airport_Irkutsk> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1431564> .
 
 <http://example.org/asean-airport#airport_ILA> rdfs:seeAlso <http://www.wikidata.org/entity/Q112201866> .
 
@@ -883,63 +487,22 @@
     owl:sameAs <http://dbpedia.org/resource/Sultan_Azlan_Shah_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3239106> .
 
-<http://example.org/asean-airport#airport_ISB> ex:hasICAOCode "OPIS" ;
-    ex:operator "Pakistan Civil Aviation Authority" ;
-    ex:website <http://www.islamabadairport.com.pk/> ;
-    owl:sameAs <http://dbpedia.org/resource/Islamabad_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1190316> .
-
-<http://example.org/asean-airport#airport_IST> ex:hasICAOCode "LTFM" ;
-    ex:operator "General Directorate of State Airports (Turkey)" ;
-    ex:annualPassengers "84457421"^^xsd:integer ;
-    ex:openedYear "2018"^^xsd:integer ;
-    ex:website <https://www.igairport.aero> ;
-    owl:sameAs <http://dbpedia.org/resource/Istanbul_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3661908> .
-
 <http://example.org/asean-airport#airport_IVD> owl:sameAs <http://dbpedia.org/resource/Nusantara_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q127269688> .
 
-<http://example.org/asean-airport#airport_IXB> ex:hasICAOCode "VEBD" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "233720"^^xsd:integer ;
-    ex:website <https://www.aai.aero/en/airports/bagdogra> ;
-    owl:sameAs <http://dbpedia.org/resource/Bagdogra_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q2900847> .
-
 <http://example.org/asean-airport#airport_JBB> owl:sameAs <http://dbpedia.org/resource/Notohadinegoro_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q20062381> .
-
-<http://example.org/asean-airport#airport_JED> ex:hasICAOCode "OEJN" ;
-    ex:annualPassengers "14117611"^^xsd:integer ;
-    ex:openedYear "1981"^^xsd:integer ;
-    ex:website <https://www.kaia.sa/> ;
-    owl:sameAs <http://dbpedia.org/resource/King_Abdulaziz_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q153592> .
 
 <http://example.org/asean-airport#airport_JHB> ex:openedYear "1974"^^xsd:integer ;
     ex:website <http://www.senaiairport.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Senai_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3239110> .
 
-<http://example.org/asean-airport#airport_JHG> ex:hasICAOCode "ZPJH" ;
-    ex:annualPassengers "2397548"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Xishuangbanna_Gasa_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3234757> .
-
 <http://example.org/asean-airport#airport_JHN> ex:openedYear "2024"^^xsd:integer ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q133268011> .
 
 <http://example.org/asean-airport#airport_JIO> owl:sameAs <http://dbpedia.org/resource/Jos_Orno_Imsula_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q24882748> .
-
-<http://example.org/asean-airport#airport_JNB> ex:hasICAOCode "FAOR" ;
-    ex:operator "Airports Company South Africa" ;
-    ex:annualPassengers "1118794"^^xsd:integer ;
-    ex:openedYear "1952"^^xsd:integer ;
-    ex:website <https://ortambointernationalairport.co.za> ;
-    owl:sameAs <http://dbpedia.org/resource/O._R._Tambo_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q821750> .
 
 <http://example.org/asean-airport#airport_JOG> ex:website <http://adisutjipto-airport.co.id/> ;
     owl:sameAs <http://dbpedia.org/resource/Adisutjipto_Airport> ;
@@ -954,14 +517,6 @@
 <http://example.org/asean-airport#airport_KAZ> ex:website <http://bandara-kao.com/> ;
     owl:sameAs <http://dbpedia.org/resource/Kuabang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474073> .
-
-<http://example.org/asean-airport#airport_KBP> ex:hasICAOCode "UKBB" ;
-    ex:operator "Ministry of Infrastructure of Ukraine" ;
-    ex:annualPassengers "9433000"^^xsd:integer ;
-    ex:openedYear "1959"^^xsd:integer ;
-    ex:website <https://kbp.aero> ;
-    owl:sameAs <http://dbpedia.org/resource/Boryspil_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q477677> .
 
 <http://example.org/asean-airport#airport_KBR> ex:website <http://www.malaysiaairports.com.my/index.php/domestic/sultan-ismail-petra-airport> ;
     owl:sameAs <http://dbpedia.org/resource/Sultan_Ismail_Petra_Airport> ;
@@ -988,43 +543,8 @@
 <http://example.org/asean-airport#airport_KET> owl:sameAs <http://dbpedia.org/resource/Kengtung_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1827937> .
 
-<http://example.org/asean-airport#airport_KHH> ex:hasICAOCode "RCKH" ;
-    ex:operator "Civil Aeronautics Administration" ;
-    ex:annualPassengers "6971162"^^xsd:integer ;
-    ex:website <https://www.kia.gov.tw/> ;
-    owl:sameAs <http://dbpedia.org/resource/Kaohsiung_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q16810> .
-
-<http://example.org/asean-airport#airport_KHI> ex:hasICAOCode "OPKC" ;
-    ex:annualPassengers "7267582"^^xsd:integer ;
-    ex:website <http://www.karachiairport.com.pk> ;
-    owl:sameAs <http://dbpedia.org/resource/Jinnah_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q61052> .
-
 <http://example.org/asean-airport#airport_KHM> owl:sameAs <http://dbpedia.org/resource/Khamti_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q6400012> .
-
-<http://example.org/asean-airport#airport_KHN> ex:hasICAOCode "ZSCN" ;
-    ex:operator "Capital Airport Holdings" ;
-    ex:annualPassengers "10205783"^^xsd:integer ;
-    ex:openedYear "1999"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Nanchang_Changbei_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1375451> .
-
-<http://example.org/asean-airport#airport_KIX> ex:hasICAOCode "RJBB" ;
-    ex:operator "Kansai Airports" ;
-    ex:annualPassengers "30598651"^^xsd:integer ;
-    ex:openedYear "1994"^^xsd:integer ;
-    ex:website <https://www.kansai-airport.or.jp/cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Kansai_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q193682> .
-
-<http://example.org/asean-airport#airport_KJA> ex:hasICAOCode "UNKL" ;
-    ex:annualPassengers "4263566"^^xsd:integer ;
-    ex:openedYear "1980"^^xsd:integer ;
-    ex:website <http://www.kja.aero/> ;
-    owl:sameAs <http://dbpedia.org/resource/Krasnoyarsk_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1431601> .
 
 <http://example.org/asean-airport#airport_KJT> ex:openedYear "2018"^^xsd:integer ;
     ex:website <https://bijb.co.id/> ;
@@ -1045,13 +565,6 @@
 
 <http://example.org/asean-airport#airport_KLP> owl:sameAs <http://dbpedia.org/resource/Seruyan_Kuala_Pembuang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q24883014> .
-
-<http://example.org/asean-airport#airport_KMG> ex:hasICAOCode "ZPPP" ;
-    ex:annualPassengers "49705725"^^xsd:integer ;
-    ex:openedYear "2009"^^xsd:integer ;
-    ex:website <https://km.ynairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Kunming_Changshui_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1371636> .
 
 <http://example.org/asean-airport#airport_KMM> rdfs:seeAlso <http://www.wikidata.org/entity/Q112201868> .
 
@@ -1104,13 +617,6 @@
 <http://example.org/asean-airport#airport_KTI> owl:sameAs <http://dbpedia.org/resource/Techo_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q106616277> .
 
-<http://example.org/asean-airport#airport_KTM> ex:hasICAOCode "VNKT" ;
-    ex:operator "Civil Aviation Authority of Nepal" ;
-    ex:annualPassengers "7327042"^^xsd:integer ;
-    ex:website <http://www.tiairport.com.np> ;
-    owl:sameAs <http://dbpedia.org/resource/Tribhuvan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q61066> .
-
 <http://example.org/asean-airport#airport_KUA> owl:sameAs <http://dbpedia.org/resource/Sultan_Haji_Ahmad_Shah_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3235616> .
 
@@ -1124,26 +630,6 @@
 
 <http://example.org/asean-airport#airport_KWB> owl:sameAs <http://dbpedia.org/resource/Dewadaru_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474046> .
-
-<http://example.org/asean-airport#airport_KWE> ex:hasICAOCode "ZUGY" ;
-    ex:annualPassengers "9797755"^^xsd:integer ;
-    ex:openedYear "1997"^^xsd:integer ;
-    ex:website <http://www.gyairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Guiyang_Longdongbao_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3243613> .
-
-<http://example.org/asean-airport#airport_KWI> ex:hasICAOCode "OKKK" ;
-    ex:annualPassengers "15448909"^^xsd:integer ;
-    ex:website <http://www.kuwait-airport.com.kw/Index_e.htm> ;
-    owl:sameAs <http://dbpedia.org/resource/Kuwait_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q527157> .
-
-<http://example.org/asean-airport#airport_KWL> ex:hasICAOCode "ZGKL" ;
-    ex:annualPassengers "1736191"^^xsd:integer ;
-    ex:openedYear "1996"^^xsd:integer ;
-    ex:website <http://www.airport-gl.com.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Guilin_Liangjiang_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1197688> .
 
 <http://example.org/asean-airport#airport_KYP> owl:sameAs <http://dbpedia.org/resource/Kyaukpyu_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3277249> .
@@ -1161,14 +647,6 @@
 
 <http://example.org/asean-airport#airport_LAO> owl:sameAs <http://dbpedia.org/resource/Laoag_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q598033> .
-
-<http://example.org/asean-airport#airport_LAX> ex:hasICAOCode "KLAX" ;
-    ex:operator "Los Angeles World Airports" ;
-    ex:annualPassengers "73709594"^^xsd:integer ;
-    ex:openedYear "1926"^^xsd:integer ;
-    ex:website <https://www.flylax.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Los_Angeles_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q8731> .
 
 <http://example.org/asean-airport#airport_LBJ> ex:website <http://lbj.otoritasbandara.info/> ;
     owl:sameAs <http://dbpedia.org/resource/Komodo_International_Airport> ;
@@ -1189,13 +667,6 @@
 <http://example.org/asean-airport#airport_LDU> owl:sameAs <http://dbpedia.org/resource/Lahad_Datu_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1431842> .
 
-<http://example.org/asean-airport#airport_LED> ex:hasICAOCode "ULLI" ;
-    ex:operator "Rossiya" ;
-    ex:annualPassengers "20700000"^^xsd:integer ;
-    ex:website <http://www.pulkovoairport.ru> ;
-    owl:sameAs <http://dbpedia.org/resource/Pulkovo_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q690122> .
-
 <http://example.org/asean-airport#airport_LGK> ex:website <https://airports.malaysiaairports.com.my/langkawi> ;
     owl:sameAs <http://dbpedia.org/resource/Langkawi_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1431863> .
@@ -1206,30 +677,8 @@
 <http://example.org/asean-airport#airport_LGP> owl:sameAs <http://dbpedia.org/resource/Legazpi_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3344188> .
 
-<http://example.org/asean-airport#airport_LHE> ex:hasICAOCode "OPLA" ;
-    ex:operator "Pakistan Civil Aviation Authority" ;
-    ex:annualPassengers "4490182"^^xsd:integer ;
-    ex:openedYear "1962"^^xsd:integer ;
-    ex:website <http://www.lahoreairport.com.pk> ;
-    owl:sameAs <http://dbpedia.org/resource/Allama_Iqbal_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q60879> .
-
-<http://example.org/asean-airport#airport_LHR> ex:hasICAOCode "EGLL" ;
-    ex:operator "Heathrow Airport Holdings" ;
-    ex:annualPassengers "83884572"^^xsd:integer ;
-    ex:website <https://heathrow.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Heathrow_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q8691> .
-
 <http://example.org/asean-airport#airport_LIW> owl:sameAs <http://dbpedia.org/resource/Loikaw_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q978813> .
-
-<http://example.org/asean-airport#airport_LJG> ex:hasICAOCode "ZPLJ" ;
-    ex:annualPassengers "2878817"^^xsd:integer ;
-    ex:openedYear "1995"^^xsd:integer ;
-    ex:website <http://www.lijiang-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Lijiang_Sanyi_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1431877> .
 
 <http://example.org/asean-airport#airport_LKA> owl:sameAs <http://dbpedia.org/resource/Gewayantana_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474053> .
@@ -1318,21 +767,6 @@
 <http://example.org/asean-airport#airport_LXG> owl:sameAs <http://dbpedia.org/resource/Louang_Namtha_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q5239706> .
 
-<http://example.org/asean-airport#airport_MAA> ex:hasICAOCode "VOMM" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "1450372"^^xsd:integer ;
-    ex:website <https://www.aai.aero/en/airports/chennai> ;
-    owl:sameAs <http://dbpedia.org/resource/Chennai_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q502670> .
-
-<http://example.org/asean-airport#airport_MAD> ex:hasICAOCode "LEMD" ;
-    ex:operator "ENAIRE" ;
-    ex:annualPassengers "66197066"^^xsd:integer ;
-    ex:openedYear "1931"^^xsd:integer ;
-    ex:website <https://www.aena.es/es/adolfo-suarez-madrid-barajas.html> ;
-    owl:sameAs <http://dbpedia.org/resource/Madrid–Barajas_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q166276> .
-
 <http://example.org/asean-airport#airport_MAP> rdfs:seeAlso <http://www.wikidata.org/entity/Q35277311> .
 
 <http://example.org/asean-airport#airport_MAQ> owl:sameAs <http://dbpedia.org/resource/Mae_Sot_Airport> ;
@@ -1344,12 +778,6 @@
 <http://example.org/asean-airport#airport_MBT> owl:sameAs <http://dbpedia.org/resource/Moises_R._Espinosa_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3565132> .
 
-<http://example.org/asean-airport#airport_MCT> ex:hasICAOCode "OOMS" ;
-    ex:annualPassengers "1270393"^^xsd:integer ;
-    ex:website <https://www.muscatairport.co.om/> ;
-    owl:sameAs <http://dbpedia.org/resource/Muscat_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1133357> .
-
 <http://example.org/asean-airport#airport_MDC> ex:website <https://SamRatulangi-airport.com> ;
     owl:sameAs <http://dbpedia.org/resource/Sam_Ratulangi_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1428685> .
@@ -1358,31 +786,11 @@
     owl:sameAs <http://dbpedia.org/resource/Mandalay_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1193001> .
 
-<http://example.org/asean-airport#airport_MED> ex:hasICAOCode "OEMA" ;
-    ex:annualPassengers "11891855"^^xsd:integer ;
-    ex:website <https://www.tibahairports.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Prince_Mohammad_bin_Abdulaziz_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1205940> .
-
-<http://example.org/asean-airport#airport_MEL> ex:hasICAOCode "YMML" ;
-    ex:operator "Australia Pacific Airports Corporation" ;
-    ex:annualPassengers "25690854"^^xsd:integer ;
-    ex:openedYear "1964"^^xsd:integer ;
-    ex:website <https://www.melbourneairport.com.au/> ;
-    owl:sameAs <http://dbpedia.org/resource/Melbourne_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q733738> .
-
 <http://example.org/asean-airport#airport_MEP> owl:sameAs <http://dbpedia.org/resource/Mersing_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q652960> .
 
 <http://example.org/asean-airport#airport_MEQ> owl:sameAs <http://dbpedia.org/resource/Cut_Nyak_Dhien_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1657868> .
-
-<http://example.org/asean-airport#airport_MFM> ex:hasICAOCode "VMMC" ;
-    ex:annualPassengers "7641495"^^xsd:integer ;
-    ex:website <https://www.macau-airport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Macau_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q525486> .
 
 <http://example.org/asean-airport#airport_MGK> rdfs:seeAlso <http://www.wikidata.org/entity/Q12693997> .
 
@@ -1407,11 +815,6 @@
 <http://example.org/asean-airport#airport_MKZ> ex:website <http://www.malaysiaairports.com.my/index.php/domestic/melaka-airport> ;
     owl:sameAs <http://dbpedia.org/resource/Malacca_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q782821> .
-
-<http://example.org/asean-airport#airport_MLE> ex:hasICAOCode "VRMM" ;
-    ex:website <https://macl.aero/> ;
-    owl:sameAs <http://dbpedia.org/resource/Velana_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q29104> .
 
 <http://example.org/asean-airport#airport_MLG> owl:sameAs <http://dbpedia.org/resource/Abdul_Rachman_Saleh_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1936851> .
@@ -1448,31 +851,10 @@
 <http://example.org/asean-airport#airport_MRQ> owl:sameAs <http://dbpedia.org/resource/Marinduque_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1030854> .
 
-<http://example.org/asean-airport#airport_MRU> ex:hasICAOCode "FIMP" ;
-    ex:annualPassengers "3884056"^^xsd:integer ;
-    ex:openedYear "1999"^^xsd:integer ;
-    ex:website <https://aml.mru.aero/> ;
-    owl:sameAs <http://dbpedia.org/resource/Sir_Seewoosagur_Ramgoolam_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q36460> .
-
 <http://example.org/asean-airport#airport_MSA> ex:operator "Government of Ontario" ;
     ex:website <http://www.muskokaairport.com> ;
     owl:sameAs <http://dbpedia.org/resource/Muskrat_Dam_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1529264> .
-
-<http://example.org/asean-airport#airport_MSP> ex:hasICAOCode "KMSP" ;
-    ex:annualPassengers "36071627"^^xsd:integer ;
-    ex:website <http://www.mspairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Minneapolis–Saint_Paul_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q875749> .
-
-<http://example.org/asean-airport#airport_MUC> ex:hasICAOCode "EDDM" ;
-    ex:operator "Flughafen München GmbH" ;
-    ex:annualPassengers "41568000"^^xsd:integer ;
-    ex:openedYear "1992"^^xsd:integer ;
-    ex:website <https://www.munich-airport.de/> ;
-    owl:sameAs <http://dbpedia.org/resource/Munich_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q131402> .
 
 <http://example.org/asean-airport#airport_MUR> owl:sameAs <http://dbpedia.org/resource/Marudi_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q651316> .
@@ -1490,14 +872,6 @@
 
 <http://example.org/asean-airport#airport_MXI> owl:sameAs <http://dbpedia.org/resource/Mati_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3016006> .
-
-<http://example.org/asean-airport#airport_MXP> ex:hasICAOCode "LIMC" ;
-    ex:operator "Società Esercizi Aeroportuali SEA" ;
-    ex:annualPassengers "31385585"^^xsd:integer ;
-    ex:openedYear "1909"^^xsd:integer ;
-    ex:website <https://www.milanomalpensa-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Milan_Malpensa_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q60910> .
 
 <http://example.org/asean-airport#airport_MYT> owl:sameAs <http://dbpedia.org/resource/Myitkyina_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1528948> .
@@ -1522,13 +896,6 @@
 <http://example.org/asean-airport#airport_NAW> owl:sameAs <http://dbpedia.org/resource/Narathiwat_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1432137> .
 
-<http://example.org/asean-airport#airport_NBO> ex:hasICAOCode "HKJK" ;
-    ex:operator "Kenya Airports Authority" ;
-    ex:annualPassengers "1942000"^^xsd:integer ;
-    ex:website <http://kenyaairports.co.ke/jomo-kenyatta-international-airport/> ;
-    owl:sameAs <http://dbpedia.org/resource/Jomo_Kenyatta_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q206349> .
-
 <http://example.org/asean-airport#airport_NBX> owl:sameAs <http://dbpedia.org/resource/Douw_Aturure_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474092> .
 
@@ -1538,37 +905,9 @@
 <http://example.org/asean-airport#airport_NEU> owl:sameAs <http://dbpedia.org/resource/Nathong_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q11824718> .
 
-<http://example.org/asean-airport#airport_NGB> ex:hasICAOCode "ZSNB" ;
-    ex:annualPassengers "16125459"^^xsd:integer ;
-    ex:website <https://www.nbairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Ningbo_Lishe_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3243622> .
-
-<http://example.org/asean-airport#airport_NGO> ex:hasICAOCode "RJGG" ;
-    ex:operator "Central Japan International Airport Company" ;
-    ex:annualPassengers "10616189"^^xsd:integer ;
-    ex:openedYear "2005"^^xsd:integer ;
-    ex:website <https://www.centrair.jp/> ;
-    owl:sameAs <http://dbpedia.org/resource/Chubu_Centrair_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q679345> .
-
-<http://example.org/asean-airport#airport_NKG> ex:hasICAOCode "ZSNJ" ;
-    ex:annualPassengers "31378166"^^xsd:integer ;
-    ex:openedYear "1997"^^xsd:integer ;
-    ex:website <http://www.njiairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Nanjing_Lukou_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q559107> .
-
 <http://example.org/asean-airport#airport_NMS> rdfs:seeAlso <http://www.wikidata.org/entity/Q20455982> .
 
 <http://example.org/asean-airport#airport_NMT> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824623> .
-
-<http://example.org/asean-airport#airport_NNG> ex:hasICAOCode "ZGNN" ;
-    ex:annualPassengers "13502000"^^xsd:integer ;
-    ex:openedYear "1962"^^xsd:integer ;
-    ex:website <http://www.airport.gx.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Nanning_Wuxu_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3238350> .
 
 <http://example.org/asean-airport#airport_NNT> owl:sameAs <http://dbpedia.org/resource/Nan_Nakhon_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1432134> .
@@ -1581,14 +920,6 @@
 
 <http://example.org/asean-airport#airport_NRE> owl:sameAs <http://dbpedia.org/resource/Namrole_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3565500> .
-
-<http://example.org/asean-airport#airport_NRT> ex:hasICAOCode "RJAA" ;
-    ex:operator "Narita International Airport Corporation" ;
-    ex:annualPassengers "39807651"^^xsd:integer ;
-    ex:openedYear "1978"^^xsd:integer ;
-    ex:website <https://www.narita-airport.jp/> ;
-    owl:sameAs <http://dbpedia.org/resource/Narita_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q36454> .
 
 <http://example.org/asean-airport#airport_NST> ex:openedYear "1916"^^xsd:integer ;
     owl:sameAs <http://dbpedia.org/resource/Cha-ian_Airport> ;
@@ -1632,37 +963,8 @@
 
 <http://example.org/asean-airport#airport_OMY> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824672> .
 
-<http://example.org/asean-airport#airport_OOL> ex:hasICAOCode "YBCG" ;
-    ex:annualPassengers "5708687"^^xsd:integer ;
-    ex:openedYear "1939"^^xsd:integer ;
-    ex:website <http://www.goldcoastairport.com.au> ;
-    owl:sameAs <http://dbpedia.org/resource/Gold_Coast_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1175431> .
-
-<http://example.org/asean-airport#airport_ORD> ex:hasICAOCode "KORD" ;
-    ex:annualPassengers "84851825"^^xsd:integer ;
-    ex:website <https://www.flychicago.com/ohare/> ;
-    owl:sameAs <http://dbpedia.org/resource/O'Hare_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q213717> .
-
-<http://example.org/asean-airport#airport_OSL> ex:hasICAOCode "ENGM" ;
-    ex:operator "Avinor" ;
-    ex:annualPassengers "22467510"^^xsd:integer ;
-    ex:openedYear "1998"^^xsd:integer ;
-    ex:website <http://www.osl.no> ;
-    owl:sameAs <http://dbpedia.org/resource/Oslo_Airport,_Gardermoen> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q210559> .
-
 <http://example.org/asean-airport#airport_OTI> owl:sameAs <http://dbpedia.org/resource/Pitu_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4272507> .
-
-<http://example.org/asean-airport#airport_OVB> ex:hasICAOCode "UNNT" ;
-    ex:operator "Novaport" ;
-    ex:annualPassengers "9680000"^^xsd:integer ;
-    ex:openedYear "1957"^^xsd:integer ;
-    ex:website <http://www.tolmachevo.ru> ;
-    owl:sameAs <http://dbpedia.org/resource/Tolmachevo_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1328849> .
 
 <http://example.org/asean-airport#airport_OZC> owl:sameAs <http://dbpedia.org/resource/Labo_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q6467125> .
@@ -1695,29 +997,9 @@
 
 <http://example.org/asean-airport#airport_PDO> rdfs:seeAlso <http://www.wikidata.org/entity/Q20450865> .
 
-<http://example.org/asean-airport#airport_PEK> ex:hasICAOCode "ZBAA" ;
-    ex:operator "Civil Aviation Administration of China" ;
-    ex:annualPassengers "52879156"^^xsd:integer ;
-    ex:openedYear "1958"^^xsd:integer ;
-    ex:website <https://en.bcia.com.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Beijing_Capital_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q32190> .
-
 <http://example.org/asean-airport#airport_PEN> ex:website <https://airports.malaysiaairports.com.my/index.php/penang> ;
     owl:sameAs <http://dbpedia.org/resource/Penang_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q669261> .
-
-<http://example.org/asean-airport#airport_PER> ex:hasICAOCode "YPPH" ;
-    ex:annualPassengers "16900000"^^xsd:integer ;
-    ex:openedYear "1938"^^xsd:integer ;
-    ex:website <https://www.perthairport.com.au/> ;
-    owl:sameAs <http://dbpedia.org/resource/Perth_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q45935> .
-
-<http://example.org/asean-airport#airport_PEW> ex:hasICAOCode "OPPS" ;
-    ex:operator "Pakistan Civil Aviation Authority" ;
-    owl:sameAs <http://dbpedia.org/resource/Bacha_Khan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1516769> .
 
 <http://example.org/asean-airport#airport_PGK> ex:website <http://depatiamir-airport.co.id/en/home> ;
     owl:sameAs <http://dbpedia.org/resource/Depati_Amir_Airport> ;
@@ -1725,13 +1007,6 @@
 
 <http://example.org/asean-airport#airport_PGQ> owl:sameAs <http://dbpedia.org/resource/Buli_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3888125> .
-
-<http://example.org/asean-airport#airport_PHE> ex:hasICAOCode "YPPD" ;
-    ex:operator "AMPC" ;
-    ex:annualPassengers "449490"^^xsd:integer ;
-    ex:website <http://www.porthedlandairport.com.au/> ;
-    owl:sameAs <http://dbpedia.org/resource/Port_Hedland_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1188577> .
 
 <http://example.org/asean-airport#airport_PHS> owl:sameAs <http://dbpedia.org/resource/Phitsanulok_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1343422> .
@@ -1775,11 +1050,6 @@
     owl:sameAs <http://dbpedia.org/resource/Supadio_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q723474> .
 
-<http://example.org/asean-airport#airport_POM> ex:hasICAOCode "AYPY" ;
-    ex:website <http://www.nac.com.pg/port-moresby-international-jacksons.html> ;
-    owl:sameAs <http://dbpedia.org/resource/Port_Moresby_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1088438> .
-
 <http://example.org/asean-airport#airport_PPS> ex:openedYear "1975"^^xsd:integer ;
     owl:sameAs <http://dbpedia.org/resource/Puerto_Princesa_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1432514> .
@@ -1803,21 +1073,6 @@
 
 <http://example.org/asean-airport#airport_PUM> owl:sameAs <http://dbpedia.org/resource/Sangia_Nibandera_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q17998804> .
-
-<http://example.org/asean-airport#airport_PUS> ex:hasICAOCode "RKPK" ;
-    ex:operator "Korea Airports Corporation, Republic of Korea Air Force" ;
-    ex:annualPassengers "10027097"^^xsd:integer ;
-    ex:openedYear "1976"^^xsd:integer ;
-    ex:website <http://www.airport.co.kr/mbs/gimhaeeng/> ;
-    owl:sameAs <http://dbpedia.org/resource/Gimhae_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q483223> .
-
-<http://example.org/asean-airport#airport_PVG> ex:hasICAOCode "ZSPD" ;
-    ex:annualPassengers "84994548"^^xsd:integer ;
-    ex:openedYear "1999"^^xsd:integer ;
-    ex:website <https://www.shairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Shanghai_Pudong_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q36420> .
 
 <http://example.org/asean-airport#airport_PWL> owl:sameAs <http://dbpedia.org/resource/General_Sudirman_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q7261679> .
@@ -1868,35 +1123,15 @@
 <http://example.org/asean-airport#airport_RKI> owl:sameAs <http://dbpedia.org/resource/Rokot_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q9384422> .
 
-<http://example.org/asean-airport#airport_RMQ> ex:hasICAOCode "RCMQ" ;
-    ex:operator "Civil Aeronautics Administration" ;
-    ex:annualPassengers "581767"^^xsd:integer ;
-    ex:openedYear "1954"^^xsd:integer ;
-    ex:website <https://www.tca.gov.tw/> ;
-    owl:sameAs <http://dbpedia.org/resource/Taichung_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q374558> .
-
 <http://example.org/asean-airport#airport_RNU> rdfs:seeAlso <http://www.wikidata.org/entity/Q35292044> .
 
 <http://example.org/asean-airport#airport_ROI> owl:sameAs <http://dbpedia.org/resource/Roi_Et_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1432609> .
 
-<http://example.org/asean-airport#airport_ROR> ex:hasICAOCode "PTRO" ;
-    ex:annualPassengers "13393"^^xsd:integer ;
-    ex:website <https://www.palau-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Roman_Tmetuchl_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1147092> .
-
 <http://example.org/asean-airport#airport_RSK> rdfs:seeAlso <http://www.wikidata.org/entity/Q112305153> .
 
 <http://example.org/asean-airport#airport_RTI> owl:sameAs <http://dbpedia.org/resource/David_Constantijn_Saudale_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474075> .
-
-<http://example.org/asean-airport#airport_RUH> ex:hasICAOCode "OERK" ;
-    ex:annualPassengers "18933989"^^xsd:integer ;
-    ex:website <https://kkia.sa> ;
-    owl:sameAs <http://dbpedia.org/resource/King_Khalid_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q47157> .
 
 <http://example.org/asean-airport#airport_RXS> owl:sameAs <http://dbpedia.org/resource/Roxas_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1321733> .
@@ -1929,13 +1164,6 @@
     ex:website <http://www.aa2000.com.ar/eng/home/index.php?&cambioTop=SI&cmbAirports=14> ;
     owl:sameAs <http://dbpedia.org/resource/San_Fernando_Airport_(Argentina)> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q8190630> .
-
-<http://example.org/asean-airport#airport_SFO> ex:hasICAOCode "KSFO" ;
-    ex:operator "City and County of San Francisco" ;
-    ex:annualPassengers "54532613"^^xsd:integer ;
-    ex:website <https://FlySFO.com> ;
-    owl:sameAs <http://dbpedia.org/resource/San_Francisco_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q8688> .
 
 <http://example.org/asean-airport#airport_SFS> owl:sameAs <http://dbpedia.org/resource/Subic_Bay_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2293938> .
@@ -2034,33 +1262,10 @@
 <http://example.org/asean-airport#airport_SUP> owl:sameAs <http://dbpedia.org/resource/Trunojoyo_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4272481> .
 
-<http://example.org/asean-airport#airport_SVO> ex:hasICAOCode "UUEE" ;
-    ex:operator "Sheremetyevo International Airport" ;
-    ex:annualPassengers "43130000"^^xsd:integer ;
-    ex:openedYear "1964"^^xsd:integer ;
-    ex:website <https://www.svo.aero/> ;
-    owl:sameAs <http://dbpedia.org/resource/Sheremetyevo_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q192733> .
-
 <http://example.org/asean-airport#airport_SVR> ex:operator "Greenland Airport Authority" ;
     ex:website <http://www.mit.gl/dagens-flyvninger/helipladser/savissivik/> ;
     owl:sameAs <http://dbpedia.org/resource/Savissivik_Heliport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4993144> .
-
-<http://example.org/asean-airport#airport_SVX> ex:hasICAOCode "USSS" ;
-    ex:operator "Airports of Regions" ;
-    ex:annualPassengers "8300000"^^xsd:integer ;
-    ex:website <http://www.koltsovo.ru> ;
-    owl:sameAs <http://dbpedia.org/resource/Koltsovo_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1334495> .
-
-<http://example.org/asean-airport#airport_SWA> ex:hasICAOCode "ZGOW" ;
-    ex:operator "People's Liberation Army Air Force" ;
-    ex:annualPassengers "3550722"^^xsd:integer ;
-    ex:openedYear "1974"^^xsd:integer ;
-    ex:website <http://www.cs-airport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Shantou_Waisha_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3234808> .
 
 <http://example.org/asean-airport#airport_SWQ> owl:sameAs <http://dbpedia.org/resource/Sultan_Muhammad_Kaharuddin_III_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q3813722> .
@@ -2075,41 +1280,15 @@
 
 <http://example.org/asean-airport#airport_SXT> rdfs:seeAlso <http://www.wikidata.org/entity/Q35308122> .
 
-<http://example.org/asean-airport#airport_SYD> ex:hasICAOCode "YSSY" ;
-    ex:operator "Sydney Airports Corporation Limited" ;
-    ex:annualPassengers "28983874"^^xsd:integer ;
-    ex:website <http://www.sydneyairport.com.au> ;
-    owl:sameAs <http://dbpedia.org/resource/Sydney_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q17581> .
-
 <http://example.org/asean-airport#airport_SZB> ex:website <https://www.subangskypark.com> ;
     owl:sameAs <http://dbpedia.org/resource/Sultan_Abdul_Aziz_Shah_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1431802> .
-
-<http://example.org/asean-airport#airport_SZX> ex:hasICAOCode "ZGSZ" ;
-    ex:annualPassengers "66485213"^^xsd:integer ;
-    ex:openedYear "1991"^^xsd:integer ;
-    ex:website <http://www.szairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Shenzhen_Bao'an_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q842297> .
 
 <http://example.org/asean-airport#airport_TAC> owl:sameAs <http://dbpedia.org/resource/Daniel_Z._Romualdez_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1709001> .
 
 <http://example.org/asean-airport#airport_TAG> owl:sameAs <http://dbpedia.org/resource/Bohol–Panglao_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q7130967> .
-
-<http://example.org/asean-airport#airport_TAO> ex:hasICAOCode "ZSQD" ;
-    ex:annualPassengers "26896534"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Qingdao_Jiaodong_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q15672491> .
-
-<http://example.org/asean-airport#airport_TAS> ex:hasICAOCode "UZTT" ;
-    ex:operator "Uzbekistan Airways" ;
-    ex:annualPassengers "4430000"^^xsd:integer ;
-    ex:website <https://uzairways.online/en/online-table/tas> ;
-    owl:sameAs <http://dbpedia.org/resource/Tashkent_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q860952> .
 
 <http://example.org/asean-airport#airport_TBB> owl:sameAs <http://dbpedia.org/resource/Tuy_Hoa_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q844084> .
@@ -2146,13 +1325,6 @@
     owl:sameAs <http://dbpedia.org/resource/Sukhothai_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1432929> .
 
-<http://example.org/asean-airport#airport_THU> ex:hasICAOCode "BGTL" ;
-    ex:operator "United States Air Force" ;
-    ex:openedYear "1943"^^xsd:integer ;
-    ex:website <https://www.peterson.spaceforce.mil/Thule-AB-Greenland/> ;
-    owl:sameAs <http://dbpedia.org/resource/Thule_Air_Base> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q940576> .
-
 <http://example.org/asean-airport#airport_TIM> owl:sameAs <http://dbpedia.org/resource/Mozes_Kilangin_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q946179> .
 
@@ -2180,14 +1352,6 @@
 <http://example.org/asean-airport#airport_TLI> owl:sameAs <http://dbpedia.org/resource/Sultan_Bantilan_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4272467> .
 
-<http://example.org/asean-airport#airport_TLV> ex:hasICAOCode "LLBG" ;
-    ex:operator "Israel Airports Authority" ;
-    ex:annualPassengers "20008532"^^xsd:integer ;
-    ex:openedYear "1937"^^xsd:integer ;
-    ex:website <http://www.iaa.gov.il/he-il/airports/bengurion/pages/default.aspx> ;
-    owl:sameAs <http://dbpedia.org/resource/Ben_Gurion_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q181479> .
-
 <http://example.org/asean-airport#airport_TMC> ex:website <http://tmc.otoritasbandara.info/> ;
     owl:sameAs <http://dbpedia.org/resource/Lede_Kalumbang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2855888> .
@@ -2198,31 +1362,12 @@
 <http://example.org/asean-airport#airport_TMH> owl:sameAs <http://dbpedia.org/resource/Tanah_Merah_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474110> .
 
-<http://example.org/asean-airport#airport_TNA> ex:hasICAOCode "ZSJN" ;
-    ex:annualPassengers "20329972"^^xsd:integer ;
-    ex:website <https://www.jnairport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Jinan_Yaoqiang_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1378003> .
-
 <http://example.org/asean-airport#airport_TNJ> ex:website <http://www.rajahajifisabilillah-airport.co.id/> ;
     owl:sameAs <http://dbpedia.org/resource/Raja_Haji_Fisabilillah_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2220491> .
 
-<http://example.org/asean-airport#airport_TNR> ex:hasICAOCode "FMMI" ;
-    ex:annualPassengers "890591"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Ivato_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q670038> .
-
 <http://example.org/asean-airport#airport_TNX> owl:sameAs <http://dbpedia.org/resource/Stung_Treng_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q8215574> .
-
-<http://example.org/asean-airport#airport_TPE> ex:hasICAOCode "RCTP" ;
-    ex:operator "Taoyuan International Airport Corporation" ;
-    ex:annualPassengers "47795969"^^xsd:integer ;
-    ex:openedYear "1979"^^xsd:integer ;
-    ex:website <https://www.taoyuan-airport.com/> ;
-    owl:sameAs <http://dbpedia.org/resource/Taoyuan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q44856> .
 
 <http://example.org/asean-airport#airport_TPG> owl:sameAs <http://dbpedia.org/resource/Taiping_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q6588145> .
@@ -2233,27 +1378,6 @@
 <http://example.org/asean-airport#airport_TRT> ex:openedYear "2020"^^xsd:integer ;
     owl:sameAs <http://dbpedia.org/resource/Toraja_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q101429798> .
-
-<http://example.org/asean-airport#airport_TRV> ex:hasICAOCode "VOTV" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "287670"^^xsd:integer ;
-    ex:website <https://www.adani.com/thiruvananthapuram-airport> ;
-    owl:sameAs <http://dbpedia.org/resource/Thiruvananthapuram_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1466205> .
-
-<http://example.org/asean-airport#airport_TRZ> ex:hasICAOCode "VOTR" ;
-    ex:operator "Airports Authority of India" ;
-    ex:annualPassengers "123816"^^xsd:integer ;
-    ex:website <https://www.aai.aero/en/airports/tiruchirapalli> ;
-    owl:sameAs <http://dbpedia.org/resource/Tiruchirappalli_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q56935> .
-
-<http://example.org/asean-airport#airport_TSN> ex:hasICAOCode "ZBTJ" ;
-    ex:operator "Civil Aviation Administration of China" ;
-    ex:annualPassengers "5841680"^^xsd:integer ;
-    ex:website <http://www.tbia.cn/cn/index.do> ;
-    owl:sameAs <http://dbpedia.org/resource/Tianjin_Binhai_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q774669> .
 
 <http://example.org/asean-airport#airport_TST> owl:sameAs <http://dbpedia.org/resource/Trang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q60484> .
@@ -2293,12 +1417,6 @@
     ex:website <http://phucatairport.vn> ;
     owl:sameAs <http://dbpedia.org/resource/Phu_Cat_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q193408> .
-
-<http://example.org/asean-airport#airport_ULN> ex:hasICAOCode "ZMUB" ;
-    ex:annualPassengers "447478"^^xsd:integer ;
-    ex:website <http://en.airport.gov.mn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Buyant-Ukhaa_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q837745> .
 
 <http://example.org/asean-airport#airport_UNN> owl:sameAs <http://dbpedia.org/resource/Ranong_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q587560> .
@@ -2358,13 +1476,6 @@
     owl:sameAs <http://dbpedia.org/resource/Van_Don_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q6587434> .
 
-<http://example.org/asean-airport#airport_VIE> ex:hasICAOCode "LOWW" ;
-    ex:operator "Flughafen Wien AG" ;
-    ex:annualPassengers "32559115"^^xsd:integer ;
-    ex:website <http://www.viennaairport.com> ;
-    owl:sameAs <http://dbpedia.org/resource/Vienna_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q32999> .
-
 <http://example.org/asean-airport#airport_VII> ex:website <https://www.vietnamairport.vn/vinhairport/en/> ;
     owl:sameAs <http://dbpedia.org/resource/Vinh_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q28831> .
@@ -2374,13 +1485,6 @@
 
 <http://example.org/asean-airport#airport_VKG> owl:sameAs <http://dbpedia.org/resource/Rach_Gia_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1993204> .
-
-<http://example.org/asean-airport#airport_VKO> ex:hasICAOCode "UUWW" ;
-    ex:annualPassengers "16400000"^^xsd:integer ;
-    ex:openedYear "1941"^^xsd:integer ;
-    ex:website <http://www.vnukovo.ru/en/> ;
-    owl:sameAs <http://dbpedia.org/resource/Vnukovo_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q273462> .
 
 <http://example.org/asean-airport#airport_VNA> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824729> .
 
@@ -2392,10 +1496,6 @@
 
 <http://example.org/asean-airport#airport_VTG> owl:sameAs <http://dbpedia.org/resource/Vung_Tau_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2446044> .
-
-<http://example.org/asean-airport#airport_VTZ> ex:hasICAOCode "VOVI" ;
-    owl:sameAs <http://dbpedia.org/resource/Alluri_Sitarama_Raju_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q21974262> .
 
 <http://example.org/asean-airport#airport_WAR> rdfs:seeAlso <http://www.wikidata.org/entity/Q112302580> .
 
@@ -2413,56 +1513,16 @@
 <http://example.org/asean-airport#airport_WNP> owl:sameAs <http://dbpedia.org/resource/Naga_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1528942> .
 
-<http://example.org/asean-airport#airport_WNZ> ex:hasICAOCode "ZSWZ" ;
-    ex:annualPassengers "13058523"^^xsd:integer ;
-    ex:website <https://www.wzair.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Wenzhou_Longwan_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q716323> .
-
 <http://example.org/asean-airport#airport_WRR> owl:sameAs <http://dbpedia.org/resource/Werur_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q25470223> .
-
-<http://example.org/asean-airport#airport_WUH> ex:hasICAOCode "ZHHH" ;
-    ex:operator "Hubei Airport Group" ;
-    ex:annualPassengers "11606393"^^xsd:integer ;
-    ex:openedYear "1995"^^xsd:integer ;
-    ex:website <http://www.whairport.com/jc/ch/index.jhtml> ;
-    owl:sameAs <http://dbpedia.org/resource/Wuhan_Tianhe_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q601091> .
-
-<http://example.org/asean-airport#airport_WUX> ex:hasICAOCode "ZSWX" ;
-    ex:annualPassengers "10967778"^^xsd:integer ;
-    ex:openedYear "1955"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Wuxi_Shuofang_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1433255> .
 
 <http://example.org/asean-airport#airport_WYK> owl:sameAs <http://dbpedia.org/resource/Gatot_Subroto_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q12474054> .
 
-<http://example.org/asean-airport#airport_XBE> ex:hasICAOCode "CNE3" ;
-    ex:operator "Government of Ontario" ;
-    owl:sameAs <http://dbpedia.org/resource/Bearskin_Lake_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1656806> .
-
 <http://example.org/asean-airport#airport_XIE> rdfs:seeAlso <http://www.wikidata.org/entity/Q11824840> .
-
-<http://example.org/asean-airport#airport_XIY> ex:hasICAOCode "ZLXY" ;
-    ex:annualPassengers "13558364"^^xsd:integer ;
-    ex:openedYear "1991"^^xsd:integer ;
-    ex:website <https://www.xxia.com/Home.htm> ;
-    owl:sameAs <http://dbpedia.org/resource/Xi'an_Xianyang_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q141677> .
 
 <http://example.org/asean-airport#airport_XKH> owl:sameAs <http://dbpedia.org/resource/Xieng_Khouang_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q4204392> .
-
-<http://example.org/asean-airport#airport_XMN> ex:hasICAOCode "ZSAM" ;
-    ex:operator "Xiamen International Airport Co., Ltd." ;
-    ex:annualPassengers "10125604"^^xsd:integer ;
-    ex:openedYear "1983"^^xsd:integer ;
-    ex:website <https://www.xiamenairport.com.cn/> ;
-    owl:sameAs <http://dbpedia.org/resource/Xiamen_Gaoqi_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q177216> .
 
 <http://example.org/asean-airport#airport_XSP> ex:website <http://www.changiairportgroup.com.sg/cag/html/our-services/seletar_airport/> ;
     owl:sameAs <http://dbpedia.org/resource/Seletar_Airport> ;
@@ -2474,17 +1534,6 @@
     owl:sameAs <http://dbpedia.org/resource/Yogyakarta_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q28725656> .
 
-<http://example.org/asean-airport#airport_YVR> ex:hasICAOCode "CYVR" ;
-    ex:annualPassengers "26913561"^^xsd:integer ;
-    ex:website <https://www.yvr.ca/> ;
-    owl:sameAs <http://dbpedia.org/resource/Vancouver_International_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q321224> .
-
-<http://example.org/asean-airport#airport_YXL> ex:hasICAOCode "CYXL" ;
-    ex:annualPassengers "56158"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Sioux_Lookout_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q1432862> .
-
 <http://example.org/asean-airport#airport_ZAM> owl:sameAs <http://dbpedia.org/resource/Zamboanga_International_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q1200033> .
 
@@ -2493,28 +1542,8 @@
 
 <http://example.org/asean-airport#airport_ZEG> rdfs:seeAlso <http://www.wikidata.org/entity/Q12474107> .
 
-<http://example.org/asean-airport#airport_ZPB> ex:hasICAOCode "CZPB" ;
-    ex:operator "Government of Ontario" ;
-    ex:annualPassengers "2085"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Sachigo_Lake_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3914695> .
-
-<http://example.org/asean-airport#airport_ZRH> ex:hasICAOCode "LSZH" ;
-    ex:operator "Flughafen Zürich AG" ;
-    ex:annualPassengers "32593966"^^xsd:integer ;
-    ex:openedYear "1948"^^xsd:integer ;
-    ex:website <https://www.flughafen-zuerich.ch/> ;
-    owl:sameAs <http://dbpedia.org/resource/Zurich_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q15114> .
-
 <http://example.org/asean-airport#airport_ZRI> owl:sameAs <http://dbpedia.org/resource/Stevanus_Rumbewas_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q108734134> .
-
-<http://example.org/asean-airport#airport_ZRJ> ex:hasICAOCode "CZRJ" ;
-    ex:operator "Government of Ontario" ;
-    ex:annualPassengers "2200"^^xsd:integer ;
-    owl:sameAs <http://dbpedia.org/resource/Round_Lake_(Weagamow_Lake)_Airport> ;
-    rdfs:seeAlso <http://www.wikidata.org/entity/Q3914722> .
 
 <http://example.org/asean-airport#airport_ZVK> owl:sameAs <http://dbpedia.org/resource/Savannakhet_Airport> ;
     rdfs:seeAlso <http://www.wikidata.org/entity/Q2875918> .

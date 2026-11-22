@@ -16,7 +16,7 @@ class RouteAirportController extends Controller
             ->withCoordinates()
             ->orderBy('label')
             ->get(['iata_code', 'label', 'latitude', 'longitude'])
-            ->filter(fn (Airport $airport): bool => $airport->iata_code !== null)
+            ->pipe(fn ($items) => $this->filter($items, fn (Airport $airport): bool => $airport->iata_code !== null))
             ->map(fn (Airport $airport): array => [
                 'iata' => $airport->iata_code,
                 'nama' => $airport->label,

@@ -69,14 +69,8 @@ class SeoBandaraTest extends TestCase
         $this->get('/bandara/CGK')
             ->assertOk()
             ->assertSee('Soekarno-Hatta International Airport')
-            ->assertSee('Rute langsung dari CGK');
-    }
-
-    public function test_url_data_bandara_dialihkan_permanen_ke_url_kanonik(): void
-    {
-        $this->get('/data/bandara/CGK')
-            ->assertStatus(301)
-            ->assertRedirect(route('bandara.show', 'CGK'));
+            ->assertSee('Rute langsung')
+            ->assertSee('Dari CGK');
     }
 
     public function test_halaman_tidak_ditemukan_memberi_petunjuk(): void

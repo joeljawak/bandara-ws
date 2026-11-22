@@ -10,9 +10,11 @@
 @stack('head')
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
+  --font-body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-head:'Outfit','DM Sans',system-ui,sans-serif;
   --bg:#f4f8fd;
   --soft:#f1f6fc;
   --line:#e2eaf4;
@@ -35,7 +37,9 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:16px/1.65 'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:16px/1.65 var(--font-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.brand,.logo{font-family:var(--font-head)}
+button,input,select,textarea{font-family:inherit}
 /* pendar lembut + bayangan pesawat sebagai latar halaman */
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   radial-gradient(900px 520px at 100% -8%,rgba(1,148,243,.12),transparent 62%),
@@ -75,7 +79,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdro
 .search svg{display:block}
 
 /* tombol dan form */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;border:0;border-radius:999px;padding:0 28px;font:700 15px 'Plus Jakarta Sans',sans-serif;cursor:pointer;box-shadow:0 8px 20px rgba(1,100,210,.24);transition:transform .15s,box-shadow .15s,filter .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;border:0;border-radius:999px;padding:0 28px;font:700 15px var(--font-body);cursor:pointer;box-shadow:0 8px 20px rgba(1,100,210,.24);transition:transform .15s,box-shadow .15s,filter .15s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 12px 26px rgba(1,100,210,.3);filter:brightness(1.03)}
 .field label{display:block;color:var(--muted);font-size:13px;font-weight:600;margin-bottom:6px}
 .field input,.field select{width:100%;min-height:48px;background:#fff;border:1px solid #dbe6f2;border-radius:12px;padding:0 14px;font:inherit;color:var(--ink);transition:border-color .15s,box-shadow .15s}
@@ -306,7 +310,6 @@ footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-s
     <a href="{{ route('home') }}" class="{{ request()->routeIs('home', 'search') ? 'active' : '' }}">Cari</a>
     <a href="{{ route('bandara.index') }}" class="{{ request()->routeIs('bandara.*') ? 'active' : '' }}">Jelajahi</a>
     <a href="{{ route('route.index') }}" class="{{ request()->routeIs('route.index') ? 'active' : '' }}">Rute</a>
-    <a href="{{ route('data.airports') }}" class="{{ request()->routeIs('data.*') ? 'active' : '' }}">Data</a>
   </nav>
 </div></header>
 <main class="wrap">@yield('content')</main>
