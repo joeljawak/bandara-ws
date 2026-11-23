@@ -57,6 +57,22 @@ class AirportSearch
 
     /** Nama Inggris -> nama di data. */
     private const ALIAS_WILAYAH = [
+        // Singkatan provinsi Indonesia yang umum dipakai saat pencarian.
+        'nad' => 'aceh',
+        'sumut' => 'sumatera utara', 'sumbar' => 'sumatera barat', 'sumsel' => 'sumatera selatan',
+        'kepri' => 'kepulauan riau', 'babel' => 'kepulauan bangka belitung',
+        'dki' => 'jakarta', 'dki jakarta' => 'jakarta',
+        'jabar' => 'jawa barat', 'jateng' => 'jawa tengah', 'jatim' => 'jawa timur',
+        'diy' => 'yogyakarta', 'jogja' => 'yogyakarta', 'jogjakarta' => 'yogyakarta',
+        'ntb' => 'nusa tenggara barat', 'ntt' => 'nusa tenggara timur',
+        'kalbar' => 'kalimantan barat', 'kalteng' => 'kalimantan tengah',
+        'kalsel' => 'kalimantan selatan', 'kaltim' => 'kalimantan timur', 'kaltara' => 'kalimantan utara',
+        'sulut' => 'sulawesi utara', 'sulteng' => 'sulawesi tengah',
+        'sulsel' => 'sulawesi selatan', 'sultra' => 'sulawesi tenggara', 'sulbar' => 'sulawesi barat',
+        'malut' => 'maluku utara', 'papbar' => 'papua barat', 'pabar' => 'papua barat',
+        'pabardaya' => 'papua barat daya', 'papteng' => 'papua tengah',
+        'papeg' => 'papua pegunungan', 'papsel' => 'papua selatan',
+        // Nama Inggris -> nama di data.
         'north sumatera' => 'sumatera utara',
         'west sumatera' => 'sumatera barat',
         'south sumatera' => 'sumatera selatan',
@@ -68,6 +84,12 @@ class AirportSearch
         'west kalimantan' => 'kalimantan barat',
         'east kalimantan' => 'kalimantan timur',
         'north kalimantan' => 'kalimantan utara',
+        // Wilayah internasional: Amerika Serikat, Kanada, dan Australia.
+        'ca' => 'california', 'calif' => 'california', 'ny' => 'new york',
+        'tx' => 'texas', 'fl' => 'florida', 'il' => 'illinois', 'dc' => 'district of columbia',
+        'bc' => 'british columbia', 'ab' => 'alberta', 'on' => 'ontario', 'qc' => 'quebec',
+        'nsw' => 'new south wales', 'vic' => 'victoria', 'qld' => 'queensland',
+        'sa australia' => 'south australia', 'wa australia' => 'western australia',
     ];
 
     /**
@@ -85,6 +107,15 @@ class AirportSearch
         'inggris' => 'united kingdom', 'uk' => 'united kingdom', 'amerika serikat' => 'united states',
         'usa' => 'united states', 'uae' => 'united arab emirates', 'png' => 'papua new guinea',
         'korea selatan' => 'south korea', 'korea utara' => 'north korea',
+        'id' => 'indonesia', 'ph' => 'filipina', 'phl' => 'filipina',
+        'sg' => 'singapura', 'my' => 'malaysia', 'th' => 'thailand',
+        'vn' => 'vietnam', 'kh' => 'kamboja', 'la' => 'laos',
+        'bn' => 'brunei', 'mm' => 'myanmar', 'tl' => 'timor leste',
+        'cn' => 'china', 'chn' => 'china', 'jp' => 'japan', 'kr' => 'south korea',
+        'kp' => 'north korea', 'us' => 'united states', 'gb' => 'united kingdom',
+        'gbr' => 'united kingdom', 'ae' => 'united arab emirates', 'nz' => 'new zealand',
+        'za' => 'south africa', 'de' => 'germany', 'fr' => 'france', 'nl' => 'netherlands',
+        'ru' => 'russia', 'pg' => 'papua new guinea',
         'arab saudi' => 'saudi arabia', 'selandia baru' => 'new zealand', 'afrika selatan' => 'south africa',
     ];
 
@@ -105,6 +136,15 @@ class AirportSearch
     public function cari(array $opsi = []): PaginatorContract
     {
         $q = trim((string) ($opsi['q'] ?? ''));
+        // Normalisasi awalan administratif berlaku untuk semua kota/kabupaten,
+        // bukan hanya Medan: "Kota Surabaya" -> "Surabaya\".
+        $q = preg_replace('/^(?:kota|kabupaten|kab\.?)\s+/iu', '', $q) ?? $q;
+        $aliasKota = $this->normalisasi($q);
+        // KNO secara administratif berada di Deli Serdang, tetapi menjadi bandara
+        // utama yang melayani Medan. Kota lain dicari dari label wilayah RDF/database.
+        if (in_array($aliasKota, ['medan', 'medan city'], true)) {
+            $q = 'kualanamu';
+        }
         $page = max(1, (int) ($opsi['page'] ?? 1));
         $perPage = max(1, min(50, (int) ($opsi['per_page'] ?? self::PER_PAGE)));
         $near = Geo::parseKoordinat($opsi['near'] ?? null);
@@ -148,7 +188,7 @@ class AirportSearch
             'near' => $near,
             'radius' => $radius,
             'token' => $token,
-            'v' => 3,
+            'v' => 4,
         ]));
 
         $baris = Cache::remember($kunci, now()->addSeconds(90), function () use ($query, $near, $radius, $q, $token, $urut): array {

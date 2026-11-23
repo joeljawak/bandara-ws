@@ -274,7 +274,20 @@ mark{background:var(--yellow-soft);color:inherit;border-radius:4px;padding:0 2px
 .ac-item:hover,.ac-item[aria-selected="true"]{background:var(--blue-soft)}
 .ac-item .judul{display:block;font-weight:700;font-size:14.5px}
 .ac-item .sub{display:block;color:var(--muted);font-size:12.5px}
-.ac-item mark{background:var(--yellow-soft)}
+ .ac-item mark{background:var(--yellow-soft)}
+ /* Override gaya .search button agar tombol saran tidak ikut menjadi tombol bulat oranye. */
+ .search .ac-list .ac-item{
+   display:block; flex:initial; width:100%; min-width:0; min-height:0; height:auto;
+   margin:0; padding:10px 12px; border:0; border-radius:10px;
+   background:transparent; color:var(--ink); box-shadow:none; transform:none;
+   text-align:left; white-space:normal; line-height:1.45; cursor:pointer;
+ }
+ .search .ac-list .ac-item:hover,
+ .search .ac-list .ac-item[aria-selected="true"]{
+   background:var(--blue-soft); color:var(--ink); box-shadow:none; transform:none;
+ }
+ .search .ac-list .ac-item .judul{display:block;color:var(--ink);font-weight:700;font-size:14.5px;line-height:1.4}
+ .search .ac-list .ac-item .sub{display:block;margin-top:2px;color:var(--muted);font-size:12.5px;line-height:1.4}
 /* rute langsung dan transit */
 .routelist{display:grid;gap:10px;margin-top:14px}
 .routecard{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px 18px;box-shadow:var(--shadow)}

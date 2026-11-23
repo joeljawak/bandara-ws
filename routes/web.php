@@ -25,6 +25,9 @@ Route::middleware('data.ready')->group(function (): void {
         ->name('search.suggestions');
 
     Route::get('/rute', [RouteAirportController::class, 'index'])->name('route.index');
+    Route::post('/rute/lokasi', [RouteAirportController::class, 'index'])
+        ->middleware('throttle:30,1')
+        ->name('route.location');
     Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
     // chat box: tanya jawab bandara, maksimal 40 pertanyaan per menit per pengguna

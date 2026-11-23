@@ -70,7 +70,6 @@
 
   <div class="field">
     <label>Filter</label>
-    <label class="check"><input type="checkbox" name="asean" value="1" @checked($asean === '1')> Hanya ASEAN</label>
     <label class="check"><input type="checkbox" name="rute" value="1" @checked($ruteFilter === '1')> Punya rute</label>
   </div>
 

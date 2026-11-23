@@ -3,7 +3,7 @@
 @php
     $token = app(\App\Services\AirportSearch::class)->token($q);
     $seo = [
-        'description' => 'Jelajahi daftar bandara Asia Tenggara. Filter berdasarkan negara, kategori, status ASEAN, dan ketersediaan rute.',
+        'description' => 'Jelajahi daftar bandara Asia Tenggara. Filter berdasarkan negara, kategori, dan ketersediaan rute.',
         'canonical' => route('bandara.index'),
     ];
 @endphp
@@ -41,7 +41,6 @@
   </div>
   <div class="field">
     <label>Filter</label>
-    <label class="check"><input type="checkbox" name="asean" value="1" @checked($asean === '1')> Hanya ASEAN</label>
     <label class="check"><input type="checkbox" name="rute" value="1" @checked($rute === '1')> Punya rute</label>
   </div>
   <div class="aksi">

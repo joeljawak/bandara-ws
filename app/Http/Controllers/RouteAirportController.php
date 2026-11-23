@@ -7,6 +7,7 @@ use App\Models\Route;
 use App\Support\Geo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
 
 class RouteAirportController extends Controller
 {
@@ -25,38 +26,77 @@ class RouteAirportController extends Controller
             ])
             ->values();
 
-        $dari = strtoupper(trim((string) $request->query('dari', '')));
-        $ke = strtoupper(trim((string) $request->query('ke', '')));
+        $mode = $request->input('mode') === 'lokasi' ? 'lokasi' : 'bandara';
+        $dari = strtoupper(trim((string) $request->input('dari', '')));
+        $ke = strtoupper(trim((string) $request->input('ke', '')));
         $asal = $tujuan = null;
+        $lokasiAsal = null;
         $jarak = null;
+        $error = null;
 
-        if ($dari && $ke && $dari !== $ke) {
-            $asal = $bandara->firstWhere('iata', $dari);
-            $tujuan = $bandara->firstWhere('iata', $ke);
+        if ($mode === 'lokasi') {
+            $lat = $request->input('lat');
+            $lon = $request->input('lon');
 
-            if ($asal && $tujuan) {
+            if ($lat === null || $lon === null || ! is_numeric($lat) || ! is_numeric($lon)
+                || (float) $lat < -90 || (float) $lat > 90
+                || (float) $lon < -180 || (float) $lon > 180) {
+                $error = 'Lokasi belum tersedia. Tekan tombol Gunakan lokasi saya dan izinkan akses lokasi di browser.';
+            } else {
+                $lokasiAsal = [
+                    'lat' => (float) $lat,
+                    'lon' => (float) $lon,
+                    'nama' => 'Lokasi saya',
+                ];
+            }
+
+            $tujuan = $ke !== '' ? $bandara->firstWhere('iata', $ke) : null;
+
+            if ($lokasiAsal && $tujuan) {
                 $jarak = (int) round(Geo::jarakKm(
-                    (float) $asal['lat'],
-                    (float) $asal['lon'],
+                    $lokasiAsal['lat'],
+                    $lokasiAsal['lon'],
                     (float) $tujuan['lat'],
                     (float) $tujuan['lon']
                 ));
+            } elseif ($ke !== '' && ! $tujuan) {
+                $error = 'Bandara tujuan tidak ditemukan atau belum memiliki koordinat.';
             }
-        }
 
-        $langsung = ($asal && $tujuan) ? $this->ruteLangsung($dari, $ke) : collect();
-        $transit = ($asal && $tujuan && $langsung->isEmpty()) ? $this->ruteTransit($dari, $ke) : collect();
+            // Mode lokasi adalah perjalanan darat menuju bandara, bukan pencarian jadwal/rute penerbangan.
+            $langsung = collect();
+            $transit = collect();
+        } else {
+            if ($dari && $ke && $dari !== $ke) {
+                $asal = $bandara->firstWhere('iata', $dari);
+                $tujuan = $bandara->firstWhere('iata', $ke);
+
+                if ($asal && $tujuan) {
+                    $jarak = (int) round(Geo::jarakKm(
+                        (float) $asal['lat'],
+                        (float) $asal['lon'],
+                        (float) $tujuan['lat'],
+                        (float) $tujuan['lon']
+                    ));
+                }
+            }
+
+            $langsung = ($asal && $tujuan) ? $this->ruteLangsung($dari, $ke) : collect();
+            $transit = ($asal && $tujuan && $langsung->isEmpty()) ? $this->ruteTransit($dari, $ke) : collect();
+        }
 
         return view('route', [
             'bandara' => $bandara,
+            'mode' => $mode,
             'dari' => $dari,
             'ke' => $ke,
             'asal' => $asal,
+            'lokasiAsal' => $lokasiAsal,
             'tujuan' => $tujuan,
             'jarak' => $jarak,
             'langsung' => $langsung,
             'transit' => $transit,
-            'error' => null,
+            'error' => $error,
         ]);
     }
 
