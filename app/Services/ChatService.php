@@ -606,6 +606,5 @@ class ChatService
     }
 }
 
-oi
-oi
+
 
