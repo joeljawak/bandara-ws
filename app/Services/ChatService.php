@@ -605,7 +605,3 @@ class ChatService
         );
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c35336fcfbbd16537d419b4aaaec6e876ac2e6d
