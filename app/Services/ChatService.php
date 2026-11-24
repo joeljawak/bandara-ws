@@ -605,7 +605,3 @@ class ChatService
         );
     }
 }
-
-
-
-lemopaer
