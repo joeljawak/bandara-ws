@@ -11,6 +11,7 @@
 
 import csv
 import sys
+from pathlib import Path
 
 from sumber import DEFAULT, Sumber
 
@@ -57,7 +58,8 @@ def main():
         tanda = "  <- syarat dosen" if penting and len(iata_kosong) else ""
         print(f"{nama:32} {isi:>8} {len(iata_kosong):>8}  {100 * isi / total:>5.0f}%{tanda}")
 
-    with open("laporan_kelengkapan.csv", "w", newline="", encoding="utf-8") as f:
+    csv_path = Path(__file__).resolve().parent / "laporan_kelengkapan.csv"
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["iata", "nama", "jumlah_kosong", "data_yang_kosong"])
         for b in sorted(semua, key=lambda x: -len(kosong.get(x["iata"], []))):
