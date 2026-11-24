@@ -439,7 +439,7 @@
 @else
   <div class="state">
     Jadwal {{ $kedatangan ? 'kedatangan' : 'keberangkatan' }} belum tersedia untuk bandara ini saat ini.
-    @if(app()->environment('local'))<br><small>Catatan pengembang: isi <code>AVIATIONSTACK_KEY</code> di file .env lalu muat ulang halaman.</small>@endif
+
   </div>
 @endif
 

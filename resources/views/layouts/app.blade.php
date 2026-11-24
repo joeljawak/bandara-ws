@@ -323,6 +323,7 @@ footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-s
     <a href="{{ route('home') }}" class="{{ request()->routeIs('home', 'search') ? 'active' : '' }}">Cari</a>
     <a href="{{ route('bandara.index') }}" class="{{ request()->routeIs('bandara.*') ? 'active' : '' }}">Jelajahi</a>
     <a href="{{ route('route.index') }}" class="{{ request()->routeIs('route.index') ? 'active' : '' }}">Rute</a>
+    <a href="{{ route('radar.index') }}" class="{{ request()->routeIs('radar.index') ? 'active' : '' }}">Live Radar</a>
   </nav>
 </div></header>
 <main class="wrap">@yield('content')</main>

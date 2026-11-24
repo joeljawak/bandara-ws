@@ -42,4 +42,13 @@ return [
         'url' => 'https://generativelanguage.googleapis.com/v1beta/models/',
     ],
 
+    'opensky' => [
+        'user' => env('OPENSKY_USERNAME'),
+        'pass' => env('OPENSKY_PASSWORD'),
+    ],
+
+    'amap' => [
+        'key' => env('AMAP_API_KEY', '103f4d91ec58beeb70030533137c56b5'),
+    ],
+
 ];
