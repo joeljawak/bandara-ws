@@ -3,6 +3,7 @@
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\BandaraController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\LiveFlightController;
 use App\Http\Controllers\RouteAirportController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,8 @@ Route::middleware('data.ready')->group(function (): void {
     Route::post('/rute/lokasi', [RouteAirportController::class, 'index'])
         ->middleware('throttle:30,1')
         ->name('route.location');
+    Route::get('/radar', [LiveFlightController::class, 'index'])->name('radar.index');
+    Route::get('/api/live-flights', [LiveFlightController::class, 'api'])->middleware('throttle:60,1')->name('api.live-flights');
     Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
     // chat box: tanya jawab bandara, maksimal 40 pertanyaan per menit per pengguna

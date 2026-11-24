@@ -34,6 +34,7 @@
       <a class="bx-navlink" href="{{ route('home') }}" @if(request()->routeIs('home', 'search')) aria-current="page" @endif>Cari</a>
       <a class="bx-navlink" href="{{ route('bandara.index') }}" @if(request()->routeIs('bandara.*')) aria-current="page" @endif>Jelajahi</a>
       <a class="bx-navlink" href="{{ route('route.index') }}" @if(request()->routeIs('route.index')) aria-current="page" @endif>Rute</a>
+      <a class="bx-navlink" href="{{ route('radar.index') }}" @if(request()->routeIs('radar.index')) aria-current="page" @endif>Live Radar</a>
     </nav>
 
     <div class="ml-auto flex items-center gap-2">
