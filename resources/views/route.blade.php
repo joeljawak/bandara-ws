@@ -13,73 +13,83 @@
 @section('head')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-.routeform.routeform-location{grid-template-columns:minmax(190px,1fr) minmax(190px,1fr) minmax(240px,1.2fr) auto}
-.location-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.btn.secondary{background:#fff;color:var(--blue-dark);border:1px solid var(--line);box-shadow:none}
-.btn.secondary:hover{background:var(--blue-soft);border-color:var(--blue)}
-.location-status{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
-.route-note{margin-top:12px;color:var(--muted);font-size:13px}
+.routeform.routeform-location{display:grid;grid-template-columns:minmax(250px,.82fr) minmax(420px,1.55fr);align-items:end;gap:28px;margin-top:28px}
+.route-field{min-width:0}
+.route-field label{display:block;margin-bottom:9px;font-size:13px;font-weight:700;color:var(--ink,#24324a)}
+.location-box{min-height:48px;display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:13px;background:#f8fbff}
+.location-dot{width:10px;height:10px;flex:0 0 10px;border-radius:50%;background:#0b91e8;box-shadow:0 0 0 5px #e2f3ff}
+.location-copy{min-width:0}
+.location-copy strong{display:block;font-size:14px;color:var(--ink,#24324a)}
+.location-status{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.airport-search{position:relative}
+.airport-search input{width:100%;min-height:48px;padding:0 15px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink,#24324a);font:inherit;outline:none}
+.airport-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,132,224,.12)}
+.airport-results{position:absolute;z-index:30;top:calc(100% + 7px);left:0;right:0;display:none;max-height:270px;overflow-y:auto;padding:6px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 12px 30px rgba(25,55,90,.14)}
+.airport-results.is-open{display:block}
+.airport-option{display:flex;width:100%;align-items:center;gap:11px;padding:10px;border:0;border-radius:9px;background:#fff;text-align:left;cursor:pointer;color:var(--ink,#24324a)}
+.airport-option:hover,.airport-option:focus{background:var(--blue-soft,#eef7ff);outline:none}
+.airport-code{flex:0 0 43px;font-size:12px;font-weight:800;color:var(--blue)}
+.airport-name{font-size:13px;line-height:1.35}
+.destination-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
+.route-submit{min-height:48px;white-space:nowrap;padding-inline:24px;align-self:stretch}
+.routeform .btn.secondary{min-height:44px;border-radius:12px;font-size:14px;font-weight:700}
+.route-note{margin-top:20px}
+.route-note{margin-top:16px;color:var(--muted);font-size:13px;line-height:1.5}
 .route-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:18px}
 .route-stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
 .route-stat .k{font-size:12px;color:var(--muted);font-weight:600}
 .route-stat .v{font-size:19px;font-weight:800;color:var(--blue-deep)}
 #route-status{margin-top:12px}
-@media(max-width:720px){.routeform.routeform-location{grid-template-columns:1fr}}
+@media(max-width:900px){.routeform.routeform-location{grid-template-columns:1fr;gap:20px}.destination-controls{grid-template-columns:minmax(0,1fr) auto}}
+@media(max-width:520px){.destination-controls{grid-template-columns:1fr}.route-submit{width:100%}}
 </style>
 @endsection
 
 @section('content')
 <div class="panel">
   <h1>Cari rute menuju bandara</h1>
-  <p class="lead">Gunakan lokasi GPS Anda sebagai titik awal untuk melihat perjalanan menuju bandara tujuan. Anda juga tetap bisa memilih bandara asal secara manual untuk melihat rute penerbangan.</p>
+  <p class="lead">Gunakan lokasi perangkat Anda sebagai titik awal, lalu cari bandara tujuan berdasarkan nama, kota, atau kode IATA.</p>
 
-  <form class="routeform routeform-location" method="get" action="{{ route('route.index') }}" id="form-rute">
-    <input type="hidden" name="mode" id="mode-asal" value="{{ $mode }}">
-    <input type="hidden" name="_token" id="token-lokasi" value="{{ csrf_token() }}" disabled>
+  <form class="routeform routeform-location" method="post" action="{{ route('route.location') }}" id="form-rute">
+    @csrf
+    <input type="hidden" name="mode" value="lokasi">
     <input type="hidden" name="lat" id="lokasi-lat" value="{{ $lokasiAsal['lat'] ?? '' }}">
     <input type="hidden" name="lon" id="lokasi-lon" value="{{ $lokasiAsal['lon'] ?? '' }}">
+    <input type="hidden" name="ke" id="bandara-tujuan" value="{{ $ke }}">
 
-    <div class="field">
+    <div class="route-field">
       <label>Lokasi asal</label>
-      <div class="location-actions">
-        <button class="btn" type="button" id="gunakan-lokasi">
-          <span aria-hidden="true">◎</span> Gunakan lokasi saya
-        </button>
+      <div class="location-box">
+        <span class="location-dot" aria-hidden="true"></span>
+        <div class="location-copy">
+          <strong id="label-lokasi">{{ $lokasiAsal ? 'Lokasi berhasil ditemukan' : 'Lokasi perangkat saya' }}</strong>
+          <p class="location-status" id="status-lokasi" role="status" aria-live="polite">{{ $lokasiAsal ? 'Lokasi siap digunakan sebagai titik awal.' : 'Tekan tombol di bawah untuk mengambil lokasi GPS Anda.' }}</p>
+        </div>
       </div>
-      <p class="location-status" id="status-lokasi" role="status" aria-live="polite">
-        @if($mode === 'lokasi' && $lokasiAsal)
-          Lokasi berhasil dimuat. Pilih bandara tujuan.
-        @else
-          Izinkan akses lokasi di browser, atau pilih bandara asal secara manual.
-        @endif
-      </p>
+      <button class="btn secondary" type="button" id="gunakan-lokasi" style="margin-top:10px;width:100%">◎ Gunakan lokasi saya</button>
     </div>
 
-    <div class="field">
-      <label for="dari">Atau pilih bandara asal</label>
-      <select id="dari" name="dari">
-        <option value="">Pilih bandara asal</option>
-        @foreach($bandara as $b)
-          <option value="{{ $b['iata'] }}" @selected($mode === 'bandara' && $dari === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
-        @endforeach
-      </select>
+    <div class="route-field">
+      <label for="cari-bandara">Bandara tujuan</label>
+      <div class="destination-controls">
+        <div class="airport-search">
+          <input type="search" id="cari-bandara" placeholder="Cari nama bandara, kota, atau kode IATA..." autocomplete="off" aria-autocomplete="list" aria-controls="daftar-bandara" aria-expanded="false" value="{{ $tujuan ? $tujuan['iata'].' - '.$tujuan['nama'] : '' }}">
+          <div class="airport-results" id="daftar-bandara" role="listbox">
+            @foreach($bandara as $b)
+              <button class="airport-option" type="button" role="option" data-iata="{{ $b['iata'] }}" data-label="{{ $b['iata'] }} - {{ $b['nama'] }}">
+                <span class="airport-code">{{ $b['iata'] }}</span>
+                <span class="airport-name">{{ $b['nama'] }}</span>
+              </button>
+            @endforeach
+          </div>
+        </div>
+        <button class="btn route-submit" type="submit">Cari rute <span aria-hidden="true">→</span></button>
+      </div>
+      <p class="location-status" id="status-tujuan">{{ $tujuan ? 'Tujuan: '.$tujuan['nama'] : 'Ketik untuk mencari, lalu pilih salah satu bandara.' }}</p>
     </div>
-
-    <div class="field">
-      <label for="ke">Bandara tujuan</label>
-      <select id="ke" name="ke" required>
-        <option value="">Pilih bandara tujuan</option>
-        @foreach($bandara as $b)
-          <option value="{{ $b['iata'] }}" @selected($ke === $b['iata'])>{{ $b['iata'] }} - {{ $b['nama'] }}</option>
-        @endforeach
-      </select>
-    </div>
-
-    <button class="btn" type="submit">Cari rute</button>
   </form>
-  <p class="route-note">Rute dari lokasi GPS menggunakan jalur jalan raya. Rute antarbandara tetap menampilkan informasi penerbangan langsung atau transit jika tersedia.</p>
+  <p class="route-note">Rute dihitung dari lokasi GPS Anda menuju bandara tujuan menggunakan jalur jalan raya.</p>
 </div>
-
 @if($error)
   <div class="state" role="alert">{{ $error }}</div>
 @endif
@@ -106,65 +116,6 @@
   ></div>
   <div class="state" id="route-status" role="status" aria-live="polite">Sedang mencari jalur jalan raya menuju bandara...</div>
 
-@elseif($mode === 'bandara' && $dari && $ke && $dari === $ke)
-  <div class="state">Bandara asal dan tujuan tidak boleh sama.</div>
-@elseif($mode === 'bandara' && $dari && $ke && (!$asal || !$tujuan))
-  <div class="state">Salah satu bandara belum punya data koordinat, rute tidak bisa ditampilkan.</div>
-@elseif($mode === 'bandara' && $asal && $tujuan)
-  <div class="facts">
-    <div class="fact"><div class="k">Asal</div><div class="v">{{ $asal['iata'] }}</div></div>
-    <div class="fact"><div class="k">Tujuan</div><div class="v">{{ $tujuan['iata'] }}</div></div>
-    <div class="fact"><div class="k">Jarak garis lurus</div><div class="v">{{ number_format($jarak, 0, ',', '.') }} km</div></div>
-  </div>
-
-  <div
-    id="peta-rute"
-    data-mode="bandara"
-    data-asal="{{ json_encode([(float) $asal['lat'], (float) $asal['lon']]) }}"
-    data-tujuan="{{ json_encode([(float) $tujuan['lat'], (float) $tujuan['lon']]) }}"
-    data-nama-asal="{{ $asal['iata'] }} - {{ $asal['nama'] }}"
-    data-nama-tujuan="{{ $tujuan['iata'] }} - {{ $tujuan['nama'] }}"
-  ></div>
-
-  @if($langsung->isNotEmpty())
-    <h2 class="section">Rute penerbangan langsung</h2>
-    <div class="routelist">
-      @foreach($langsung as $r)
-        <div class="routecard">
-          <div class="r-head">
-            <span class="code">{{ $r->originAirport->iata_code }}</span>
-            <span class="arrow" aria-hidden="true">&rarr;</span>
-            <span class="code">{{ $r->destinationAirport->iata_code }}</span>
-            @if($r->airline)<span class="badge">{{ $r->airline->label }}</span>@endif
-          </div>
-          <div class="r-sub">{{ $r->originAirport->label }} &rarr; {{ $r->destinationAirport->label }}</div>
-        </div>
-      @endforeach
-    </div>
-  @else
-    <h2 class="section">Rute penerbangan langsung</h2>
-    <div class="state">Belum ada rute langsung {{ $dari }} &rarr; {{ $ke }} di data.</div>
-
-    @if($transit->isNotEmpty())
-      <h2 class="section">Kemungkinan satu transit</h2>
-      <div class="routelist">
-        @foreach($transit as $t)
-          <div class="routecard">
-            <div class="r-head">
-              <span class="code">{{ $dari }}</span>
-              <span class="arrow" aria-hidden="true">&rarr;</span>
-              <span class="code">{{ $t['transit'] }}</span>
-              <span class="arrow" aria-hidden="true">&rarr;</span>
-              <span class="code">{{ $ke }}</span>
-            </div>
-            <div class="r-sub">{{ $t['nama'] }} &middot; maskapai lanjutan: {{ implode(', ', $t['maskapai']) ?: 'belum tercatat' }}</div>
-          </div>
-        @endforeach
-      </div>
-    @else
-      <div class="state">Tidak ditemukan rute langsung maupun satu transit untuk pasangan ini.</div>
-    @endif
-  @endif
 @endif
 
 @if(($mode === 'lokasi' && $lokasiAsal && $tujuan) || ($mode === 'bandara' && $asal && $tujuan))
@@ -245,75 +196,110 @@
   if (!form) return;
 
   var tombol = document.getElementById('gunakan-lokasi');
-  var status = document.getElementById('status-lokasi');
-  var mode = document.getElementById('mode-asal');
+  var statusLokasi = document.getElementById('status-lokasi');
+  var labelLokasi = document.getElementById('label-lokasi');
   var lat = document.getElementById('lokasi-lat');
   var lon = document.getElementById('lokasi-lon');
-  var pilihAsal = document.getElementById('dari');
-  var token = document.getElementById('token-lokasi');
-  var routeGet = @json(route('route.index'));
-  var routePost = @json(route('route.location'));
+  var input = document.getElementById('cari-bandara');
+  var tujuan = document.getElementById('bandara-tujuan');
+  var daftar = document.getElementById('daftar-bandara');
+  var statusTujuan = document.getElementById('status-tujuan');
+  var opsi = Array.prototype.slice.call(daftar.querySelectorAll('.airport-option'));
 
-  function setModeLokasi() {
-    form.method = 'post';
-    form.action = routePost;
-    token.disabled = false;
+  function bukaDaftar() {
+    daftar.classList.add('is-open');
+    input.setAttribute('aria-expanded', 'true');
   }
-
-  function setModeBandara() {
-    form.method = 'get';
-    form.action = routeGet;
-    token.disabled = true;
+  function tutupDaftar() {
+    daftar.classList.remove('is-open');
+    input.setAttribute('aria-expanded', 'false');
   }
-
-  if (mode.value === 'lokasi' && lat.value && lon.value) {
-    setModeLokasi();
-  }
-
-  if (pilihAsal) {
-    pilihAsal.addEventListener('change', function () {
-      if (pilihAsal.value) {
-        mode.value = 'bandara';
-        lat.value = '';
-        lon.value = '';
-        setModeBandara();
-        status.textContent = 'Bandara asal dipilih. Rute akan dihitung sebagai rute penerbangan.';
-      }
+  function filterBandara() {
+    var q = input.value.trim().toLowerCase();
+    var tampil = 0;
+    opsi.forEach(function (item) {
+      var cocok = !q || item.dataset.label.toLowerCase().includes(q) || item.dataset.iata.toLowerCase().includes(q);
+      item.hidden = !cocok;
+      if (cocok) tampil++;
     });
+    bukaDaftar();
+    if (!tampil) {
+      daftar.innerHTML = '<p style="padding:10px;margin:0;color:#718096;font-size:13px">Bandara tidak ditemukan.</p>';
+    } else if (!daftar.querySelector('.airport-option')) {
+      daftar.innerHTML = '';
+      opsi.forEach(function (item) { daftar.appendChild(item); });
+      opsi.forEach(function (item) { item.hidden = !( !q || item.dataset.label.toLowerCase().includes(q) || item.dataset.iata.toLowerCase().includes(q)); });
+    }
+  }
+
+  input.addEventListener('focus', filterBandara);
+  input.addEventListener('input', function () {
+    tujuan.value = '';
+    statusTujuan.textContent = 'Pilih salah satu hasil pencarian bandara.';
+    filterBandara();
+  });
+  opsi.forEach(function (item) {
+    item.addEventListener('click', function () {
+      tujuan.value = item.dataset.iata;
+      input.value = item.dataset.label;
+      statusTujuan.textContent = 'Tujuan dipilih: ' + item.dataset.label;
+      tutupDaftar();
+    });
+  });
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest('.airport-search')) tutupDaftar();
+  });
+  input.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') tutupDaftar();
+    if (event.key === 'Enter') {
+      var pertama = daftar.querySelector('.airport-option:not([hidden])');
+      if (pertama && !tujuan.value) { event.preventDefault(); pertama.click(); }
+    }
+  });
+
+  if (lat.value && lon.value) {
+    statusLokasi.textContent = 'Lokasi GPS siap digunakan sebagai titik awal.';
+    labelLokasi.textContent = 'Lokasi berhasil ditemukan';
   }
 
   tombol.addEventListener('click', function () {
     if (!navigator.geolocation) {
-      status.textContent = 'Browser ini tidak mendukung fitur lokasi. Silakan pilih bandara asal secara manual.';
+      statusLokasi.textContent = 'Browser tidak mendukung fitur lokasi.';
       return;
     }
-
     tombol.disabled = true;
     tombol.textContent = 'Mengambil lokasi...';
-    status.textContent = 'Meminta izin lokasi dari browser...';
-
+    statusLokasi.textContent = 'Meminta izin lokasi dari browser...';
     navigator.geolocation.getCurrentPosition(function (position) {
       lat.value = position.coords.latitude.toFixed(7);
       lon.value = position.coords.longitude.toFixed(7);
-      mode.value = 'lokasi';
-      setModeLokasi();
-      if (pilihAsal) pilihAsal.value = '';
-      status.textContent = 'Lokasi berhasil ditemukan. Sekarang pilih bandara tujuan, lalu tekan Cari rute.';
+      labelLokasi.textContent = 'Lokasi berhasil ditemukan';
+      statusLokasi.textContent = 'Lokasi GPS siap digunakan sebagai titik awal.';
       tombol.disabled = false;
-      tombol.textContent = 'Lokasi berhasil ditemukan';
+      tombol.textContent = '✓ Perbarui lokasi saya';
     }, function (error) {
       var pesan = 'Lokasi tidak berhasil diambil.';
-      if (error.code === error.PERMISSION_DENIED) pesan = 'Izin lokasi ditolak. Aktifkan izin lokasi untuk situs ini, atau pilih bandara asal secara manual.';
-      else if (error.code === error.POSITION_UNAVAILABLE) pesan = 'Informasi lokasi tidak tersedia. Coba aktifkan GPS atau pilih bandara asal manual.';
-      else if (error.code === error.TIMEOUT) pesan = 'Waktu pencarian lokasi habis. Coba lagi.';
-      status.textContent = pesan;
+      if (error.code === error.PERMISSION_DENIED) pesan = 'Izin lokasi ditolak. Aktifkan izin lokasi untuk situs ini.';
+      else if (error.code === error.POSITION_UNAVAILABLE) pesan = 'Informasi lokasi tidak tersedia. Periksa pengaturan GPS.';
+      else if (error.code === error.TIMEOUT) pesan = 'Waktu pencarian lokasi habis. Silakan coba lagi.';
+      statusLokasi.textContent = pesan;
       tombol.disabled = false;
       tombol.textContent = 'Coba gunakan lokasi saya lagi';
-    }, {
-      enableHighAccuracy: true,
-      timeout: 15000,
-      maximumAge: 60000
-    });
+    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+  });
+
+  form.addEventListener('submit', function (event) {
+    if (!lat.value || !lon.value) {
+      event.preventDefault();
+      statusLokasi.textContent = 'Ambil lokasi Anda terlebih dahulu sebelum mencari rute.';
+      tombol.focus();
+      return;
+    }
+    if (!tujuan.value) {
+      event.preventDefault();
+      statusTujuan.textContent = 'Pilih bandara tujuan dari daftar pencarian terlebih dahulu.';
+      input.focus();
+    }
   });
 })();
 </script>

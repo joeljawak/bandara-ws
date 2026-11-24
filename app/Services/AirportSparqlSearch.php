@@ -45,11 +45,7 @@ class AirportSparqlSearch
     public function search(array $options = []): LengthAwarePaginator
     {
         $q = trim((string) ($options['q'] ?? ''));
-        // Alias lokasi populer dan singkatan provinsi yang tidak selalu ada
-        // sebagai label literal di RDF.
         $normalizedQuery = mb_strtolower(preg_replace('/\s+/u', ' ', trim($q)) ?? $q);
-        // Hilangkan awalan administratif secara umum, bukan hanya untuk Medan.
-        // Contoh: "Kota Surabaya" menjadi "surabaya", "Kabupaten Sleman" menjadi "sleman".
         $normalizedQuery = preg_replace('/^(?:kota|kabupaten|kab\.?|city of)\s+/u', '', $normalizedQuery) ?? $normalizedQuery;
         $searchQuery = match ($normalizedQuery) {
             // KNO berada di Deli Serdang, tetapi melayani Kota Medan.
@@ -147,10 +143,7 @@ class AirportSparqlSearch
             'OPTIONAL { ?a ex:hasIATACode ?iata }',
             'OPTIONAL { ?a ex:hasICAOCode ?icao }',
             'OPTIONAL { ?a ex:locatedInCountry ?c . ?c rdfs:label ?negara }',
-            'OPTIONAL { ?a ex:locatedInRegion ?r . ?r rdfs:label ?kota }',
-            // Telusuri region langsung beserta seluruh region induknya.
-            // Ini membuat pencarian nama provinsi/pulau menemukan bandara
-            // yang lokasinya tercatat pada kota/kabupaten di bawah provinsi itu.
+            'OPTIONAL { ?a ex:locatedInRegion ?r . ?r rdfs:label ?kota }', 
             'OPTIONAL { ?a ex:locatedInRegion/ex:partOfRegion* ?wilayahR . ?wilayahR rdfs:label ?wilayah }',
             'OPTIONAL { ?a ex:airportCategory ?kategori }',
             'OPTIONAL { ?a ex:airportStatus ?status }',
@@ -187,7 +180,6 @@ class AirportSparqlSearch
         // Semua kandidat yang lolos filter struktural diambil satu kali, lalu
         // dicocokkan dengan normalisasi + ranking di searchTypoFallback().
         if ($near !== null) {
-            // Bounding box menekan jumlah hasil di Fuseki; radius presisi dihitung setelahnya.
             $latDelta = $radius / 110.574;
             $lonDelta = $radius / max(1, 111.320 * cos(deg2rad($near['lat'])));
             $where[] = 'FILTER(BOUND(?lat) && BOUND(?lon))';
@@ -464,7 +456,6 @@ class AirportSparqlSearch
 
     private function normalizeTypoText(string $text): string
     {
-        // Samakan aksen/diakritik: "Hải Phòng" menjadi "hai phong".
         $text = mb_strtolower(\Illuminate\Support\Str::ascii(trim($text)));
         $text = preg_replace('/[^\\p{L}\\p{N}]+/u', ' ', $text) ?? $text;
         return trim(preg_replace('/\\s+/u', ' ', $text) ?? $text);
